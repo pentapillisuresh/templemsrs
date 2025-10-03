@@ -4,23 +4,38 @@ import 'aos/dist/aos.css';
 
 const items: { title: string; desc: string; img: string }[] = [
   {
-    title: "The Happiness Program",
-    desc: "Powerful breathing techniques and sessions that will transform your life. Equip yourself with practical knowledge and techniques to unlock your true potential and bring fullness to your life.",
-    img: "https://images.pexels.com/photos/3759657/pexels-photo-3759657.jpeg",
+    title: "Blood Banks",
+    desc: "Life-saving blood donation drives and support to hospitals for emergency needs, ensuring help reaches the needy on time.",
+    img: "./images/line1.jpg", // blood donation
   },
   {
-    title: "Sahaj Samadhi Meditation",
-    desc: "Experience deep inner peace — the state of samadhi. Increase self awareness, clarity & creativity. Become fully experienced thanks to us in just a few hours.",
-    img: "https://images.pexels.com/photos/1051838/pexels-photo-1051838.jpeg",
+    title: "Educational Resources",
+    desc: "Providing students with free books, scholarships, and access to quality educational programs to shape brighter futures.",
+    img: "https://images.pexels.com/photos/256541/pexels-photo-256541.jpeg", // students studying
   },
   {
-    title: "Advanced Meditation Program",
-    desc: "Go beyond your usually active mind and experience an extraordinary sense of peace and renewed vitality through guided meditations and other processes.",
-    img: "https://images.pexels.com/photos/1054218/pexels-photo-1054218.jpeg",
+    title: "Food Distribution",
+    desc: "Regular Annadanam (free food distribution) programs serving thousands, supporting underprivileged families and communities.",
+    img: "./images/line2.jpg", // food serving
+  },
+  {
+    title: "Goshala",
+    desc: "Dedicated to cow protection, providing shelter, nourishment, and care for cows as part of our cultural and spiritual heritage.",
+    img: "./images/line3.jpg", // cows
+  },
+  {
+    title: "Medical Assistance",
+    desc: "Free health camps, checkups, and medical aid for poor and needy people, ensuring care reaches those in need.",
+    img: "https://images.pexels.com/photos/8460372/pexels-photo-8460372.jpeg", // doctor with patients
+  },
+  {
+    title: "Yoga & Wellbeing",
+    desc: "Daily yoga classes and wellbeing sessions to promote physical health, spiritual balance, and inner peace.",
+    img: "./images/line4.jpg", // yoga class
   },
 ];
 
-const MeditationPrograms: React.FC = () => {
+const ProjectsInitiatives: React.FC = () => {
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -36,12 +51,12 @@ const MeditationPrograms: React.FC = () => {
         {/* Heading */}
         <div className="text-center mb-20">
           <h2
-            className="text-4xl md:text-5xl font-light text-gray-800 leading-tight mb-6 max-w-4xl mx-auto"
+            className="text-3xl md:text-4xl font-light text-gray-800 leading-tight mb-6 max-w-4xl mx-auto"
             style={{ fontFamily: "Georgia, serif" }}
             data-aos="fade-up"
             data-aos-delay="100"
           >
-            Meditation, Yoga, Retreats, Free Programs & More...
+            Our Projects & Initiatives
           </h2>
           <div 
             className="w-24 h-1 bg-blue-400 mx-auto rounded-full"
@@ -88,7 +103,7 @@ const MeditationPrograms: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Timeline dot - perfectly centered */}
+                  {/* Timeline dot */}
                   <div 
                     className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 z-10"
                     style={{ top: '50%', transform: 'translate(-50%, -50%)' }}
@@ -178,8 +193,7 @@ const MeditationPrograms: React.FC = () => {
               data-aos="fade-up"
               data-aos-delay="300"
             >
-              Discover more transformative programs designed to enhance your
-              spiritual journey and personal growth.
+              Explore our initiatives dedicated to service, community, and spiritual growth. Join us in making a difference.
             </p>
             <button
               className="group relative bg-[#2C3E50] hover:from-blue-600 hover:to-blue-700 text-white px-10 py-4 rounded-full font-medium text-base tracking-wide shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
@@ -187,7 +201,7 @@ const MeditationPrograms: React.FC = () => {
               data-aos="zoom-in"
               data-aos-delay="400"
             >
-              <span className="relative z-10">Explore All Programs</span>
+              <span className="relative z-10">View All Projects</span>
               <div className="absolute inset-0 bg-white/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></div>
             </button>
           </div>
@@ -197,4 +211,4 @@ const MeditationPrograms: React.FC = () => {
   );
 };
 
-export default MeditationPrograms;
+export default ProjectsInitiatives;

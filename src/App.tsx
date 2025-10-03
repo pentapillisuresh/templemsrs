@@ -15,9 +15,15 @@ import Appointment from "./components/Appointment";
 import Donate from "./components/Donate";
 import Footer from "./components/Footer";
 import ContactForm from "./components/ContactForm";
+import Whatsapp from "./components/Whatsapp";
+import Call from "./components/Call";
 
 function App() {
   return (
+
+    <div>
+        <Whatsapp />
+      <Call />
     <Router>
       <div className="min-h-screen bg-gray-50">
         {/* Navigation stays on top */}
@@ -47,6 +53,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </div>
   );
 }
 
