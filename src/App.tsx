@@ -18,6 +18,7 @@ import ContactForm from "./components/ContactForm";
 import Whatsapp from "./components/Whatsapp";
 import Call from "./components/Call";
 import ScrollToTop from "./components/ScrollToTop";
+import Certificates from "./components/Certificates";
 
 function App() {
   return (
@@ -49,6 +50,9 @@ function App() {
             <Route path="/appointment" element={<Appointment />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="/contact" element={<ContactForm />} />
+            <Route path="/certificates" element={<Certificates />} />
+
+
           </Routes>
         </main>
 

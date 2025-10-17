@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Menu,
   X,
@@ -14,6 +14,9 @@ import {
   ChevronDown,
   CalendarCheck,
   HandHeart,
+  Volume2,
+  VolumeX,
+  Award
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -22,15 +25,38 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
   const location = useLocation();
 
+  // Scroll effect
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ✅ Main navigation items
+  // Toggle play/pause audio
+  const toggleAudio = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  // Stop audio when navigating
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    }
+  }, [location.pathname]);
+
   const mainItems = [
     { id: "home", label: "Home", icon: Home, path: "/" },
     { id: "about", label: "About", icon: Info, path: "/about" },
@@ -39,7 +65,6 @@ const Header = () => {
     { id: "donate", label: "Donate", icon: HandHeart, path: "/donate" },
   ];
 
-  // ✅ Dropdown items (alphabetically sorted by label)
   const dropdownItems = [
     { id: "board", label: "Board & Management", icon: UserCheck, path: "/board" },
     { id: "events", label: "Events", icon: Calendar, path: "/events" },
@@ -49,9 +74,11 @@ const Header = () => {
     { id: "projects", label: "Projects", icon: FolderOpen, path: "/projects" },
     { id: "team", label: "Team", icon: Users, path: "/team" },
     { id: "volunteer", label: "Volunteer", icon: Users, path: "/volunteer" },
+    { id: "certificates", label: "Certificates Govt of India", icon: Award, path: "/certificates" },
+
+
   ].sort((a, b) => a.label.localeCompare(b.label));
 
-  // ✅ Active link helper
   const isActive = (path) => location.pathname === path;
 
   return (
@@ -67,7 +94,7 @@ const Header = () => {
           className="flex items-center space-x-2 group transition-transform duration-300 hover:scale-105"
         >
           <span
-            className={`text-xl font-bold font-serif tracking-tight ${
+            className={`text-lg font-bold font-serif tracking-tight ${
               isScrolled ? "text-gray-900" : "text-white"
             }`}
           >
@@ -101,53 +128,73 @@ const Header = () => {
             </Link>
           ))}
 
-          {/* Dropdown */}
-          <div className="relative">
+          {/* Dropdown + Audio */}
+          <div className="flex items-center space-x-4">
+            {/* Dropdown Menu */}
+            <div className="relative">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className={`flex items-center space-x-1 px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 focus:outline-none ${
+                  isScrolled
+                    ? "text-gray-700 hover:text-[#3B4A69]"
+                    : "text-white hover:text-[#3B4A69]"
+                }`}
+              >
+                <span>More</span>
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-300 ${
+                    isDropdownOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.25 }}
+                    className="absolute right-0 mt-2 w-56 rounded-lg shadow-xl bg-white border border-gray-100 overflow-hidden"
+                  >
+                    <div className="py-2">
+                      {dropdownItems.map((item) => (
+                        <Link
+                          key={item.id}
+                          to={item.path}
+                          onClick={() => setIsDropdownOpen(false)}
+                          className={`flex items-center space-x-2 w-full px-4 py-2 text-sm transition-all duration-200 ${
+                            isActive(item.path)
+                              ? "text-[#3B4A69] bg-gray-50 font-semibold"
+                              : "text-gray-700 hover:text-[#3B4A69] hover:bg-gray-50"
+                          }`}
+                        >
+                          <item.icon className="w-4 h-4" />
+                          <span>{item.label}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Audio Icon */}
             <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className={`flex items-center space-x-1 px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 focus:outline-none ${
-                isScrolled
-                  ? "text-gray-700 hover:text-[#3B4A69]"
-                  : "text-white hover:text-[#3B4A69]"
+              onClick={toggleAudio}
+              className={`p-2 rounded-full bg-white/20 hover:bg-white/40 transition ${
+                isScrolled ? "text-[#3B4A69]" : "text-white"
               }`}
             >
-              <span>More</span>
-              <ChevronDown
-                className={`w-4 h-4 transition-transform duration-300 ${
-                  isDropdownOpen ? "rotate-180" : ""
-                }`}
-              />
+              {isPlaying ? (
+                <Volume2 className="w-5 h-5" />
+              ) : (
+                <VolumeX className="w-5 h-5" />
+              )}
             </button>
 
-            <AnimatePresence>
-              {isDropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.25 }}
-                  className="absolute right-0 mt-2 w-56 rounded-lg shadow-xl bg-white border border-gray-100 overflow-hidden"
-                >
-                  <div className="py-2">
-                    {dropdownItems.map((item) => (
-                      <Link
-                        key={item.id}
-                        to={item.path}
-                        onClick={() => setIsDropdownOpen(false)}
-                        className={`flex items-center space-x-2 w-full px-4 py-2 text-sm transition-all duration-200 ${
-                          isActive(item.path)
-                            ? "text-[#3B4A69] bg-gray-50 font-semibold"
-                            : "text-gray-700 hover:text-[#3B4A69] hover:bg-gray-50"
-                        }`}
-                      >
-                        <item.icon className="w-4 h-4" />
-                        <span>{item.label}</span>
-                      </Link>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* Hidden Audio Element */}
+            <audio ref={audioRef} src="/images/om.mp3" loop preload="auto" />
           </div>
         </div>
 
@@ -169,7 +216,7 @@ const Header = () => {
         </div>
       </nav>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -195,6 +242,19 @@ const Header = () => {
                   <span>{item.label}</span>
                 </Link>
               ))}
+
+              {/* Audio Icon in Mobile Menu */}
+              <button
+                onClick={toggleAudio}
+                className="flex items-center space-x-2 w-full px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-[#3B4A69] hover:bg-gray-50"
+              >
+                {isPlaying ? (
+                  <Volume2 className="w-4 h-4" />
+                ) : (
+                  <VolumeX className="w-4 h-4" />
+                )}
+                <span>{isPlaying ? "Stop Chant" : "Play Chant"}</span>
+              </button>
             </div>
           </motion.div>
         )}
