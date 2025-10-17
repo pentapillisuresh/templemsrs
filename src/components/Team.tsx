@@ -1,7 +1,62 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Users, Heart, Star, Award } from "lucide-react";
 
+// ✅ Count-up number animation component
+// Duration is set to 1.5 seconds for a snappier animation
+const CountUpNumber = ({ from, to, duration = 1.5, suffix = "" }) => {
+  const [count, setCount] = useState(from);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    let start = from;
+    const end = parseInt(to.replace(/\D/g, "")); // remove non-numeric chars
+
+    // Calculate increment based on duration and a target of 60 frames per second
+    const targetFrames = duration * 60;
+    const increment = (end - from) / targetFrames;
+
+    let frame = 0;
+    const updateCount = () => {
+      frame++;
+      start += increment;
+
+      if (frame < targetFrames) {
+        setCount(Math.floor(start));
+        requestAnimationFrame(updateCount);
+      } else {
+        // Ensure the count stops precisely at the final 'to' value
+        setCount(end);
+      }
+    };
+
+    // Start the animation loop
+    const animationId = requestAnimationFrame(updateCount);
+
+    // Cleanup function to cancel the animation on unmount or dependency change
+    return () => cancelAnimationFrame(animationId);
+  }, [from, to, duration]);
+
+  // The suffix logic needs to be applied after the animation
+  let displayValue = count.toLocaleString();
+  if (suffix === "+" && displayValue !== count.toLocaleString()) {
+    // Logic to re-add '+' if the original 'to' had it, and animation is complete/near-complete
+    // For simplicity and matching the existing logic, we just append the suffix.
+    // The original component design only adds the suffix based on the prop, 
+    // which is passed based on `stat.number.endsWith("+")`.
+  }
+
+  return (
+    <div className="text-4xl font-serif font-bold text-[#2C3E50] mb-1">
+      {displayValue}
+      {suffix}
+    </div>
+  );
+};
+
 const Team: React.FC = () => {
+  const navigate = useNavigate();
+
   const teamMembers = [
     {
       name: "Arjun Patel",
@@ -72,40 +127,24 @@ const Team: React.FC = () => {
   ];
 
   const teamStats = [
-    {
-      icon: Users,
-      number: "50+",
-      label: "Active Members",
-    },
-    {
-      icon: Heart,
-      number: "10K+",
-      label: "Hours Served",
-    },
-    {
-      icon: Star,
-      number: "25+",
-      label: "Projects Led",
-    },
-    {
-      icon: Award,
-      number: "5",
-      label: "Awards Won",
-    },
+    { icon: Users, number: "50+", label: "Active Members" },
+    { icon: Heart, number: "10000+", label: "Hours Served" },
+    { icon: Star, number: "25+", label: "Projects Led" },
+    { icon: Award, number: "5", label: "Awards Won" },
   ];
 
   return (
     <>
       {/* 🔹 Banner Section */}
-      <div className="relative w-full h-[300px]">
+      <div className="relative w-full h-[400px]">
         <img
           src="./images/ourteam.jpg"
-          alt="Team Banner"
+          alt="Projects Banner"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-[#2C3E50]/70 flex items-center justify-center">
           <h1 className="text-4xl md:text-5xl font-serif text-white font-bold">
-            Our Young Team
+            Our Team
           </h1>
         </div>
       </div>
@@ -124,7 +163,7 @@ const Team: React.FC = () => {
             </p>
           </div>
 
-          {/* Team Statistics */}
+          {/* ✅ Team Statistics with Count Animation (Duration set to 1.5s) */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             {teamStats.map((stat, index) => (
               <div
@@ -134,9 +173,13 @@ const Team: React.FC = () => {
                 <div className="w-14 h-14 bg-gradient-to-r from-[#2C3E50] to-[#3D4C6D] rounded-full flex items-center justify-center mx-auto mb-4">
                   <stat.icon className="w-7 h-7 text-white" />
                 </div>
-                <div className="text-3xl font-bold text-[#2C3E50] mb-1">
-                  {stat.number}
-                </div>
+                {/* CountUpNumber uses default duration of 1.5s now */}
+                <CountUpNumber
+                  from={0}
+                  to={stat.number}
+                  // duration={1.5} // Using default set in component
+                  suffix={stat.number.endsWith("+") ? "+" : ""}
+                />
                 <div className="text-gray-600 font-roboto">{stat.label}</div>
               </div>
             ))}
@@ -193,10 +236,26 @@ const Team: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { icon: Heart, title: "Compassion", desc: "Serving with love and empathy for all beings" },
-                { icon: Star, title: "Excellence", desc: "Striving for the highest standards in everything" },
-                { icon: Users, title: "Unity", desc: "Working together as one family for common goals" },
-                { icon: Award, title: "Innovation", desc: "Embracing modern methods for ancient wisdom" },
+                {
+                  icon: Heart,
+                  title: "Compassion",
+                  desc: "Serving with love and empathy for all beings",
+                },
+                {
+                  icon: Star,
+                  title: "Excellence",
+                  desc: "Striving for the highest standards in everything",
+                },
+                {
+                  icon: Users,
+                  title: "Unity",
+                  desc: "Working together as one family for common goals",
+                },
+                {
+                  icon: Award,
+                  title: "Innovation",
+                  desc: "Embracing modern methods for ancient wisdom",
+                },
               ].map((value, i) => (
                 <div key={i} className="text-center">
                   <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -211,7 +270,7 @@ const Team: React.FC = () => {
             </div>
           </div>
 
-          {/* Join Team CTA */}
+          {/* ✅ Join Team CTA with Navigation */}
           <div className="text-center">
             <h3 className="text-3xl font-serif font-bold text-[#2C3E50] mb-4">
               Join Our Team
@@ -220,7 +279,10 @@ const Team: React.FC = () => {
               Are you passionate about serving the community? Join our dynamic
               young team and make a lasting impact!
             </p>
-            <button className="bg-gradient-to-r from-[#2C3E50] to-[#3D4C6D] text-white px-8 py-4 rounded-full font-roboto font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+            <button
+              onClick={() => navigate("/volunteer")}
+              className="bg-gradient-to-r from-[#2C3E50] to-[#3D4C6D] text-white px-8 py-4 rounded-full font-roboto font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1"
+            >
               Apply to Join Team
             </button>
           </div>

@@ -17,6 +17,7 @@ import Footer from "./components/Footer";
 import ContactForm from "./components/ContactForm";
 import Whatsapp from "./components/Whatsapp";
 import Call from "./components/Call";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
         <Whatsapp />
       <Call />
     <Router>
+               <ScrollToTop />
+
       <div className="min-h-screen bg-gray-50">
         {/* Navigation stays on top */}
         <Navigation />
@@ -33,7 +36,7 @@ function App() {
         <main className="transition-all duration-500 ease-in-out">
           <Routes>
             <Route path="/" element={<Hero />} />
-            <Route path="/home" element={<Hero />} />
+            {/* <Route path="/home" element={<Hero />} /> */}
             <Route path="/about" element={<AboutTemple />} />
             <Route path="/volunteer" element={<VolunteerForm />} />
             <Route path="/board" element={<BoardManagement />} />

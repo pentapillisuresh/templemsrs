@@ -1,22 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useRef } from "react";
 import { Car, Bus, Train, Check } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 function AboutTemple() {
+  const reachSectionRef = useRef(null);
   useEffect(() => {
     AOS.init({ duration: 1000, once: true, easing: "ease-out" });
   }, []);
+
+  const scrollToReachSection = () => {
+reachSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+};
 
   return (
     <div className="bg-white font-['Roboto'] overflow-x-hidden w-full text-gray-800">
       {/* Hero Section */}
       <section className="relative h-[400px] bg-[#2C3E50] overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-60"
+          className="absolute inset-0 bg-cover bg-center opacity-60 transform transition-transform duration-[4000ms] hover:scale-110"
           style={{
-            backgroundImage:
-              "url('./images/aboutbanner.jpg')",
+            backgroundImage: "url('./images/aboutbanner.jpg')",
           }}
         ></div>
         <div className="absolute inset-0"></div>
@@ -56,15 +60,15 @@ function AboutTemple() {
               of devotees who seek spiritual guidance, participate in sacred
               rituals, and contribute to our various social welfare programs.
             </p>
-            <button className="bg-[#2C3E50] hover:bg-[#3D4C6D] text-white px-8 py-3 rounded-full transition-all shadow-lg">
+            <button onClick={scrollToReachSection} className="bg-[#2C3E50] hover:bg-[#3D4C6D] text-white px-8 py-3 rounded-full transition-all shadow-lg">
               How to Reach Temple
             </button>
           </div>
-          <div data-aos="fade-left" data-aos-delay="200">
+          <div data-aos="fade-left" data-aos-delay="200" className="overflow-hidden rounded-2xl shadow-2xl">
             <img
-              src="./images/about2.jpg"
+              src="./images/templereach.png"
               alt="Temple Deity"
-              className="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
+              className="w-full h-[500px] object-cover transform transition-transform duration-[3000ms] hover:scale-110"
             />
           </div>
         </div>
@@ -84,15 +88,9 @@ function AboutTemple() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              {
-                time: "5:00 AM - 6:00 AM",
-                activity: "Morning Prayers & Abhishekam",
-              },
+              { time: "5:00 AM - 6:00 AM", activity: "Morning Prayers & Abhishekam" },
               { time: "6:30 AM - 8:00 AM", activity: "Suprabhatam & Darshan" },
-              {
-                time: "10:00 AM - 12:00 PM",
-                activity: "Special Poojas & Archana",
-              },
+              { time: "10:00 AM - 12:00 PM", activity: "Special Poojas & Archana" },
               { time: "12:00 PM - 1:00 PM", activity: "Afternoon Aarti" },
               { time: "6:00 PM - 8:00 PM", activity: "Evening Prayers & Bhajans" },
               { time: "8:30 PM - 9:00 PM", activity: "Night Aarti & Prasadam" },
@@ -148,13 +146,13 @@ function AboutTemple() {
                 title: "Spiritual Discourses",
                 description:
                   "Learn spiritual truths and religious education programs",
-                             img: "./images/about12.jpg",
+                img: "./images/about12.jpg",
               },
               {
                 title: "Community Service",
-                description: "Social welfare programs and charitable initiatives",
-                                img: "./images/about13.jpg",
-
+                description:
+                  "Social welfare programs and charitable initiatives",
+                img: "./images/about13.jpg",
               },
             ].map((activity, idx) => (
               <div
@@ -163,11 +161,11 @@ function AboutTemple() {
                 data-aos="fade-up"
                 data-aos-delay={idx * 100}
               >
-                <div className="relative h-64">
+                <div className="relative h-64 overflow-hidden">
                   <img
                     src={activity.img}
                     alt={activity.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transform transition-transform duration-[3000ms] hover:scale-110"
                   />
                 </div>
                 <div className="p-6">
@@ -191,11 +189,11 @@ function AboutTemple() {
       <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div data-aos="fade-right">
+            <div data-aos="fade-right" className="overflow-hidden rounded-2xl shadow-2xl">
               <img
                 src="./images/temple11.jpg"
                 alt="Temple Architecture"
-                className="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
+                className="w-full h-[500px] object-cover transform transition-transform duration-[3000ms] hover:scale-110"
               />
             </div>
             <div data-aos="fade-left" data-aos-delay="200">
@@ -257,12 +255,12 @@ function AboutTemple() {
               },
               {
                 festival: "Navaratri",
-                                img: "./images/about33.jpg",
+                img: "./images/about33.jpg",
                 desc: "Nine nights of devotion and divine blessings.",
               },
               {
                 festival: "Ram Navami",
-                                               img: "./images/about34.jpg",
+                img: "./images/about34.jpg",
                 desc: "Commemorating the birth of Lord Rama.",
               },
               {
@@ -282,11 +280,13 @@ function AboutTemple() {
                 data-aos="fade-up"
                 data-aos-delay={idx * 100}
               >
-                <img
-                  src={item.img}
-                  alt={item.festival}
-                  className="h-48 w-full object-cover"
-                />
+                <div className="overflow-hidden">
+                  <img
+                    src={item.img}
+                    alt={item.festival}
+                    className="h-48 w-full object-cover transform transition-transform duration-[3000ms] hover:scale-110"
+                  />
+                </div>
                 <div className="p-6 text-center">
                   <h3 className="text-2xl font-serif text-[#2C3E50] mb-2">
                     {item.festival}
@@ -300,7 +300,7 @@ function AboutTemple() {
       </section>
 
       {/* How to Reach */}
-      <section className="bg-gray-50 py-20">
+      <section ref={reachSectionRef} className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12" data-aos="fade-up">
             <h2 className="text-4xl font-serif text-[#2C3E50] mb-4">
@@ -315,7 +315,7 @@ function AboutTemple() {
             <div className="space-y-6" data-aos="fade-right">
               {/* By Car */}
               <div className="flex gap-4">
-                <div className="bg-[#2C3E50] text-white w-12 h-12 rounded-full flex items-center justify-center" style={{borderRadius:"50%"}}>
+                <div className="bg-[#2C3E50] text-white w-12 h-12 rounded-full flex items-center justify-center">
                   <Car size={24} />
                 </div>
                 <div>
@@ -331,7 +331,7 @@ function AboutTemple() {
 
               {/* By Bus */}
               <div className="flex gap-4">
-                <div className="bg-[#3D4C6D] text-white w-12 h-12 rounded-full flex items-center justify-center" style={{borderRadius:"50%"}}>
+                <div className="bg-[#3D4C6D] text-white w-12 h-12 rounded-full flex items-center justify-center">
                   <Bus size={24} />
                 </div>
                 <div>
@@ -347,7 +347,7 @@ function AboutTemple() {
 
               {/* By Train */}
               <div className="flex gap-4">
-                <div className="bg-[#2C3E50] text-white w-12 h-12 rounded-full flex items-center justify-center" style={{borderRadius:"50%"}}>
+                <div className="bg-[#2C3E50] text-white w-12 h-12 rounded-full flex items-center justify-center">
                   <Train size={24} />
                 </div>
                 <div>
@@ -363,12 +363,12 @@ function AboutTemple() {
             </div>
 
             {/* Map */}
-            <div data-aos="fade-left" data-aos-delay="200">
+            <div data-aos="fade-left" data-aos-delay="200" className="overflow-hidden rounded-xl shadow-xl">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.6284448181584!2d78.48319!3d17.385044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd2c7%3A0xae93b78392bafbc2!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1234567890"
                 width="100%"
                 height="400"
-                className="rounded-xl shadow-xl border-0 w-full"
+                className="rounded-xl shadow-xl border-0 w-full transform transition-transform duration-[4000ms] hover:scale-105"
                 loading="lazy"
                 allowFullScreen
                 title="Temple Map"

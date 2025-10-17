@@ -2,10 +2,39 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { motion, useAnimation, useInView } from "framer-motion";
 
-// ✅ Fonts: 
-// Add in index.html if not added already
-// <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+// ✅ Count-up number component - unchanged functionality
+const CountUpNumber = ({ from, to, duration = 2, suffix = "" }) => {
+  const [count, setCount] = React.useState(from);
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (isInView) {
+      let start = from;
+      const end = to;
+      const increment = (end - start) / (duration * 60); // 60fps
+      const interval = setInterval(() => {
+        start += increment;
+        if (start >= end) {
+          clearInterval(interval);
+          start = end;
+        }
+        setCount(Math.floor(start));
+      }, 16);
+      return () => clearInterval(interval);
+    }
+  }, [isInView, from, to, duration]);
+
+  // Design Change: Changed text color to a bright yellow/gold for prominence
+  return (
+    <span ref={ref} className="text-4xl md:text-5xl font-bold text-white">
+      {count.toLocaleString()}
+      {suffix}
+    </span>
+  );
+};
 
 const VolunteerAstrology = () => {
   const navigate = useNavigate();
@@ -20,23 +49,39 @@ const VolunteerAstrology = () => {
   const sections = [
     {
       title: "Serve with Devotion – Become a Volunteer",
-      image: "./images/service4.png",
+      image: "./images/volunteer.png",
       button: "Join as Volunteer",
-      route: "/volunteer", // ✅ navigation route
+      route: "/volunteer",
     },
     {
       title: "Vedic Astrology Consultations",
-      image: "./images/service1.jpg",
-      button: "Book a Session",
-      route: "/appointment", // ✅ navigation route
+      image: "./images/astrology.jpg",
+      button: "Book an appointment ",
+      route: "/appointment",
     },
     {
       title: "Book Rituals & Pooja Services",
       image: "./images/service2.jpg",
       button: "Book Pooja",
-      route: "/appointment", // ✅ navigation route
+      route: "/appointment",
     },
   ];
+
+  const stats = [
+    { number: 200000, suffix: "+", label: "Kundalis Served" },
+    { number: 100000, suffix: "+", label: "Consultations Given" },
+    { number: 50, suffix: "+", label: "Years Legacy" },
+    {
+      number: 50,
+      suffix: "+",
+      label: "Years of Divine Astrology through Guru Parampara",
+    },
+  ];
+
+  // Logic to separate the specific section for custom design
+  const volunteerSection = sections[0];
+  const astrologyConsultationSection = sections[1]; // Index 1: Vedic Astrology Consultations
+  const poojaRitualsSection = sections[2];
 
   return (
     <section className="w-full bg-gray-900">
@@ -46,7 +91,7 @@ const VolunteerAstrology = () => {
           className="text-3xl md:text-4xl font-serif text-white mb-4"
           data-aos="fade-up"
         >
-          Volunteer & Astrology Services
+          Volunteer & Astrology Services & Book Rituals
         </h2>
         <div
           className="w-20 h-1 bg-[#2C3E50] mx-auto rounded-full"
@@ -63,84 +108,115 @@ const VolunteerAstrology = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2">
-        {/* LEFT SECTION (Volunteer) */}
-        <div
-          className="relative group h-[400px] lg:h-[800px] overflow-hidden"
-          data-aos="fade-right"
-        >
-          <img
-            src={sections[0].image}
-            alt={sections[0].title}
-            className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700 ease-in-out"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
-          <div className="absolute bottom-10 left-10 right-10">
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif text-white leading-snug mb-5 max-w-xl drop-shadow-lg">
-              {sections[0].title}
-            </h3>
-            <button
-              onClick={() => navigate(sections[0].route)}
-              className="bg-[#2C3E50] hover:bg-[#1A252F] text-white text-sm font-semibold px-6 py-3 rounded-full transition-all duration-300 shadow-lg"
+      {/* 🚀 REDESIGNED VEDIC COUNTER SECTION */}
+      <div
+        // Design Change: Added a border, changed background to a subtle radial gradient, increased padding
+        className="bg-gray-800/70 border border-[#2C3E50] py-16 px-6 md:px-12 rounded-2xl shadow-2xl mx-auto max-w-7xl mb-16 relative overflow-hidden"
+        data-aos="fade-up"
+      >
+        {/* Subtle background glow/overlay for a premium feel */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-color-gray-900)_0%,_var(--tw-color-transparent)_75%)] opacity-70"></div>
+        <div className="relative grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {stats.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: index * 0.15 }} // Adjusted transition
+              viewport={{ once: true }}
+              // Design Change: Added padding and a subtle card background for each stat
+              className="flex flex-col items-center p-4 bg-[#1A252F]/80 rounded-lg transform hover:scale-[1.02] transition-transform duration-300"
             >
-              {sections[0].button}
-            </button>
-          </div>
-        </div>
-
-        {/* RIGHT SECTION */}
-        <div className="flex flex-col">
-          {/* TOP RIGHT (Astrology Consultation) */}
-          <div
-            className="relative group h-[400px] overflow-hidden"
-            data-aos="fade-left"
-            data-aos-delay="150"
-          >
-            <img
-              src={sections[1].image}
-              alt={sections[1].title}
-              className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700 ease-in-out"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
-            <div className="absolute bottom-8 left-8 right-8">
-              <h3 className="text-xl md:text-2xl font-serif text-white leading-snug mb-4 drop-shadow-lg">
-                {sections[1].title}
-              </h3>
-              <button
-                onClick={() => navigate(sections[1].route)}
-                className="bg-[#2C3E50] hover:bg-[#1A252F] text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 shadow-lg"
-              >
-                {sections[1].button}
-              </button>
-            </div>
-          </div>
-
-          {/* BOTTOM RIGHT (Pooja Booking) */}
-          <div
-            className="relative group h-[400px] overflow-hidden"
-            data-aos="fade-left"
-            data-aos-delay="300"
-          >
-            <img
-              src={sections[2].image}
-              alt={sections[2].title}
-              className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700 ease-in-out"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
-            <div className="absolute bottom-8 left-8 right-8">
-              <h3 className="text-xl md:text-2xl font-serif text-white leading-snug mb-4 drop-shadow-lg">
-                {sections[2].title}
-              </h3>
-              <button
-                onClick={() => navigate(sections[2].route)}
-                className="bg-[#2C3E50] hover:bg-[#1A252F] text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 shadow-lg"
-              >
-                {sections[2].button}
-              </button>
-            </div>
-          </div>
+              <CountUpNumber from={0} to={item.number} suffix={item.suffix} />
+              <p className="text-gray-200 mt-2 text-sm md:text-base max-w-[200px] leading-snug font-medium uppercase tracking-wider">
+                {item.label}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
+
+      {/* MAIN GRID SECTION */}
+     {/* MAIN GRID SECTION */}
+<div className="grid grid-cols-1 lg:grid-cols-2">
+  {/* LEFT SECTION - Now Astrology Consultations */}
+  <div
+    className="relative group h-[400px] lg:h-[800px] overflow-hidden"
+    data-aos="fade-right"
+  >
+    <img
+      src={astrologyConsultationSection.image}
+      alt={astrologyConsultationSection.title}
+      className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700 ease-in-out"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+    <div className="absolute bottom-10 left-10 right-10">
+      <h3 className="text-2xl md:text-3xl font-serif text-white leading-snug mb-4 drop-shadow-lg transform group-hover:translate-y-[-5px] transition-transform duration-500">
+        {astrologyConsultationSection.title}
+      </h3>
+      <button
+        onClick={() => navigate(astrologyConsultationSection.route)}
+        className="bg-[#2C3E50] hover:bg-[#1A252F] text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 shadow-lg"
+      >
+        {astrologyConsultationSection.button}
+      </button>
+    </div>
+  </div>
+
+  {/* RIGHT SECTION - Split into Volunteer + Pooja */}
+  <div className="flex flex-col">
+    {/* Volunteer - moved to right top */}
+    <div
+      className="relative group h-[400px] overflow-hidden border-b-4 border-[#2C3E50]/50"
+      data-aos="fade-left"
+    >
+      <img
+        src={volunteerSection.image}
+        alt={volunteerSection.title}
+        className="w-full h-full object-cover scale-100 group-hover:scale-[1.15] transition-transform duration-1000 ease-in-out"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/30"></div>
+      <div className="absolute bottom-10 left-10 right-10">
+        <h3 className="text-2xl md:text-3xl font-serif text-white leading-snug mb-4 drop-shadow-lg transform group-hover:translate-y-[-5px] transition-transform duration-500">
+          {volunteerSection.title}
+        </h3>
+      
+        <button
+          onClick={() => navigate(volunteerSection.route)}
+          className="bg-[#2C3E50] hover:bg-[#1A252F] text-white text-sm font-semibold px-6 py-3 rounded-full transition-all duration-300 shadow-lg"
+        >
+          {volunteerSection.button}
+        </button>
+      </div>
+    </div>
+
+    {/* Pooja - remains at bottom */}
+    <div
+      className="relative group h-[400px] overflow-hidden"
+      data-aos="fade-left"
+      data-aos-delay={300}
+    >
+      <img
+        src={poojaRitualsSection.image}
+        alt={poojaRitualsSection.title}
+        className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700 ease-in-out"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+      <div className="absolute bottom-8 left-8 right-8">
+        <h3 className="text-xl md:text-2xl font-serif text-white leading-snug mb-4 drop-shadow-lg">
+          {poojaRitualsSection.title}
+        </h3>
+        <button
+          onClick={() => navigate(poojaRitualsSection.route)}
+          className="bg-[#2C3E50] hover:bg-[#1A252F] text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 shadow-lg"
+        >
+          {poojaRitualsSection.button}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
     </section>
   );
 };

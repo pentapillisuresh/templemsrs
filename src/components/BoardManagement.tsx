@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { ShieldCheck, Users, Heart, Scale, Check } from "lucide-react";
+import { Check } from "lucide-react";
 
-const aboutBanner = './images/board.jpg'; // hero banner at top
+// ✅ Hero banner image
+const aboutBanner = "./images/board.png";
 
 const boardMembers = [
   {
@@ -87,7 +88,7 @@ const BoardManagement: React.FC = () => {
 
   return (
     <>
-      {/* Hero Section */}
+      {/* ✅ Hero Section */}
       <section className="relative h-[400px] w-full bg-[#2C3E50] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -104,7 +105,7 @@ const BoardManagement: React.FC = () => {
         </div>
       </section>
 
-      {/* Board Members */}
+      {/* ✅ Board Members Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -112,31 +113,38 @@ const BoardManagement: React.FC = () => {
               Board of Trustees & Management
             </h2>
             <p className="text-lg font-roboto text-[#2C3E50] max-w-3xl mx-auto">
-              Meet our dedicated leadership team committed to spiritual growth and
-              community service
+              Meet our dedicated leadership team committed to spiritual growth
+              and community service
             </p>
           </div>
 
+          {/* ✅ Animated Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {boardMembers.map((member, i) => (
               <div
                 key={i}
                 data-aos="fade-up"
                 data-aos-delay={i * 100}
-                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition"
+                className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500"
               >
-                <div className="relative">
+                {/* ✅ Image Section with Hover Animation */}
+                <div className="relative overflow-hidden">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-60 object-cover"
+                    className="w-full h-60 object-cover transform transition-transform duration-700 group-hover:scale-110"
                   />
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 </div>
+
+                {/* ✅ Text Content */}
                 <div className="p-6">
                   <h3 className="text-xl font-bold font-serif text-[#2C3E50] mb-1">
                     {member.name}
                   </h3>
-                  <p className="text-[#2C3E50] font-semibold mb-3">{member.position}</p>
+                  <p className="text-[#2C3E50] font-semibold mb-3">
+                    {member.position}
+                  </p>
                   <p className="text-sm font-roboto text-[#2C3E50] mb-1">
                     <strong>Qualification:</strong> {member.qualification}
                   </p>
@@ -164,55 +172,7 @@ const BoardManagement: React.FC = () => {
             ))}
           </div>
 
-          {/* Governance Principles */}
-          <div
-            data-aos="fade-up"
-            className="bg-white shadow-md rounded-2xl p-10 mb-16"
-          >
-            <h3 className="text-2xl font-bold font-serif text-center text-[#2C3E50] mb-6">
-              Governance Principles
-            </h3>
-            <p className="text-center font-roboto text-[#2C3E50] max-w-3xl mx-auto mb-10">
-              Our foundation operates on strong governance principles ensuring
-              trust, transparency, and effective service delivery
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-              <div>
-                <ShieldCheck className="w-12 h-12 text-[#2C3E50] mx-auto mb-3" />
-                <h4 className="font-bold font-serif text-[#2C3E50] mb-2">Transparency</h4>
-                <p className="text-[#2C3E50] text-sm font-roboto">
-                  All financial transactions and activities are conducted with
-                  complete transparency
-                </p>
-              </div>
-              <div>
-                <Users className="w-12 h-12 text-[#2C3E50] mx-auto mb-3" />
-                <h4 className="font-bold font-serif text-[#2C3E50] mb-2">Accountability</h4>
-                <p className="text-[#2C3E50] text-sm font-roboto">
-                  Regular audits and public reporting ensure accountability to
-                  stakeholders
-                </p>
-              </div>
-              <div>
-                <Heart className="w-12 h-12 text-[#2C3E50] mx-auto mb-3" />
-                <h4 className="font-bold font-serif text-[#2C3E50] mb-2">Ethical Practices</h4>
-                <p className="text-[#2C3E50] text-sm font-roboto">
-                  All operations follow highest ethical standards and moral
-                  principles
-                </p>
-              </div>
-              <div>
-                <Scale className="w-12 h-12 text-[#2C3E50] mx-auto mb-3" />
-                <h4 className="font-bold font-serif text-[#2C3E50] mb-2">Community Focus</h4>
-                <p className="text-[#2C3E50] text-sm font-roboto">
-                  Decisions are made with community welfare and spiritual growth
-                  as priorities
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Responsibilities */}
+          {/* ✅ Responsibilities Section */}
           <div
             data-aos="fade-up"
             className="bg-gradient-to-r from-[#2C3E50] to-[#2C3E50]/80 rounded-2xl p-10 text-white"

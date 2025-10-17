@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Download, Eye } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
+
 
 const ELibrary: React.FC = () => {
+    const navigate = useNavigate();
+  
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All Books");
 
@@ -93,7 +97,7 @@ const ELibrary: React.FC = () => {
       category: "Education",
       image: "./images/book10.jpg",
     },
-        {
+    {
       title: "Yoga Sutras of Patanjali",
       author: "by Sage Patanjali",
       details: "Classical text on yoga philosophy and practice",
@@ -102,7 +106,7 @@ const ELibrary: React.FC = () => {
       category: "philosophy",
       image: "./images/book11.jpg",
     },
-        {
+    {
       title: "Ayurveda Principles",
       author: "by Charaka & Sushruta",
       details: "Ancient Indian medical system and healing practices",
@@ -111,7 +115,7 @@ const ELibrary: React.FC = () => {
       category: "Education",
       image: "./images/book12.jpg",
     },
-        {
+    {
       title: "Help the Poor",
       author: "by Various Authors",
       details: "Practical approaches to poverty reduction and social welfare",
@@ -120,7 +124,7 @@ const ELibrary: React.FC = () => {
       category: "social Development",
       image: "./images/book5.jpg",
     },
-        {
+    {
       title: "Why Nations Fail",
       author: "by Daron Acemoglu & James Robinson",
       details: "The origins of power, prosperity, and poverty",
@@ -143,7 +147,7 @@ const ELibrary: React.FC = () => {
     <section className="bg-gray-50 font-['Roboto']">
       {/* Banner */}
       <div
-        className="relative w-full h-[300px] bg-cover bg-center flex items-center justify-center"
+        className="relative w-full h-[400px] bg-cover bg-center flex items-center justify-center"
         style={{
           backgroundImage:
             "url('https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg')",
@@ -181,11 +185,10 @@ const ELibrary: React.FC = () => {
               <button
                 key={c}
                 onClick={() => setCategory(c)}
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition ${
-                  category === c
+                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition ${category === c
                     ? "bg-[#2C3E50] text-white"
                     : "bg-white border border-gray-300 text-gray-600 hover:bg-gray-100"
-                }`}
+                  }`}
               >
                 {c}
               </button>
@@ -209,17 +212,16 @@ const ELibrary: React.FC = () => {
                   className="w-full h-56 object-cover"
                 />
                 <span
-                  className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold ${
-                    book.category === "Spiritual Texts"
+                  className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold ${book.category === "Spiritual Texts"
                       ? "bg-purple-600 text-white"
                       : book.category === "Social Development"
-                      ? "bg-green-600 text-white"
-                      : book.category === "Economics & Poverty"
-                      ? "bg-blue-600 text-white"
-                      : book.category === "Philosophy"
-                      ? "bg-indigo-600 text-white"
-                      : "bg-[#3D4C6D] text-white"
-                  }`}
+                        ? "bg-green-600 text-white"
+                        : book.category === "Economics & Poverty"
+                          ? "bg-blue-600 text-white"
+                          : book.category === "Philosophy"
+                            ? "bg-indigo-600 text-white"
+                            : "bg-[#3D4C6D] text-white"
+                    }`}
                 >
                   {book.category}
                 </span>
@@ -258,10 +260,10 @@ const ELibrary: React.FC = () => {
             Help us expand our digital library by donating books or supporting our digitization efforts.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-[#2C3E50] font-semibold px-6 py-3 rounded-lg border border-white hover:shadow-lg transition">
+            {/* <button className="bg-white text-[#2C3E50] font-semibold px-6 py-3 rounded-lg border border-white hover:shadow-lg transition">
               Donate Books
-            </button>
-            <button className="bg-transparent border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#2C3E50] transition">
+            </button> */}
+            <button onClick={() => navigate('/donate')} className="bg-transparent border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#2C3E50] transition">
               Support Library
             </button>
           </div>

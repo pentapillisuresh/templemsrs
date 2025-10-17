@@ -46,7 +46,7 @@ const EventSection = () => {
             EVENTS
           </p>
           <h2 className="text-4xl font-bold text-gray-800 leading-tight font-serif">
-            Upcoming Events And<br />Workshops
+            Upcoming Events And<br />Invitations
           </h2>
         </div>
 

@@ -1,9 +1,11 @@
 import React from 'react';
 import { Calendar, MapPin, Clock, Users, Star } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const eventsBanner = './images/eventsbanner.jpeg'; // hero banner image
 
 const Events: React.FC = () => {
+  const navigate = useNavigate();
   const upcomingEvents = [
     {
       title: 'Diwali Festival Celebration',
@@ -122,7 +124,7 @@ const Events: React.FC = () => {
                       <div className="flex items-center"><Users className="w-4 h-4 mr-2" /> {event.attendees} people</div>
                     </div>
                     <p className="text-[#2C3E50] text-sm mb-4 leading-relaxed">{event.description}</p>
-                    <button className="w-full bg-[#2C3E50] text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                    <button  onClick={() => navigate('/volunteer')} className="w-full bg-[#2C3E50] text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
                       Register Now
                     </button>
                   </div>
@@ -166,7 +168,7 @@ const Events: React.FC = () => {
             <p className="text-lg md:text-xl font-roboto leading-relaxed max-w-3xl mx-auto mb-6">
               Don't miss our upcoming events! Subscribe to our newsletter for updates on festivals, workshops, and community service.
             </p>
-            <button className="bg-white text-[#2C3E50] px-8 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+            <button  onClick={() => navigate('/volunteer')} className="bg-white text-[#2C3E50] px-8 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
               Subscribe to Updates
             </button>
           </div>

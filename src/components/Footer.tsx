@@ -41,12 +41,13 @@ const Footer = () => {
             Quick Links
           </h3>
           <ul className="space-y-2 font-roboto text-sm">
-            <li><a href="#" className="hover:text-blue-400">About Temple</a></li>
-            <li><a href="#" className="hover:text-blue-400">Gallery</a></li>
-            <li><a href="#" className="hover:text-blue-400">Projects</a></li>
-            <li><a href="#" className="hover:text-blue-400">Trustees</a></li>
-            <li><a href="#" className="hover:text-blue-400">E-Library</a></li>
-            <li><a href="#" className="hover:text-blue-400">Contact</a></li>
+            <li><a href="/" className="hover:text-blue-400">Home</a></li>
+
+            <li><a href="/about" className="hover:text-blue-400">About Temple</a></li>
+            <li><a href="/gallery" className="hover:text-blue-400">Gallery</a></li>
+            <li><a href="/projects" className="hover:text-blue-400">Projects</a></li>
+            <li><a href="/board" className="hover:text-blue-400">Trustees</a></li>
+            <li><a href="/contact" className="hover:text-blue-400">Contact</a></li>
           </ul>
         </div>
 
@@ -56,12 +57,13 @@ const Footer = () => {
             Our Services
           </h3>
           <ul className="space-y-2 font-roboto text-sm">
-            <li><a href="#" className="hover:text-blue-400">Volunteer</a></li>
-            <li><a href="#" className="hover:text-blue-400">Appointment</a></li>
-            <li><a href="#" className="hover:text-blue-400">Donation</a></li>
-            <li><a href="#" className="hover:text-blue-400">Temple Services</a></li>
-            <li><a href="#" className="hover:text-blue-400">Medical Camps</a></li>
-            <li><a href="#" className="hover:text-blue-400">Educational Support</a></li>
+            <li><a href="/volunteer" className="hover:text-blue-400">Volunteer</a></li>
+            <li><a href="/appointment" className="hover:text-blue-400">Appointment</a></li>
+            <li><a href="/donate" className="hover:text-blue-400">Donation</a></li>
+            <li><a href="/events" className="hover:text-blue-400">Events</a></li>
+            <li><a href="/governance" className="hover:text-blue-400">Governance</a></li>
+            <li><a href="/library" className="hover:text-blue-400">E-Library</a></li>
+
           </ul>
         </div>
 

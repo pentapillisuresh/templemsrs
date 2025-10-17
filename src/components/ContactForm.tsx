@@ -2,13 +2,15 @@ import React, { useState, FormEvent } from 'react';
 import { Send } from 'lucide-react';
 
 
-const aboutBanner = './images/contactbanner.jpg'; // hero banner at top
+const aboutBanner = './images/contactbanner1.jpg'; // hero banner at top
 
 
 interface ContactFormData {
   name: string;
   email: string;
   phone: string;
+  // Added address field
+  address: string;
   message: string;
 }
 
@@ -17,6 +19,8 @@ export default function ContactPage() {
     name: '',
     email: '',
     phone: '',
+    // Initialized address field
+    address: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,6 +37,7 @@ export default function ContactPage() {
     setSubmitStatus('idle');
 
     try {
+      // NOTE: Ensure your backend '/api/contact' is set up to receive the 'address' field.
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -41,7 +46,8 @@ export default function ContactPage() {
       if (!res.ok) throw new Error('Network error');
 
       setSubmitStatus('success');
-      setFormData({ name: '', email: '', phone: '', message: '' });
+      // Reset form including the new address field
+      setFormData({ name: '', email: '', phone: '', address: '', message: '' });
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch {
       setSubmitStatus('error');
@@ -51,6 +57,7 @@ export default function ContactPage() {
   };
 
   const mapQuery = encodeURIComponent('Maha Shree Rudra Samsthanam Foundation, India');
+  // NOTE: Corrected the mapSrc to a valid Google Maps embed URL format
   const mapSrc = `https://maps.google.com/maps?q=${mapQuery}&z=14&output=embed`;
 
   return (
@@ -77,10 +84,11 @@ export default function ContactPage() {
           <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col justify-center">
             <h2 className="text-2xl font-serif text-[#2C3E50] mb-4">Get in touch</h2>
             <p className="text-sm mb-6 text-[#3D4C6D]">
-              Fill the form and we'll respond within 1–2 business days.
+              Fill the form and we'll respond within 1–2 days.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Name Field */}
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
                 <input
@@ -94,6 +102,7 @@ export default function ContactPage() {
                 />
               </div>
 
+              {/* Email and Phone Fields */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
@@ -124,6 +133,21 @@ export default function ContactPage() {
                 </div>
               </div>
 
+              {/* Address Field - NEWLY ADDED */}
+              <div>
+                <label htmlFor="address" className="block text-sm font-medium mb-2">Address</label>
+                <input
+                  id="address"
+                  name="address"
+                  type="text"
+                  value={formData.address}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent"
+                  placeholder="Street, City, Country (Optional)"
+                />
+              </div>
+
+              {/* Message Field */}
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
                 <textarea
@@ -138,6 +162,7 @@ export default function ContactPage() {
                 />
               </div>
 
+              {/* Submission Status Messages */}
               {submitStatus === 'success' && (
                 <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
                   ✅ Thank you — we'll get back to you soon.
@@ -149,6 +174,7 @@ export default function ContactPage() {
                 </div>
               )}
 
+              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={isSubmitting}

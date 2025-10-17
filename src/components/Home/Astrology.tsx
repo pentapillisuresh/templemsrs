@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -36,6 +38,7 @@ const items: { title: string; desc: string; img: string }[] = [
 ];
 
 const ProjectsInitiatives: React.FC = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -201,7 +204,7 @@ const ProjectsInitiatives: React.FC = () => {
               data-aos="zoom-in"
               data-aos-delay="400"
             >
-              <span className="relative z-10">View All Projects</span>
+              <span onClick={() => navigate("/projects")} className="relative z-10">View All Projects</span>
               <div className="absolute inset-0 bg-white/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></div>
             </button>
           </div>

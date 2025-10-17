@@ -187,9 +187,9 @@ const Gallery: React.FC = () => {
             <p className="text-lg md:text-xl font-roboto leading-relaxed max-w-3xl mx-auto mb-6">
               Have photos from our temple events? Share your spiritual moments with our community.
             </p>
-            <button className="bg-white text-[#2C3E50] px-8 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+            {/* <button className="bg-white text-[#2C3E50] px-8 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
               Submit Your Photos
-            </button>
+            </button> */}
           </div>
         </div>
       </section>
