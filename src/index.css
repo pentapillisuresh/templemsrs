@@ -293,3 +293,99 @@ textarea:focus {
     border-color: #69B5DE;
   }
 }
+
+/* google */
+
+/* GoogleTranslate.css */
+
+/* Target the container that Google Translate initializes into */
+#google_translate_element {
+  /* This often needs to be overridden to make the element responsive */
+  white-space: normal !important;
+}
+
+/* Target the automatically generated Google Translate banner/select */
+.goog-te-gadget {
+  font-family: inherit !important; /* Use your site's font */
+  line-height: normal !important; /* Prevents stretching */
+}
+
+/* Target the select box wrapper */
+.goog-te-gadget .goog-te-combo {
+  border: 1px solid #ccc; /* Give it a subtle border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 4px 6px; /* Space inside the select */
+  font-size: 14px !important; /* Smaller text */
+  color: #333 !important;
+  margin: 0 !important;
+  display: block; /* Ensure it takes up the available space */
+  width: auto !important; /* Override any injected fixed width */
+  box-shadow: none !important; /* Remove any default shadow */
+}
+
+/* Hide the Google branding (optional, but cleans up the look) */
+.goog-logo-link,
+.goog-text-highlight {
+  display: none !important;
+}
+
+/* Important: Remove the excessive top padding Google often adds */
+body {
+  top: 0px !important;
+}
+
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+/* google */
+
+/* Google Translate Styles */
+.google-translate-container {
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.translate-wrapper {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+
+/* Hide Google Translate branding */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  font-family: inherit !important;
+  font-size: 12px !important;
+}
+
+.goog-te-gadget-simple {
+  background: transparent !important;
+  border: none !important;
+  padding: 4px 8px !important;
+}
+
+.goog-te-menu-value span {
+  color: inherit !important;
+}
+
+.goog-te-menu-value {
+  color: white !important;
+}
+
+/* Mobile specific styles */
+@media (max-width: 1024px) {
+  .google-translate-container {
+    height: auto;
+    min-height: 40px;
+  }
+  
+  .goog-te-gadget-simple {
+    width: 100% !important;
+  }
+}

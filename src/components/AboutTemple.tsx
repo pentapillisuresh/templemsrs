@@ -64,13 +64,22 @@ reachSectionRef.current?.scrollIntoView({ behavior: "smooth" });
               How to Reach Temple
             </button>
           </div>
-          <div data-aos="fade-left" data-aos-delay="200" className="overflow-hidden rounded-2xl shadow-2xl">
-            <img
-              src="./images/templereach.png"
-              alt="Temple Deity"
-              className="w-full h-[500px] object-cover transform transition-transform duration-[3000ms] hover:scale-110"
-            />
-          </div>
+       <div
+  data-aos="fade-left"
+  data-aos-delay="200"
+  className="overflow-hidden rounded-2xl shadow-2xl"
+>
+  <video
+    src="./images/maha.mp4"
+    // alt="Temple Deity"
+    className="w-full h-[500px] object-cover transform transition-transform duration-[3000ms] hover:scale-110"
+    autoPlay
+    loop
+    muted
+    playsInline
+  />
+</div>
+
         </div>
       </section>
 

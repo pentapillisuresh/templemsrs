@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+// import GoogleTranslate from "./GoogleTranslate";
 import {
   Menu,
   X,
@@ -26,21 +27,18 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const location = useLocation();
 
-  // Scroll effect
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Toggle play/pause audio
   const toggleAudio = () => {
     const audio = audioRef.current;
     if (!audio) return;
-
     if (isPlaying) {
       audio.pause();
     } else {
@@ -49,7 +47,6 @@ const Header = () => {
     setIsPlaying(!isPlaying);
   };
 
-  // Stop audio when navigating
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.pause();
@@ -75,11 +72,9 @@ const Header = () => {
     { id: "team", label: "Team", icon: Users, path: "/team" },
     { id: "volunteer", label: "Volunteer", icon: Users, path: "/volunteer" },
     { id: "certificates", label: "Certificates Govt of India", icon: Award, path: "/certificates" },
-
-
   ].sort((a, b) => a.label.localeCompare(b.label));
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <header
@@ -108,7 +103,7 @@ const Header = () => {
             <Link
               key={item.id}
               to={item.path}
-              className={`relative flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 focus:outline-none ${
+              className={`relative flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
                 isActive(item.path)
                   ? "text-[#3B4A69]"
                   : isScrolled
@@ -128,13 +123,13 @@ const Header = () => {
             </Link>
           ))}
 
-          {/* Dropdown + Audio */}
+          {/* Dropdown + Audio + Translator */}
           <div className="flex items-center space-x-4">
             {/* Dropdown Menu */}
             <div className="relative">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className={`flex items-center space-x-1 px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 focus:outline-none ${
+                className={`flex items-center space-x-1 px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
                   isScrolled
                     ? "text-gray-700 hover:text-[#3B4A69]"
                     : "text-white hover:text-[#3B4A69]"
@@ -155,7 +150,7 @@ const Header = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.25 }}
-                    className="absolute right-0 mt-2 w-56 rounded-lg shadow-xl bg-white border border-gray-100 overflow-hidden"
+                    className="absolute right-0 mt-2 w-56 rounded-lg shadow-xl bg-white border border-gray-100 overflow-hidden z-50"
                   >
                     <div className="py-2">
                       {dropdownItems.map((item) => (
@@ -179,27 +174,53 @@ const Header = () => {
               </AnimatePresence>
             </div>
 
-            {/* Audio Icon */}
-            <button
-              onClick={toggleAudio}
-              className={`p-2 rounded-full bg-white/20 hover:bg-white/40 transition ${
-                isScrolled ? "text-[#3B4A69]" : "text-white"
-              }`}
-            >
-              {isPlaying ? (
-                <Volume2 className="w-5 h-5" />
-              ) : (
-                <VolumeX className="w-5 h-5" />
-              )}
-            </button>
+            {/* Audio + Translate Container */}
+            <div className="flex items-center space-x-3">
+              {/* Audio Icon */}
+              <button
+                onClick={toggleAudio}
+                className={`p-2 rounded-full transition ${
+                  isScrolled
+                    ? "bg-gray-100 text-[#3B4A69] hover:bg-gray-200"
+                    : "bg-white/20 text-white hover:bg-white/40"
+                }`}
+              >
+                {isPlaying ? (
+                  <Volume2 className="w-5 h-5" />
+                ) : (
+                  <VolumeX className="w-5 h-5" />
+                )}
+              </button>
 
-            {/* Hidden Audio Element */}
-            <audio ref={audioRef} src="/images/om.mp3" loop preload="auto" />
+              {/* Google Translate */}
+              {/* <div className={`translate-wrapper ${isScrolled ? 'bg-gray-100' : 'bg-white/20'} rounded-md overflow-hidden`}>
+                <GoogleTranslate />
+              </div> */}
+
+              {/* Hidden Audio */}
+              <audio ref={audioRef} src="/images/om.mp3" loop preload="auto" />
+            </div>
           </div>
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="lg:hidden">
+        <div className="lg:hidden flex items-center space-x-3">
+          {/* Audio Icon in Mobile Header */}
+          <button
+            onClick={toggleAudio}
+            className={`p-2 rounded-full transition ${
+              isScrolled
+                ? "bg-gray-100 text-[#3B4A69] hover:bg-gray-200"
+                : "bg-white/20 text-white hover:bg-white/40"
+            }`}
+          >
+            {isPlaying ? (
+              <Volume2 className="w-5 h-5" />
+            ) : (
+              <VolumeX className="w-5 h-5" />
+            )}
+          </button>
+
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`transition-transform duration-200 ${
@@ -243,18 +264,13 @@ const Header = () => {
                 </Link>
               ))}
 
-              {/* Audio Icon in Mobile Menu */}
-              <button
-                onClick={toggleAudio}
-                className="flex items-center space-x-2 w-full px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-[#3B4A69] hover:bg-gray-50"
-              >
-                {isPlaying ? (
-                  <Volume2 className="w-4 h-4" />
-                ) : (
-                  <VolumeX className="w-4 h-4" />
-                )}
-                <span>{isPlaying ? "Stop Chant" : "Play Chant"}</span>
-              </button>
+              {/* Google Translate in Mobile */}
+              {/* <div className="px-3 py-3 border-t border-gray-100">
+                <div className="text-xs font-medium text-gray-500 mb-2">Language Translator</div>
+                <div className="bg-gray-50 rounded-lg p-2">
+                  <GoogleTranslate />
+                </div>
+              </div> */}
             </div>
           </motion.div>
         )}
