@@ -10,6 +10,16 @@ import {
 } from "framer-motion";
 import "aos/dist/aos.css";
 
+// ✅ Helper function to format numbers with K, M suffixes (no decimals)
+const formatNumber = (num: number): string => {
+  if (num >= 1000000) {
+    return Math.floor(num / 1000000) + 'M';
+  } else if (num >= 1000) {
+    return Math.floor(num / 1000) + 'K';
+  }
+  return num.toString();
+};
+
 // ✅ Type-safe Count-Up Component
 interface CountUpNumberProps {
   from: number;
@@ -32,9 +42,6 @@ const CountUpNumber: React.FC<CountUpNumberProps> = ({
   useEffect(() => {
     if (isInView) {
       count.set(from);
-      const controls = {
-        current: count.get(),
-      };
       const startTime = performance.now();
 
       const animate = (time: number) => {
@@ -50,18 +57,18 @@ const CountUpNumber: React.FC<CountUpNumberProps> = ({
   useEffect(() => {
     const unsubscribe = rounded.on("change", (latest) => {
       if (ref.current) {
-        ref.current.textContent =
-          latest.toLocaleString() + (suffix ?? "");
+        ref.current.textContent = formatNumber(latest) + suffix;
       }
     });
     return () => unsubscribe();
   }, [rounded, suffix]);
 
-  return <span ref={ref}>{from.toLocaleString() + suffix}</span>;
+  return <span ref={ref}>{formatNumber(from) + suffix}</span>;
 };
 
 const AboutUs: React.FC = () => {
   const navigate = useNavigate();
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     AOS.init({
@@ -69,6 +76,22 @@ const AboutUs: React.FC = () => {
       once: true,
     });
   }, []);
+
+  // Handle video hover play/pause
+  const handleMouseEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log("Video play failed:", error);
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
 
   return (
     <section className="py-16 relative overflow-hidden">
@@ -102,22 +125,37 @@ const AboutUs: React.FC = () => {
 
         {/* Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start mb-16">
-          {/* Left: Image & Stats */}
+          {/* Left: Video & Stats */}
           <div
             className="lg:col-span-3 order-2 lg:order-1 flex flex-col"
             data-aos="fade-right"
           >
-            <div className="relative rounded-lg overflow-hidden shadow-lg group">
-              <img
-                src="./images/temple2.jpg"
-                alt="Temple worship"
+            <div 
+              className="relative rounded-lg overflow-hidden shadow-lg group"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <video
+                ref={videoRef}
                 className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              >
+                <source src="./images/waterpour.mp4" type="video/mp4" />
+                <source src="./videos/temple-video.webm" type="video/webm" />
+                Your browser does not support the video tag.
+              </video>
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-              <div className="absolute bottom-4 left-4 right-4">
-                <p className="text-white text-[18px] font-medium font-['Roboto']">
-                  Sacred Traditions & Rituals
-                </p>
+            
+              {/* Play icon overlay */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-70 group-hover:opacity-0 transition-opacity duration-300">
+                <div className="w-16 h-16 bg-black/50 rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
               </div>
             </div>
 
@@ -128,7 +166,7 @@ const AboutUs: React.FC = () => {
             >
               <div className="text-center border-r border-white/20 last:border-0">
                 <p className="text-2xl font-bold text-white mb-1 font-serif">
-                  <CountUpNumber from={0} to={25} suffix="+" duration={1.5} />
+                  <CountUpNumber from={0} to={10} suffix="+" duration={1.5} />
                 </p>
                 <p className="text-[18px] text-white/80 font-['Roboto']">
                   Years Active
@@ -144,7 +182,7 @@ const AboutUs: React.FC = () => {
               </div>
               <div className="text-center">
                 <p className="text-2xl font-bold text-white mb-1 font-serif">
-                  <CountUpNumber from={0} to={50} suffix="+" duration={2} />
+                  <CountUpNumber from={0} to={5000} suffix="+" duration={2} />
                 </p>
                 <p className="text-[18px] text-white/80 font-['Roboto']">
                   Programs

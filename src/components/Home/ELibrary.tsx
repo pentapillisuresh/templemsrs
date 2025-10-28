@@ -13,28 +13,42 @@ const testimonials = [
     role: "Devotee",
     quote:
       "The foundation has transformed our community. Their dedication to service is truly inspiring.",
-    img: "https://randomuser.me/api/portraits/men/32.jpg",
+    img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80", // Indian man 1
   },
   {
     name: "Priya Sharma",
     role: "Volunteer",
     quote:
       "Being part of this foundation has given my life a deeper meaning and purpose.",
-    img: "https://randomuser.me/api/portraits/women/44.jpg",
+    img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=80", // Indian woman 1
   },
   {
     name: "Dr. Amit Patel",
     role: "Medical Volunteer",
     quote:
       "The medical camps organized by the foundation reach those who need it most.",
-    img: "https://randomuser.me/api/portraits/men/75.jpg",
+    img: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=400&q=80", // Indian man 2
   },
   {
     name: "Meera Nair",
     role: "Social Worker",
     quote:
       "Their food distribution drives bring hope and smiles to countless families every week.",
-    img: "https://randomuser.me/api/portraits/women/65.jpg",
+    img: "https://images.unsplash.com/photo-1484863137850-59afcfe05386?auto=format&fit=crop&w=400&q=80", // Indian woman 2
+  },
+  {
+    name: "Arjun Singh",
+    role: "Community Leader",
+    quote:
+      "The spiritual guidance and community service have brought positive change to our village.",
+    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80", // Indian man 3
+  },
+  {
+    name: "Sunita Reddy",
+    role: "Yoga Practitioner",
+    quote:
+      "The meditation sessions have brought peace and clarity to my life. Truly transformative!",
+    img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80", // Indian woman 3 - Updated working image
   },
 ];
 

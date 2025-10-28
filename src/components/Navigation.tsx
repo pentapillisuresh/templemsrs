@@ -36,22 +36,39 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleAudio = () => {
+  // Initialize audio state from localStorage on component mount
+  useEffect(() => {
+    const savedAudioState = localStorage.getItem('audioPlaying');
+    if (savedAudioState === 'true') {
+      setIsPlaying(true);
+    }
+  }, []);
+
+  // Handle audio playback when isPlaying state changes
+  useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
+
     if (isPlaying) {
-      audio.pause();
+      audio.play().catch(error => {
+        console.log('Audio play failed:', error);
+        setIsPlaying(false);
+      });
+      localStorage.setItem('audioPlaying', 'true');
     } else {
-      audio.play();
+      audio.pause();
+      localStorage.setItem('audioPlaying', 'false');
     }
+  }, [isPlaying]);
+
+  const toggleAudio = () => {
     setIsPlaying(!isPlaying);
   };
 
+  // Only reset mobile menu on route change, not audio
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    }
+    setIsMobileMenuOpen(false);
+    setIsDropdownOpen(false);
   }, [location.pathname]);
 
   const mainItems = [
@@ -196,9 +213,6 @@ const Header = () => {
               {/* <div className={`translate-wrapper ${isScrolled ? 'bg-gray-100' : 'bg-white/20'} rounded-md overflow-hidden`}>
                 <GoogleTranslate />
               </div> */}
-
-              {/* Hidden Audio */}
-              <audio ref={audioRef} src="/images/om.mp3" loop preload="auto" />
             </div>
           </div>
         </div>
@@ -275,6 +289,14 @@ const Header = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Hidden Audio - Persistent across navigation */}
+      <audio 
+        ref={audioRef} 
+        src="/images/om.mp3" 
+        loop 
+        preload="auto" 
+      />
     </header>
   );
 };

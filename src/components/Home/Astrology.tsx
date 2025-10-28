@@ -23,7 +23,7 @@ const items: { title: string; desc: string; img: string }[] = [
   {
     title: "Goshala",
     desc: "Dedicated to cow protection, providing shelter, nourishment, and care for cows as part of our cultural and spiritual heritage.",
-    img: "./images/line3.jpg", // cows
+    img: "./images/project15.jpg", // cows
   },
   {
     title: "Medical Assistance",
@@ -164,18 +164,22 @@ const ProjectsInitiatives: React.FC = () => {
                       </p>
 
                       {/* Learn more link */}
-                      <div 
-                        className="pt-2"
-                        data-aos="fade-up"
-                        data-aos-delay={500 + (idx * 200)}
-                      >
-                        <button className="text-blue-500 hover:text-blue-600 font-medium text-sm uppercase tracking-wider hover:tracking-widest transition-all duration-300 group">
-                          Learn More
-                          <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform duration-300">
-                            →
-                          </span>
-                        </button>
-                      </div>
+                     <div
+  className="pt-2"
+  data-aos="fade-up"
+  data-aos-delay={500 + idx * 200}
+>
+  <a
+    href="/projects" // or "/projects" if it's a separate page route
+    className="text-blue-500 hover:text-blue-600 font-medium text-sm uppercase tracking-wider hover:tracking-widest transition-all duration-300 group focus:outline-none"
+  >
+    Learn More
+    <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform duration-300">
+      →
+    </span>
+  </a>
+</div>
+
                     </div>
                   </div>
                 </div>

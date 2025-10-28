@@ -1,15 +1,12 @@
 import React, { useState, FormEvent } from 'react';
-import { Send } from 'lucide-react';
+import { Send, X, CheckCircle } from 'lucide-react';
 
-
-const aboutBanner = './images/contactbanner1.jpg'; // hero banner at top
-
+const aboutBanner = './images/contactbanner1.jpg';
 
 interface ContactFormData {
   name: string;
   email: string;
   phone: string;
-  // Added address field
   address: string;
   message: string;
 }
@@ -19,12 +16,13 @@ export default function ContactPage() {
     name: '',
     email: '',
     phone: '',
-    // Initialized address field
     address: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [showPopup, setShowPopup] = useState(false);
+  const [userName, setUserName] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -37,7 +35,7 @@ export default function ContactPage() {
     setSubmitStatus('idle');
 
     try {
-      // NOTE: Ensure your backend '/api/contact' is set up to receive the 'address' field.
+      // Simulate API call
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -45,23 +43,98 @@ export default function ContactPage() {
       });
       if (!res.ok) throw new Error('Network error');
 
+      // Store user's name for personalized message
+      setUserName(formData.name);
       setSubmitStatus('success');
-      // Reset form including the new address field
+      
+      // Show popup
+      setShowPopup(true);
+      
+      // Reset form
       setFormData({ name: '', email: '', phone: '', address: '', message: '' });
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      
+      // Hide popup after 10 seconds
+      setTimeout(() => {
+        setShowPopup(false);
+        setSubmitStatus('idle');
+      }, 10000);
+
     } catch {
       setSubmitStatus('error');
-    } finally {
       setIsSubmitting(false);
     }
   };
 
+  const closePopup = () => {
+    setShowPopup(false);
+    setSubmitStatus('idle');
+  };
+
   const mapQuery = encodeURIComponent('Maha Shree Rudra Samsthanam Foundation, India');
-  // NOTE: Corrected the mapSrc to a valid Google Maps embed URL format
   const mapSrc = `https://maps.google.com/maps?q=${mapQuery}&z=14&output=embed`;
 
   return (
     <div className="w-full min-h-screen font-roboto text-gray-800 bg-gray-50 overflow-hidden">
+      {/* Success Popup Modal */}
+      {showPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full mx-auto transform transition-all duration-300 scale-100">
+            {/* Close Button */}
+            <button
+              onClick={closePopup}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors z-10"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            
+            {/* Popup Content */}
+            <div className="p-8 text-center">
+              {/* Success Icon */}
+              <div className="flex justify-center mb-6">
+                <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center">
+                  <CheckCircle className="w-12 h-12 text-green-500" />
+                </div>
+              </div>
+              
+              {/* Personalized Message */}
+              <h3 className="text-2xl font-serif text-[#2C3E50] mb-4">
+                Thank You, {userName}!
+              </h3>
+              
+              <p className="text-gray-600 mb-2">
+                Your message has been successfully submitted to
+              </p>
+              <p className="text-lg font-semibold text-[#2C3E50] mb-4">
+                MSRS Foundation
+              </p>
+              
+              <p className="text-gray-600 mb-6">
+                We truly appreciate you reaching out to us. Our team will contact you 
+                within 1-2 working days.
+              </p>
+              
+              {/* Countdown Timer */}
+              <div className="bg-gray-50 rounded-lg p-4 mb-6">
+                <div className="text-sm text-gray-500 mb-2">
+                  This message will close automatically in
+                </div>
+                <div className="text-2xl font-mono font-bold text-[#2C3E50]">
+                  10 seconds
+                </div>
+              </div>
+              
+              {/* Action Button */}
+              <button
+                onClick={closePopup}
+                className="w-full bg-[#2C3E50] hover:bg-[#1a252f] text-white py-3 px-6 rounded-lg font-medium transition-colors"
+              >
+                Close Message
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* HERO SECTION */}
       <section className="relative h-[400px] w-full bg-[#2C3E50] overflow-hidden">
         <div
@@ -84,7 +157,7 @@ export default function ContactPage() {
           <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col justify-center">
             <h2 className="text-2xl font-serif text-[#2C3E50] mb-4">Get in touch</h2>
             <p className="text-sm mb-6 text-[#3D4C6D]">
-              Fill the form and we'll respond within 1–2 days.
+              Kindly complete the form, and our MSRS Foundation team will get back to you within 1-2 working days.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -133,7 +206,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Address Field - NEWLY ADDED */}
+              {/* Address Field */}
               <div>
                 <label htmlFor="address" className="block text-sm font-medium mb-2">Address</label>
                 <input
@@ -162,12 +235,7 @@ export default function ContactPage() {
                 />
               </div>
 
-              {/* Submission Status Messages */}
-              {submitStatus === 'success' && (
-                <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
-                  ✅ Thank you — we'll get back to you soon.
-                </div>
-              )}
+              {/* Error Message (only show error, success is now in popup) */}
               {submitStatus === 'error' && (
                 <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
                   ❌ Something went wrong. Please try again.
@@ -212,8 +280,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
-    
     </div>
   );
 }
