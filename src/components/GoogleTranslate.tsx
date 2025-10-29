@@ -15,12 +15,19 @@ const GoogleTranslate: React.FC = () => {
       existingElement.innerHTML = '';
     }
 
+    // Remove any existing Google Translate iframes and styles
+    const iframes = document.querySelectorAll('iframe[src*="translate.google"]');
+    iframes.forEach(iframe => iframe.remove());
+
+    const styles = document.querySelectorAll('.goog-te-banner-frame, .goog-te-menu-frame, .goog-te-ftab-frame');
+    styles.forEach(style => style.remove());
+
     // Avoid adding script multiple times
     if (!document.querySelector("#google-translate-script")) {
       const script = document.createElement("script");
       script.id = "google-translate-script";
-      script.src =
-        "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.async = true;
       document.body.appendChild(script);
     }
 
@@ -30,12 +37,21 @@ const GoogleTranslate: React.FC = () => {
         new window.google.translate.TranslateElement(
           {
             pageLanguage: "en",
-            includedLanguages: "hi,ta,te,ml,bn,gu,kn,pa,fr,de,es,ja,ko,zh-CN,ar,ru",
+            includedLanguages: "te,hi,kn,ta,gu,ml",
             layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
             autoDisplay: false,
           },
           "google_translate_element"
         );
+
+        // Custom styling to show only Google icon and dropdown
+        setTimeout(() => {
+          // Hide the language select dropdown but keep the icon
+          const select = document.querySelector('.goog-te-combo');
+          if (select) {
+            (select as HTMLElement).style.display = 'none';
+          }
+        }, 100);
       }
     };
 
@@ -54,11 +70,19 @@ const GoogleTranslate: React.FC = () => {
   }, []);
 
   return (
-    <div
-      id="google_translate_element"
-      className="google-translate-container"
-      style={{ minWidth: "120px" }}
-    ></div>
+    <div className="google-translate-custom">
+      <div
+        id="google_translate_element"
+        style={{ 
+          display: 'inline-block',
+          background: 'transparent',
+          border: 'none',
+          cursor: 'pointer',
+          height: '40px',
+          overflow: 'hidden'
+        }}
+      ></div>
+    </div>
   );
 };
 

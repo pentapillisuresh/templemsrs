@@ -10,7 +10,14 @@ const CountUpNumber = ({ from, to, duration = 1.5, suffix = "" }) => {
 
   useEffect(() => {
     let start = from;
-    const end = parseInt(to.replace(/\D/g, "")); // remove non-numeric chars
+    
+    // Handle "k" format for thousands
+    let end;
+    if (to.includes("k")) {
+      end = parseFloat(to.replace("k", "")) * 1000;
+    } else {
+      end = parseInt(to.replace(/\D/g, "")); // remove non-numeric chars
+    }
 
     // Calculate increment based on duration and a target of 60 frames per second
     const targetFrames = duration * 60;
@@ -37,13 +44,17 @@ const CountUpNumber = ({ from, to, duration = 1.5, suffix = "" }) => {
     return () => cancelAnimationFrame(animationId);
   }, [from, to, duration]);
 
-  // The suffix logic needs to be applied after the animation
-  let displayValue = count.toLocaleString();
-  if (suffix === "+" && displayValue !== count.toLocaleString()) {
-    // Logic to re-add '+' if the original 'to' had it, and animation is complete/near-complete
-    // For simplicity and matching the existing logic, we just append the suffix.
-    // The original component design only adds the suffix based on the prop, 
-    // which is passed based on `stat.number.endsWith("+")`.
+  // Format the display value
+  let displayValue;
+  if (to.includes("k")) {
+    // For "k" format, show the "k" version when animation is complete or near complete
+    if (count >= 10000) {
+      displayValue = "10k";
+    } else {
+      displayValue = count.toLocaleString();
+    }
+  } else {
+    displayValue = count.toLocaleString();
   }
 
   return (
@@ -128,7 +139,7 @@ const Team: React.FC = () => {
 
   const teamStats = [
     { icon: Users, number: "50+", label: "Active Members" },
-    { icon: Heart, number: "10000+", label: "Hours Served" },
+    { icon: Heart, number: "10k", label: "Hours Served" }, // Changed from "10000+" to "10k"
     { icon: Star, number: "25+", label: "Projects Led" },
     { icon: Award, number: "5", label: "Awards Won" },
   ];

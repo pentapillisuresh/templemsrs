@@ -210,9 +210,10 @@ const Header = () => {
               </button>
 
               {/* Google Translate */}
-              <div className={`translate-wrapper ${isScrolled ? 'bg-gray-100' : 'bg-white/20'} rounded-md overflow-hidden`}>
-                <GoogleTranslate />
-              </div>
+             {/* Google Translate */}
+<div className={`translate-wrapper ${isScrolled ? 'bg-gray-100' : 'bg-white/20'} rounded-md overflow-hidden h-10 flex items-center`}>
+  <GoogleTranslate />
+</div>
             </div>
           </div>
         </div>
@@ -279,12 +280,12 @@ const Header = () => {
               ))}
 
               {/* Google Translate in Mobile */}
-              <div className="px-3 py-3 border-t border-gray-100">
+              {/* <div className="px-3 py-3 border-t border-gray-100">
                 <div className="text-xs font-medium text-gray-500 mb-2">Language Translator</div>
                 <div className="bg-gray-50 rounded-lg p-2">
                   <GoogleTranslate />
                 </div>
-              </div>
+              </div> */}
             </div>
           </motion.div>
         )}

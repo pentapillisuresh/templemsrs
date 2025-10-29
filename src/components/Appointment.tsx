@@ -473,7 +473,7 @@ const Appointment: React.FC = () => {
                   type="checkbox"
                   checked={declarationAccepted}
                   onChange={(e) => setDeclarationAccepted(e.target.checked)}
-                  className="mr-3 accent-[#2C3E50] w-5 h-5 mt-1 flex-shrink-0"
+                  className="mr-1 accent-[#2C3E50] w-5 h-5 mt-2 flex-shrink-0"
                   required
                 />
                 <div>

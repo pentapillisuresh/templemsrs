@@ -202,7 +202,7 @@ const VolunteerForm: React.FC = () => {
               </p>
               <p className="text-gray-600 leading-relaxed">
                 We have received your application and our team will review it carefully. 
-                We'll get back to you within <span className="font-semibold text-[#2C3E50]">1-2 business days</span>.
+                We'll get back to you within <span className="font-semibold text-[#2C3E50]">24 to 48hours</span>.
               </p>
             </div>
 
@@ -319,7 +319,7 @@ const VolunteerForm: React.FC = () => {
                 {/* Occupation */}
                 <div className="relative">
                   <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
-                    <Briefcase className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Occupation / Profession
+                    <Briefcase className="w-5 h-5 mr-2 text-[#3D4C6D]" />Profession
                   </label>
                   <div className="relative">
                     <select
@@ -397,55 +397,43 @@ const VolunteerForm: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Active Donor */}
+                {/* Active Donor - Updated to match form style */}
                 <div>
-                  <label className="flex items-center text-[#2C3E50] font-semibold mb-2 block">
-                    <Droplet className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Are you interested in being an Active Blood Donor?
+                  <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                    <Droplet className="w-5 h-5 mr-2 text-[#3D4C6D]" /> 
+                    Would you like to be a blood donor?
                   </label>
-                  <div className="flex space-x-4">
-                    <label className="flex items-center space-x-3 cursor-pointer">
-                      <div className="relative">
-                        <input
-                          type="checkbox"
-                          className="sr-only"
-                          checked={formData.activeDonor === 'yes'}
-                          onChange={() => setFormData(prev => ({ 
-                            ...prev, 
-                            activeDonor: prev.activeDonor === 'yes' ? '' : 'yes' 
-                          }))}
-                        />
-                        <div className={`w-14 h-7 rounded-full transition-all duration-300 ${
+                  <div className="flex items-center space-x-4 p-3 border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-[#2C3E50] transition-all duration-300">
+                    <span className={`text-sm font-medium transition-colors duration-300 ${
+                      formData.activeDonor === 'no' ? 'text-gray-500' : 'text-[#2C3E50]'
+                    }`}>
+                      No
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setFormData(prev => ({ 
+                        ...prev, 
+                        activeDonor: prev.activeDonor === 'yes' ? 'no' : 'yes' 
+                      }))}
+                      className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#2C3E50] focus:ring-offset-2"
+                    >
+                      <span className="sr-only">Toggle blood donor status</span>
+                      <span
+                        className={`${
                           formData.activeDonor === 'yes' ? 'bg-[#2C3E50]' : 'bg-gray-300'
-                        }`}>
-                          <div className={`absolute top-1 left-1 w-5 h-5 rounded-full bg-white transition-transform duration-300 ${
-                            formData.activeDonor === 'yes' ? 'transform translate-x-7' : ''
-                          }`}></div>
-                        </div>
-                      </div>
-                      <span className="text-[#3D4C6D] font-medium">Yes</span>
-                    </label>
-                    
-                    <label className="flex items-center space-x-3 cursor-pointer">
-                      <div className="relative">
-                        <input
-                          type="checkbox"
-                          className="sr-only"
-                          checked={formData.activeDonor === 'no'}
-                          onChange={() => setFormData(prev => ({ 
-                            ...prev, 
-                            activeDonor: prev.activeDonor === 'no' ? '' : 'no' 
-                          }))}
-                        />
-                        <div className={`w-14 h-7 rounded-full transition-all duration-300 ${
-                          formData.activeDonor === 'no' ? 'bg-[#2C3E50]' : 'bg-gray-300'
-                        }`}>
-                          <div className={`absolute top-1 left-1 w-5 h-5 rounded-full bg-white transition-transform duration-300 ${
-                            formData.activeDonor === 'no' ? 'transform translate-x-7' : ''
-                          }`}></div>
-                        </div>
-                      </div>
-                      <span className="text-[#3D4C6D] font-medium">No</span>
-                    </label>
+                        } inline-block h-6 w-11 rounded-full transition-colors duration-300`}
+                      />
+                      <span
+                        className={`${
+                          formData.activeDonor === 'yes' ? 'translate-x-6' : 'translate-x-1'
+                        } absolute inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-300 shadow-sm`}
+                      />
+                    </button>
+                    <span className={`text-sm font-medium transition-colors duration-300 ${
+                      formData.activeDonor === 'yes' ? 'text-[#2C3E50]' : 'text-gray-500'
+                    }`}>
+                      Yes
+                    </span>
                   </div>
                 </div>
               </div>

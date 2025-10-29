@@ -1,4 +1,4 @@
-import React, { useEffect,useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Car, Bus, Train, Check } from "lucide-react";
 import { Sunrise, Sun, Clock, Moon, Sunset, MoonStar, Bell, Droplets, Sparkles, Flame, Apple, Users, Star, BookOpen, Music, Heart, Lock, DoorOpen, Lamp, Bed, Utensils } from "lucide-react";
 import AOS from "aos";
@@ -14,35 +14,36 @@ function AboutTemple() {
     reachSectionRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const nakshatraTrees = [
-    { nakshatram: "Ashwini", tree: "Kuchila (Nux Vomica)", benefit: "Brings energy & healing power" },
-    { nakshatram: "Bharani", tree: "Amla (Gooseberry)", benefit: "Longevity & divine strength" },
-    { nakshatram: "Krittika", tree: "Fig (Ficus Racemosa)", benefit: "Prosperity & divine blessings" },
-    { nakshatram: "Rohini", tree: "Jamun (Black Plum)", benefit: "Mental peace & fertility" },
-    { nakshatram: "Mrigashira", tree: "Banyan Tree", benefit: "Stability & long life" },
-    { nakshatram: "Ardra", tree: "Neem", benefit: "Protection from negativity" },
-    { nakshatram: "Punarvasu", tree: "Bamboo", benefit: "Growth & harmony" },
-    { nakshatram: "Pushya", tree: "Peepal", benefit: "Moksha & wisdom" },
-    { nakshatram: "Ashlesha", tree: "Nagakesara", benefit: "Protection from evil" },
-    { nakshatram: "Magha", tree: "Banyan Tree", benefit: "Royal success" },
-    { nakshatram: "Purva Phalguni", tree: "Ashoka", benefit: "Happiness & love" },
-    { nakshatram: "Uttara Phalguni", tree: "Mango", benefit: "Prosperity" },
-    { nakshatram: "Hasta", tree: "Jasmine", benefit: "Spiritual clarity" },
-    { nakshatram: "Chitra", tree: "Bael (Bilva)", benefit: "Shiva's grace" },
-    { nakshatram: "Swati", tree: "Arjuna", benefit: "Balance & health" },
-    { nakshatram: "Vishakha", tree: "Amruta (Tinospora)", benefit: "Detox & immunity" },
-    { nakshatram: "Anuradha", tree: "Jackfruit", benefit: "Friendship & devotion" },
-    { nakshatram: "Jyeshtha", tree: "Champa", benefit: "Leadership & fame" },
-    { nakshatram: "Moola", tree: "Banyan", benefit: "Deep spiritual roots" },
-    { nakshatram: "Purvashadha", tree: "Palm", benefit: "Courage & endurance" },
-    { nakshatram: "Uttarashadha", tree: "Fig", benefit: "Wisdom & patience" },
-    { nakshatram: "Shravana", tree: "Vata", benefit: "Knowledge & listening" },
-    { nakshatram: "Dhanishta", tree: "Shami", benefit: "Victory & success" },
-    { nakshatram: "Shatabhisha", tree: "Kadamba", benefit: "Healing power" },
-    { nakshatram: "Purvabhadra", tree: "Neem", benefit: "Purity & protection" },
-    { nakshatram: "Uttarabhadra", tree: "Tamarind", benefit: "Stability in life" },
-    { nakshatram: "Revathi", tree: "Kadamba", benefit: "Peace & happiness" }
-  ];
+ const nakshatraTrees = [
+  { nakshatram: "Ashwini", tree: "Kuchila (Nux Vomica) (ఎజ్జు చెట్టు / Ejju Chettu)", benefit: "Brings energy & healing power" },
+  { nakshatram: "Bharani", tree: "Amla (Gooseberry) (ఉసిరి చెట్టు / Usiri Chettu)", benefit: "Longevity & divine strength" },
+  { nakshatram: "Krittika", tree: "Fig (Ficus Racemosa) (అత్తి చెట్టు / Atti Chettu)", benefit: "Prosperity & divine blessings" },
+  { nakshatram: "Rohini", tree: "Jamun (Black Plum) (నేరేడు చెట్టు / Neredu Chettu)", benefit: "Mental peace & fertility" },
+  { nakshatram: "Mrigashira", tree: "Banyan Tree (మర్రి చెట్టు / Marri Chettu)", benefit: "Stability & long life" },
+  { nakshatram: "Ardra", tree: "Neem (వేప చెట్టు / Veepa Chettu)", benefit: "Protection from negativity" },
+  { nakshatram: "Punarvasu", tree: "Bamboo (వెదురు / Veduru)", benefit: "Growth & harmony" },
+  { nakshatram: "Pushya", tree: "Peepal (అశ్వత్థం / Ashwattha or Raavi Chettu)", benefit: "Moksha & wisdom" },
+  { nakshatram: "Ashlesha", tree: "Nagakesara (నాగకేసర చెట్టు / Nagakesara Chettu)", benefit: "Protection from evil" },
+  { nakshatram: "Magha", tree: "Banyan Tree (మర్రి చెట్టు / Marri Chettu)", benefit: "Royal success" },
+  { nakshatram: "Purva Phalguni", tree: "Ashoka (అశోక చెట్టు / Ashoka Chettu)", benefit: "Happiness & love" },
+  { nakshatram: "Uttara Phalguni", tree: "Mango (మామిడి చెట్టు / Mamidi Chettu)", benefit: "Prosperity" },
+  { nakshatram: "Hasta", tree: "Jasmine (మల్లె చెట్టు / Malle Chettu)", benefit: "Spiritual clarity" },
+  { nakshatram: "Chitra", tree: "Bael (Bilva) (బిల్వ చెట్టు / Bilva Chettu)", benefit: "Shiva's grace" },
+  { nakshatram: "Swati", tree: "Arjuna (తారామూళి / Taramuli or Maddi Chettu)", benefit: "Balance & health" },
+  { nakshatram: "Vishakha", tree: "Amruta (Tinospora) (తిప్ప తీగ / Tippa Teega)", benefit: "Detox & immunity" },
+  { nakshatram: "Anuradha", tree: "Jackfruit (పనస చెట్టు / Panasa Chettu)", benefit: "Friendship & devotion" },
+  { nakshatram: "Jyeshtha", tree: "Champa (చంపక చెట్టు / Champaka Chettu)", benefit: "Leadership & fame" },
+  { nakshatram: "Moola", tree: "Banyan (మర్రి చెట్టు / Marri Chettu)", benefit: "Deep spiritual roots" },
+  { nakshatram: "Purvashadha", tree: "Palm (తాటి చెట్టు / Taati Chettu)", benefit: "Courage & endurance" },
+  { nakshatram: "Uttarashadha", tree: "Fig (అత్తి చెట్టు / Atti Chettu)", benefit: "Wisdom & patience" },
+  { nakshatram: "Shravana", tree: "Vata (వట వృక్షం / Vata Vriksham)", benefit: "Knowledge & listening" },
+  { nakshatram: "Dhanishta", tree: "Shami (సమీ చెట్టు / Sami Chettu)", benefit: "Victory & success" },
+  { nakshatram: "Shatabhisha", tree: "Kadamba (కదంబ చెట్టు / Kadamba Chettu)", benefit: "Healing power" },
+  { nakshatram: "Purvabhadra", tree: "Neem (వేప చెట్టు / Veepa Chettu)", benefit: "Purity & protection" },
+  { nakshatram: "Uttarabhadra", tree: "Tamarind (చింత చెట్టు / Chinta Chettu)", benefit: "Stability in life" },
+  { nakshatram: "Revathi", tree: "Kadamba (కదంబ చెట్టు / Kadamba Chettu)", benefit: "Peace & happiness" }
+];
+
 
   return (
     <div className="bg-white font-['Roboto'] overflow-x-hidden w-full text-gray-800">
@@ -143,28 +144,28 @@ function AboutTemple() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
-                  { 
-                    time: "4:00 AM – 5:00 AM", 
+                  {
+                    time: "4:00 AM – 5:00 AM",
                     activity: "Suprabhata Seva - Awakening deities with Stotras, bells, and Vedic chants",
                     icon: "Bell"
                   },
-                  { 
-                    time: "5:00 AM – 5:30 AM", 
+                  {
+                    time: "5:00 AM – 5:30 AM",
                     activity: "Abhishekam (Mangala Snanam) - Holy bath to Lord Shiva & Mata Durga",
                     icon: "Droplets"
                   },
-                  { 
-                    time: "5:30 AM – 6:00 AM", 
+                  {
+                    time: "5:30 AM – 6:00 AM",
                     activity: "Alankarana Seva - Decoration of deities with flowers and jewels",
                     icon: "Sparkles"
                   },
-                  { 
-                    time: "6:00 AM – 6:30 AM", 
+                  {
+                    time: "6:00 AM – 6:30 AM",
                     activity: "Mangal Archana & Aarati - Chanting of 108 names, offering of lamps",
                     icon: "Flame"
                   },
-                  { 
-                    time: "6:30 AM – 7:00 AM", 
+                  {
+                    time: "6:30 AM – 7:00 AM",
                     activity: "Naivedyam - Morning offering of fruits, pongal, and tulasi",
                     icon: "Apple"
                   },
@@ -203,28 +204,28 @@ function AboutTemple() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
-                  { 
-                    time: "7:00 AM – 8:00 AM", 
+                  {
+                    time: "7:00 AM – 8:00 AM",
                     activity: "Sarva Darshanam - Temple open for devotees' darshan and archana",
                     icon: "Users"
                   },
-                  { 
-                    time: "8:00 AM – 9:00 AM", 
+                  {
+                    time: "8:00 AM – 9:00 AM",
                     activity: "Ganapathi & Navagraha Archana - For obstacle removal and prosperity",
                     icon: "Star"
                   },
-                  { 
-                    time: "9:00 AM – 10:00 AM", 
+                  {
+                    time: "9:00 AM – 10:00 AM",
                     activity: "Rudra Japam / Durga Saptashati Parayanam - Daily chanting for peace",
                     icon: "BookOpen"
                   },
-                  { 
-                    time: "10:00 AM – 11:00 AM", 
+                  {
+                    time: "10:00 AM – 11:00 AM",
                     activity: "Special Homam / Agni Karyam - Optional Homa rituals",
                     icon: "Flame"
                   },
-                  { 
-                    time: "11:00 AM – 12:00 PM", 
+                  {
+                    time: "11:00 AM – 12:00 PM",
                     activity: "Madhyahna Pooja - Grand worship with sacred chanting and Aarati",
                     icon: "Music"
                   },
@@ -263,8 +264,8 @@ function AboutTemple() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
-                  { 
-                    time: "12:00 PM – 1:00 PM", 
+                  {
+                    time: "12:00 PM – 1:00 PM",
                     activity: "Maha Naivedyam & Maha Mangala Aarati - Main food offering and blessings",
                     icon: "Heart"
                   },
@@ -303,8 +304,8 @@ function AboutTemple() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
-                  { 
-                    time: "1:00 PM – 3:00 PM", 
+                  {
+                    time: "1:00 PM – 3:00 PM",
                     activity: "Temple Closed - Alaya Shuddhi, deity's rest time",
                     icon: "Lock"
                   },
@@ -343,23 +344,23 @@ function AboutTemple() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
-                  { 
-                    time: "3:00 PM – 4:00 PM", 
+                  {
+                    time: "3:00 PM – 4:00 PM",
                     activity: "Temple Reopens – Pravesha Seva with bell and mantra chanting",
                     icon: "DoorOpen"
                   },
-                  { 
-                    time: "4:00 PM – 5:00 PM", 
+                  {
+                    time: "4:00 PM – 5:00 PM",
                     activity: "Deeparadhana & Devotee Archana - Evening lamp offering with bhajans",
                     icon: "Lamp"
                   },
-                  { 
-                    time: "5:00 PM – 6:00 PM", 
+                  {
+                    time: "5:00 PM – 6:00 PM",
                     activity: "Rudrabhishekam / Kumkumarchana - As per day schedule",
                     icon: "Droplets"
                   },
-                  { 
-                    time: "6:00 PM – 7:00 PM", 
+                  {
+                    time: "6:00 PM – 7:00 PM",
                     activity: "Sandhya Aarati - Sunset prayer and offering of deepam",
                     icon: "Flame"
                   },
@@ -398,18 +399,18 @@ function AboutTemple() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
-                  { 
-                    time: "7:00 PM – 8:00 PM", 
+                  {
+                    time: "7:00 PM – 8:00 PM",
                     activity: "Bhajans / Devotional Music / Pravachanam - Spiritual discourse",
                     icon: "Music"
                   },
-                  { 
-                    time: "8:00 PM – 8:30 PM", 
+                  {
+                    time: "8:00 PM – 8:30 PM",
                     activity: "Ekaanta Seva / Sayana Pooja - Night pooja before deity's rest",
                     icon: "Bed"
                   },
-                  { 
-                    time: "8:30 PM – 9:00 PM", 
+                  {
+                    time: "8:30 PM – 9:00 PM",
                     activity: "Shayana Aarati & Temple Closure - Final Aarati and closing ceremony",
                     icon: "Lock"
                   },
@@ -435,7 +436,7 @@ function AboutTemple() {
 
           {/* Additional Info Cards */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div 
+            <div
               className="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
               data-aos="fade-right"
             >
@@ -445,7 +446,7 @@ function AboutTemple() {
                 </div>
                 <h3 className="font-bold text-[#2C3E50] text-xl">Daily Annaprasdam</h3>
               </div>
-              <p className="text-gray-700 font-semibold mb-2 text-lg">Timing: 12:30 PM – 1:30 PM</p>
+              <p className="text-gray-700 font-semibold mb-2 text-lg">Timing: 12:30 PM – 2:30 PM</p>
               <p className="text-gray-600 leading-relaxed">
                 Free food distribution for devotees and needy under Anna Daanam Maha Daanam seva.
               </p>
@@ -471,9 +472,9 @@ function AboutTemple() {
               { day: "Monday", seva: "Rudrabhishekam", desc: "Special Abhishekam for Lord Shiva" },
               { day: "Tuesday", seva: "Durga Archana", desc: "Powerful pooja for Mata Durga Devi" },
               { day: "Friday", seva: "Kumkumarchana & Lalitha Sahasranama", desc: "Auspicious pooja for divine feminine blessings" },
-              { day: "Saturday", seva: "Navagraha Homa & Shani Archana", desc: "For planetary peace and protection" },
+              { day: "Saturday", seva: "Navagraha Homa", desc: "For planetary peace and protection" },
               { day: "Pournami", seva: "Chandi Homam", desc: "For prosperity, protection, and health" },
-              { day: "Amavasya", seva: "Maha Rudra Yagna / Pitru Tarpanam", desc: "For peace of ancestors and blessings" },
+              { day: "Amavasya", seva: "Maha Rudra Yagna", desc: "For peace of ancestors and blessings" },
             ].map((item, idx) => (
               <div
                 key={idx}
@@ -507,61 +508,55 @@ function AboutTemple() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <div data-aos="fade-right">
-              <h3 className="text-2xl font-serif text-[#2C3E50] mb-6">Spiritual Purpose</h3>
-              <p className="leading-relaxed mb-6">
-                Each tree in the Nakshatra Vanam represents one of the 27 Nakshatras, and planting or worshipping your Nakshatra tree brings:
-              </p>
-              <ul className="space-y-3 text-gray-700 mb-8">
-                {[
-                  "Health, harmony, and divine protection",
-                  "Cleansing of karmic energies",
-                  "Blessings from your birth star deities"
-                ].map((point, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <div className="bg-[#2C3E50] text-white rounded-full p-1 mt-1">
-                      <Check size={14} />
-                    </div>
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <h3 className="text-2xl font-serif text-[#2C3E50] mb-4">Devotee Participation Seva</h3>
-              <ul className="space-y-3 text-gray-700 mb-6">
-                {[
-                  "Identify their Nakshatram (Birth Star)",
-                  "Pray to their Nakshatra Tree with flowers, water, and mantras",
-                  "Plant their Nakshatra Tree within the temple's sacred Vanam area",
-                  "Donate Trees or Plants as part of Prakruthi Seva",
-                  "Receive a Nakshatra Vanam Blessing Certificate"
-                ].map((point, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <div className="bg-[#3D4C6D] text-white rounded-full p-1 mt-1">
-                      <Check size={14} />
-                    </div>
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
+          <div className="grid md:grid-cols-2 gap-12 items-center md:items-stretch">
+            {/* Left Section */}
+            <div data-aos="fade-right" className="flex flex-col justify-center space-y-6">
+              <div>
+                <h3 className="text-2xl font-serif text-[#2C3E50] mb-4">
+                  Devotee Participation Seva
+                </h3>
+                <ul className="space-y-3 text-gray-700 mb-6">
+                  {[
+                    "Identify their Nakshatram (Birth Star)",
+                    "Pray to their Nakshatra Tree with flowers, water, and mantras",
+                    "Plant their Nakshatra Tree within the temple's sacred Vanam area",
+                    "Donate Trees or Plants as part of Prakruthi Seva",
+                  ].map((point, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <div className="bg-[#3D4C6D] text-white rounded-full p-1 mt-1">
+                        <Check size={14} />
+                      </div>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               <div className="bg-white p-6 rounded-xl shadow-md">
-                <h4 className="font-bold text-[#2C3E50] mb-3">Nakshatra Vanam Seva Timings</h4>
+                <h4 className="font-bold text-[#2C3E50] mb-3">
+                  Nakshatra Vanam Seva Timings
+                </h4>
                 <p className="text-gray-700 mb-2">📌 Morning: 7:00 AM – 11:00 AM</p>
                 <p className="text-gray-700 mb-2">📌 Evening: 4:00 PM – 6:30 PM</p>
-                <p className="text-gray-600 text-sm">Open for devotees every day. Special Pooja on Pournami & Nakshatra days.</p>
+                <p className="text-gray-600 text-sm">
+                  Open for devotees every day. Special Pooja on Pournami & Nakshatra days.
+                </p>
               </div>
             </div>
 
-            <div data-aos="fade-left" className="overflow-hidden rounded-2xl shadow-2xl">
+            {/* Right Section (Image) */}
+            <div
+              data-aos="fade-left"
+              className="flex justify-center items-center overflow-hidden rounded-2xl shadow-2xl"
+            >
               <img
-                src="./images/star.png"
+                src="./images/plant.jpeg"
                 alt="Nakshatra Vanam"
-                className="w-full h-[600px] object-cover transform transition-transform duration-[3000ms] hover:scale-110"
+                className="w-full h-[300px] md:h-[400px] object-cover transform transition-transform duration-[3000ms] hover:scale-110"
               />
             </div>
           </div>
+
 
           {/* Nakshatra Trees Table */}
           <div className="mt-16" data-aos="fade-up">
@@ -583,8 +578,8 @@ function AboutTemple() {
               {/* Table Body */}
               <div className="divide-y divide-gray-100 max-h-[600px] overflow-y-auto">
                 {nakshatraTrees.map((tree, idx) => (
-                  <div 
-                    key={idx} 
+                  <div
+                    key={idx}
                     className="grid grid-cols-12 gap-4 py-4 px-6 hover:bg-gray-50 transition-colors"
                   >
                     <div className="col-span-12 md:col-span-3 lg:col-span-2">

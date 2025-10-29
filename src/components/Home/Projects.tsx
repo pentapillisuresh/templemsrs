@@ -57,7 +57,7 @@ const VolunteerAstrology = () => {
 
   const sections = [
     {
-      title: "Serve with Devotion – Become a Volunteer",
+      title: "Become a Volunteer - Serve with Devotion",
       image: "./images/volunteer.png",
       button: "Join as Volunteer",
       route: "/volunteer",
@@ -80,7 +80,7 @@ const VolunteerAstrology = () => {
     { number: 50, suffix: "+", label: "Years Legacy" },
     { number: 200, suffix: "K+", label: "Kundalis Served" },
     { number: 100, suffix: "K+", label: "Consultations Given" },
-    
+
     {
       number: 50,
       suffix: "+",
@@ -101,7 +101,7 @@ const VolunteerAstrology = () => {
           className="text-3xl md:text-4xl font-serif text-white mb-4"
           data-aos="fade-up"
         >
-            Astrology Services & Book Rituals & Volunteer
+          Astrology Services & Book Rituals & Volunteer
         </h2>
         <div
           className="w-20 h-1 bg-[#2C3E50] mx-auto rounded-full"
@@ -175,8 +175,33 @@ const VolunteerAstrology = () => {
         {/* RIGHT SECTION - Split into Volunteer + Pooja */}
         <div className="flex flex-col w-full">
           {/* Volunteer - moved to right top */}
+             <div
+            className="relative group h-[400px] overflow-hidden border-b-4 border-[#2C3E50]/50 w-full"
+            data-aos="fade-left"
+          >
+            <img
+              src={volunteerSection.image}
+              alt={volunteerSection.title}
+              className="w-full h-full object-cover scale-100 group-hover:scale-[1.15] transition-transform duration-1000 ease-in-out"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/30"></div>
+            <div className="absolute bottom-10 left-10 right-10">
+              <h3 className="text-2xl md:text-3xl font-serif text-white leading-snug mb-4 drop-shadow-lg transform group-hover:translate-y-[-5px] transition-transform duration-500">
+                {volunteerSection.title}
+              </h3>
 
- <div
+              <button
+                onClick={() => navigate(volunteerSection.route)}
+                className="bg-[#2C3E50] hover:bg-[#1A252F] text-white text-sm font-semibold px-6 py-3 rounded-full transition-all duration-300 shadow-lg"
+              >
+                {volunteerSection.button}
+              </button>
+            </div>
+          </div>
+
+
+
+          <div
             className="relative group h-[400px] overflow-hidden w-full"
             data-aos="fade-left"
             data-aos-delay={300}
@@ -200,32 +225,10 @@ const VolunteerAstrology = () => {
             </div>
           </div>
 
-          <div
-            className="relative group h-[400px] overflow-hidden border-b-4 border-[#2C3E50]/50 w-full"
-            data-aos="fade-left"
-          >
-            <img
-              src={volunteerSection.image}
-              alt={volunteerSection.title}
-              className="w-full h-full object-cover scale-100 group-hover:scale-[1.15] transition-transform duration-1000 ease-in-out"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/30"></div>
-            <div className="absolute bottom-10 left-10 right-10">
-              <h3 className="text-2xl md:text-3xl font-serif text-white leading-snug mb-4 drop-shadow-lg transform group-hover:translate-y-[-5px] transition-transform duration-500">
-                {volunteerSection.title}
-              </h3>
-            
-              <button
-                onClick={() => navigate(volunteerSection.route)}
-                className="bg-[#2C3E50] hover:bg-[#1A252F] text-white text-sm font-semibold px-6 py-3 rounded-full transition-all duration-300 shadow-lg"
-              >
-                {volunteerSection.button}
-              </button>
-            </div>
-          </div>
+         
 
           {/* Pooja - remains at bottom */}
-         
+
         </div>
       </div>
     </section>
