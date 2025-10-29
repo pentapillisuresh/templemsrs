@@ -13,7 +13,7 @@ const Donation: React.FC = () => {
 
   const categories = [
     { name: "General Donation", desc: "Support overall temple activities and maintenance" },
-    { name: "Annadanam", desc: "Sponsor free meals for devotees and needy" },
+    { name: "Annaprasadam", desc: "Sponsor free meals for devotees and needy" },
     { name: "Educational Support", desc: "Support Vedic education and Sanskrit learning" },
     { name: "Medical Assistance", desc: "Help fund medical camps and healthcare" },
     { name: "Goshala Support", desc: "Support cow protection and care facility" },

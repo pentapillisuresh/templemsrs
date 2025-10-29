@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   User,
   Mail,
@@ -10,6 +10,8 @@ import {
   Send,
   CheckCircle,
   Droplet,
+  ChevronDown,
+  X,
 } from 'lucide-react';
 
 const VolunteerForm: React.FC = () => {
@@ -26,11 +28,12 @@ const VolunteerForm: React.FC = () => {
     bloodGroup: '',
     activeDonor: '',
     interests: [] as string[],
-    availability: '',
+    availability: [] as string[],
     feedback: '',
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const interests = [
     'Temple Service',
@@ -59,6 +62,29 @@ const VolunteerForm: React.FC = () => {
     'AB−',
   ];
 
+  const qualifications = [
+    'High School',
+    'Diploma',
+    'Bachelor\'s Degree',
+    'Master\'s Degree',
+    'PhD',
+    'Other',
+  ];
+
+  const occupations = [
+    'Student',
+    'Software Engineer',
+    'Teacher',
+    'Doctor',
+    'Engineer',
+    'Business Owner',
+    'Government Employee',
+    'Private Sector Employee',
+    'Freelancer',
+    'Retired',
+    'Other',
+  ];
+
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -77,333 +103,489 @@ const VolunteerForm: React.FC = () => {
     }));
   };
 
+  const handleAvailabilityChange = (option: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      availability: prev.availability.includes(option)
+        ? prev.availability.filter((i) => i !== option)
+        : [...prev.availability, option],
+    }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setShowPopup(true);
   };
 
-  if (isSubmitted) {
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
+  // Close popup when clicking outside
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closePopup();
+      }
+    };
+
+    if (showPopup) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [showPopup]);
+
+  const handleSubmitAnother = () => {
+    setShowPopup(false);
+    setIsSubmitted(false);
+    setFormData({
+      name: '',
+      email: '',
+      qualification: '',
+      occupation: '',
+      gender: '',
+      dob: '',
+      address: '',
+      phone: '',
+      maritalStatus: '',
+      bloodGroup: '',
+      activeDonor: '',
+      interests: [],
+      availability: [],
+      feedback: '',
+    });
+  };
+
+  // Success Popup Component
+  const SuccessPopup = () => {
+    if (!showPopup) return null;
+
     return (
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-gray-50">
-        <div className="max-w-2xl mx-auto px-4 text-center">
-          <div className="bg-white p-12 rounded-3xl shadow-xl animate-fade-in-up">
-            <CheckCircle className="w-20 h-20 text-[#2C3E50] mx-auto mb-6" />
-            <h2 className="text-3xl font-serif font-bold text-[#2C3E50] mb-4">
-              Thank You!
-            </h2>
-            <p className="text-lg font-roboto text-[#3D4C6D] mb-6">
-              Your volunteer application has been submitted successfully. We'll
-              contact you soon!
-            </p>
-            <button
-              onClick={() => setIsSubmitted(false)}
-              className="bg-gradient-to-r from-[#2C3E50] to-[#3D4C6D] text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
-            >
-              Submit Another Form
-            </button>
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm animate-fade-in">
+        <div className="relative bg-white rounded-3xl shadow-2xl max-w-md w-full mx-auto animate-scale-in">
+          {/* Close Button */}
+          <button
+            onClick={closePopup}
+            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors duration-200 z-10"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          {/* Content */}
+          <div className="p-8 text-center">
+            {/* Success Icon */}
+            <div className="relative mb-6">
+              <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-lg">
+                <CheckCircle className="w-12 h-12 text-white" />
+              </div>
+              {/* Animated rings */}
+              <div className="absolute inset-0 rounded-full border-4 border-green-200 animate-ping opacity-20"></div>
+            </div>
+
+            {/* Title */}
+            <h3 className="text-2xl font-serif font-bold text-gray-800 mb-3">
+              Application Submitted!
+            </h3>
+
+            {/* Personalized Message */}
+            <div className="space-y-4 mb-6">
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Thank you <span className="font-semibold text-[#2C3E50]">{formData.name || 'there'}</span> for your interest in volunteering with us!
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                We have received your application and our team will review it carefully. 
+                We'll get back to you within <span className="font-semibold text-[#2C3E50]">1-2 business days</span>.
+              </p>
+            </div>
+
+            {/* Contact Info */}
+            <div className="bg-gray-50 rounded-xl p-4 mb-6">
+              <p className="text-sm text-gray-600 mb-2">
+                For any urgent queries, feel free to contact us:
+              </p>
+              <p className="text-sm font-medium text-[#2C3E50]">
+                📧 volunteer@organization.org | 📞 +1 (555) 123-4567
+              </p>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={closePopup}
+                className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 hover:shadow-md"
+              >
+                Close
+              </button>
+              <button
+                onClick={handleSubmitAnother}
+                className="flex-1 px-6 py-3 bg-gradient-to-r from-[#2C3E50] to-[#3D4C6D] text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+              >
+                Submit Another
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <>
+      <SuccessPopup />
+      
+      <section className="bg-gradient-to-br from-slate-50 to-gray-50 min-h-screen">
+        {/* Banner */}
+        <div
+          className="relative h-72 md:h-96 flex items-center justify-center mb-12"
+          style={{
+            backgroundImage: "url('./images/volunteer.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-[#2C3E50]/80 to-[#3D4C6D]/60"></div>
+          <h2 className="relative text-4xl md:text-5xl font-serif font-bold text-white text-center px-4">
+            Become a <span className="text-white">Volunteer</span>
+          </h2>
+        </div>
+
+        {/* Form */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 mb-12">
+          <div className="bg-white p-8 md:p-12 rounded-3xl shadow-lg animate-fade-in-up">
+            <form onSubmit={handleSubmit} className="space-y-8 font-roboto">
+              {/* Personal Info */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Name */}
+                <div>
+                  <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                    <User className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition-all duration-300"
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                    <Mail className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Email ID *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] transition-all duration-300"
+                  />
+                </div>
+
+                {/* Qualification */}
+                <div className="relative">
+                  <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                    <Briefcase className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Qualification
+                  </label>
+                  <div className="relative">
+                    <select
+                      name="qualification"
+                      value={formData.qualification}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] appearance-none transition-all duration-300"
+                    >
+                      <option value="">Select Qualification</option>
+                      {qualifications.map((qual) => (
+                        <option key={qual} value={qual}>
+                          {qual}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                  </div>
+                </div>
+
+                {/* Occupation */}
+                <div className="relative">
+                  <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                    <Briefcase className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Occupation / Profession
+                  </label>
+                  <div className="relative">
+                    <select
+                      name="occupation"
+                      value={formData.occupation}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] appearance-none transition-all duration-300"
+                    >
+                      <option value="">Select Occupation</option>
+                      {occupations.map((occupation) => (
+                        <option key={occupation} value={occupation}>
+                          {occupation}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                  </div>
+                </div>
+
+                {/* Gender */}
+                <div className="relative">
+                  <label className="text-[#2C3E50] font-semibold mb-2 block">
+                    Gender
+                  </label>
+                  <div className="relative">
+                    <select
+                      name="gender"
+                      value={formData.gender}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] appearance-none transition-all duration-300"
+                    >
+                      <option value="">Select Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                  </div>
+                </div>
+
+                {/* DOB */}
+                <div>
+                  <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                    <Calendar className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Date of Birth
+                  </label>
+                  <input
+                    type="date"
+                    name="dob"
+                    value={formData.dob}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] transition-all duration-300"
+                  />
+                </div>
+
+                {/* Blood Group and Active Donor Side by Side */}
+                <div className="relative">
+                  <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                    <Droplet className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Blood Group
+                  </label>
+                  <div className="relative">
+                    <select
+                      name="bloodGroup"
+                      value={formData.bloodGroup}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] appearance-none transition-all duration-300"
+                    >
+                      <option value="">Select Blood Group</option>
+                      {bloodGroups.map((group) => (
+                        <option key={group} value={group}>
+                          {group}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                  </div>
+                </div>
+
+                {/* Active Donor */}
+                <div>
+                  <label className="flex items-center text-[#2C3E50] font-semibold mb-2 block">
+                    <Droplet className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Are you interested in being an Active Blood Donor?
+                  </label>
+                  <div className="flex space-x-4">
+                    <label className="flex items-center space-x-3 cursor-pointer">
+                      <div className="relative">
+                        <input
+                          type="checkbox"
+                          className="sr-only"
+                          checked={formData.activeDonor === 'yes'}
+                          onChange={() => setFormData(prev => ({ 
+                            ...prev, 
+                            activeDonor: prev.activeDonor === 'yes' ? '' : 'yes' 
+                          }))}
+                        />
+                        <div className={`w-14 h-7 rounded-full transition-all duration-300 ${
+                          formData.activeDonor === 'yes' ? 'bg-[#2C3E50]' : 'bg-gray-300'
+                        }`}>
+                          <div className={`absolute top-1 left-1 w-5 h-5 rounded-full bg-white transition-transform duration-300 ${
+                            formData.activeDonor === 'yes' ? 'transform translate-x-7' : ''
+                          }`}></div>
+                        </div>
+                      </div>
+                      <span className="text-[#3D4C6D] font-medium">Yes</span>
+                    </label>
+                    
+                    <label className="flex items-center space-x-3 cursor-pointer">
+                      <div className="relative">
+                        <input
+                          type="checkbox"
+                          className="sr-only"
+                          checked={formData.activeDonor === 'no'}
+                          onChange={() => setFormData(prev => ({ 
+                            ...prev, 
+                            activeDonor: prev.activeDonor === 'no' ? '' : 'no' 
+                          }))}
+                        />
+                        <div className={`w-14 h-7 rounded-full transition-all duration-300 ${
+                          formData.activeDonor === 'no' ? 'bg-[#2C3E50]' : 'bg-gray-300'
+                        }`}>
+                          <div className={`absolute top-1 left-1 w-5 h-5 rounded-full bg-white transition-transform duration-300 ${
+                            formData.activeDonor === 'no' ? 'transform translate-x-7' : ''
+                          }`}></div>
+                        </div>
+                      </div>
+                      <span className="text-[#3D4C6D] font-medium">No</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              {/* Phone & Marital Status Side by Side */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                    <Phone className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="Enter phone number"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] transition-all duration-300"
+                  />
+                </div>
+                <div className="relative">
+                  <label className="text-[#2C3E50] font-semibold mb-2 block">
+                    Marital Status
+                  </label>
+                  <div className="relative">
+                    <select
+                      name="maritalStatus"
+                      value={formData.maritalStatus}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] appearance-none transition-all duration-300"
+                    >
+                      <option value="">Select Marital Status</option>
+                      <option value="single">Single</option>
+                      <option value="married">Married</option>
+                      <option value="divorced">Divorced</option>
+                      <option value="widowed">Widow</option>
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Address - Changed to textarea */}
+              <div className="space-y-2">
+                <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                  <MapPin className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Address
+                </label>
+                <textarea
+                  name="address"
+                  value={formData.address}
+                  onChange={handleInputChange}
+                  rows={3}
+                  placeholder="Enter full address"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] transition-all duration-300 resize-vertical"
+                />
+              </div>
+
+              {/* Volunteer Preferences */}
+              <div className="space-y-6">
+                <h3 className="flex items-center text-xl font-serif text-[#2C3E50] mb-4">
+                  <Heart className="w-6 h-6 mr-2 text-[#3D4C6D]" />
+                  Volunteer Preferences
+                </h3>
+                
+                {/* Areas of Interest */}
+                <div>
+                  <label className="text-[#3D4C6D] font-semibold mb-3 block">
+                    Areas of Interest:
+                  </label>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    {interests.map((interest) => (
+                      <label
+                        key={interest}
+                        className="flex items-center space-x-2 cursor-pointer p-3 rounded-lg border border-gray-300 hover:border-[#2C3E50] transition-all duration-300"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={formData.interests.includes(interest)}
+                          onChange={() => handleInterestChange(interest)}
+                          className="w-4 h-4 text-[#2C3E50] border-gray-300 rounded focus:ring-[#2C3E50]"
+                        />
+                        <span className="text-[#3D4C6D]">{interest}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Availability - Multi Select */}
+                <div>
+                  <label className="text-[#3D4C6D] font-semibold mb-3 block">
+                    Availability (Select all that apply):
+                  </label>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {availabilityOptions.map((option) => (
+                      <label
+                        key={option}
+                        className="flex items-center space-x-2 cursor-pointer p-3 rounded-lg border border-gray-300 hover:border-[#2C3E50] transition-all duration-300"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={formData.availability.includes(option)}
+                          onChange={() => handleAvailabilityChange(option)}
+                          className="w-4 h-4 text-[#2C3E50] border-gray-300 rounded focus:ring-[#2C3E50]"
+                        />
+                        <span className="text-[#3D4C6D]">{option}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Feedback */}
+              <div className="space-y-2">
+                <label className="text-[#3D4C6D] font-semibold mb-2 block">
+                  Feedback & Suggestions
+                </label>
+                <textarea
+                  name="feedback"
+                  value={formData.feedback}
+                  onChange={handleInputChange}
+                  rows={4}
+                  placeholder="Share your thoughts, suggestions, or any additional information..."
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] transition-all duration-300"
+                />
+              </div>
+
+              {/* Submit */}
+              <div className="text-center pt-6">
+                <button
+                  type="submit"
+                  className="bg-gradient-to-r from-[#2C3E50] to-[#3D4C6D] text-white px-12 py-4 rounded-full font-serif text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 mx-auto"
+                >
+                  <Send className="w-5 h-5" />
+                  <span>Submit Application</span>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </section>
-    );
-  }
-
-  return (
-    <section className="bg-gradient-to-br from-slate-50 to-gray-50">
-      {/* Banner */}
-      <div
-        className="relative h-72 md:h-96 flex items-center justify-center mb-12"
-        style={{
-          backgroundImage: "url('./images/volunteer.jpg')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-[#2C3E50]/80 to-[#3D4C6D]/60"></div>
-        <h2 className="relative text-4xl md:text-5xl font-serif font-bold text-white text-center px-4">
-          Become a <span className="text-white">Volunteer</span>
-        </h2>
-      </div>
-
-      {/* Form */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20">
-        <div className="bg-white p-8 md:p-12 rounded-3xl shadow-lg animate-fade-in-up">
-          <form onSubmit={handleSubmit} className="space-y-8 font-roboto">
-            {/* Personal Info */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Name */}
-              <div>
-                <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
-                  <User className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Name *
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent"
-                />
-              </div>
-
-              {/* Email */}
-              <div>
-                <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
-                  <Mail className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Email ID *
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50]"
-                />
-              </div>
-
-              {/* Qualification */}
-              <div>
-                <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
-                  <Briefcase className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Qualification
-                </label>
-                <input
-                  type="text"
-                  name="qualification"
-                  value={formData.qualification}
-                  onChange={handleInputChange}
-                  placeholder="e.g. B.Tech, MBA"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50]"
-                />
-              </div>
-
-              {/* Occupation */}
-              <div>
-                <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
-                  <Briefcase className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Occupation / Profession
-                </label>
-                <input
-                  type="text"
-                  name="occupation"
-                  value={formData.occupation}
-                  onChange={handleInputChange}
-                  placeholder="e.g. Software Engineer, Teacher"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50]"
-                />
-              </div>
-
-              {/* Gender */}
-              <div>
-                <label className="text-[#2C3E50] font-semibold mb-2 block">
-                  Gender
-                </label>
-                <select
-                  name="gender"
-                  value={formData.gender}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50]"
-                >
-                  <option value="">Select Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              {/* DOB */}
-              <div>
-                <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
-                  <Calendar className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Date of Birth
-                </label>
-                <input
-                  type="date"
-                  name="dob"
-                  value={formData.dob}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50]"
-                />
-              </div>
-
-              {/* Blood Group */}
-              <div>
-                <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
-                  <Droplet className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Blood Group
-                </label>
-                <select
-                  name="bloodGroup"
-                  value={formData.bloodGroup}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50]"
-                >
-                  <option value="">Select Blood Group</option>
-                  {bloodGroups.map((group) => (
-                    <option key={group} value={group}>
-                      {group}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Active Donor */}
-              <div>
-                <label className="text-[#2C3E50] font-semibold mb-2 block">
-                  Would you like to be an active blood donor?
-                </label>
-                <div className="flex items-center space-x-4">
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name="activeDonor"
-                      value="yes"
-                      checked={formData.activeDonor === 'yes'}
-                      onChange={handleInputChange}
-                    />
-                    <span>Yes</span>
-                  </label>
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name="activeDonor"
-                      value="no"
-                      checked={formData.activeDonor === 'no'}
-                      onChange={handleInputChange}
-                    />
-                    <span>No</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            {/* Address */}
-            <div className="space-y-2">
-              <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
-                <MapPin className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Address
-              </label>
-              <input
-                type="text"
-                name="address"
-                value={formData.address}
-                onChange={handleInputChange}
-                placeholder="Enter full address"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50]"
-              />
-            </div>
-
-            {/* Phone & Marital Status Side by Side */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
-                  <Phone className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Phone Number
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  placeholder="Enter phone number"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50]"
-                />
-              </div>
-              <div>
-                <label className="text-[#2C3E50] font-semibold mb-2 block">
-                  Marital Status
-                </label>
-                <select
-                  name="maritalStatus"
-                  value={formData.maritalStatus}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50]"
-                >
-                  <option value="">Select Marital Status</option>
-                  <option value="single">Single</option>
-                  <option value="married">Married</option>
-                  <option value="divorced">Divorced</option>
-                  <option value="widowed">Widowed</option>
-                </select>
-              </div>
-            </div>
-
-            {/* Volunteer Preferences */}
-            <div className="space-y-4">
-              <h3 className="flex items-center text-xl font-serif text-[#2C3E50] mb-2">
-                <Heart className="w-6 h-6 mr-2 text-[#3D4C6D]" />
-                Volunteer Preferences
-              </h3>
-              <div>
-                <label className="text-[#3D4C6D] font-semibold mb-3 block">
-                  Areas of Interest:
-                </label>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {interests.map((interest) => (
-                    <label
-                      key={interest}
-                      className="flex items-center space-x-2 cursor-pointer text-[#2C3E50]"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={formData.interests.includes(interest)}
-                        onChange={() => handleInterestChange(interest)}
-                        className="w-4 h-4 text-[#2C3E50] border-gray-300 rounded focus:ring-[#2C3E50]"
-                      />
-                      <span>{interest}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <label className="text-[#3D4C6D] font-semibold mb-3 block">
-                  Availability:
-                </label>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {availabilityOptions.map((option) => (
-                    <label
-                      key={option}
-                      className="flex items-center space-x-2 cursor-pointer text-[#2C3E50]"
-                    >
-                      <input
-                        type="radio"
-                        name="availability"
-                        value={option}
-                        checked={formData.availability === option}
-                        onChange={handleInputChange}
-                        className="w-4 h-4 text-[#2C3E50] border-gray-300 focus:ring-[#2C3E50]"
-                      />
-                      <span>{option}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Feedback */}
-            <div className="space-y-2">
-              <label className="text-[#3D4C6D] font-semibold mb-2 block">
-                Feedback & Suggestions
-              </label>
-              <textarea
-                name="feedback"
-                value={formData.feedback}
-                onChange={handleInputChange}
-                rows={4}
-                placeholder="Share your thoughts, suggestions, or any additional information..."
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50]"
-              />
-            </div>
-
-            {/* Submit */}
-            <div className="text-center">
-              <button
-                type="submit"
-                className="bg-gradient-to-r from-[#2C3E50] to-[#3D4C6D] text-white px-12 py-4 rounded-full font-serif text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 mx-auto"
-              >
-                <Send className="w-5 h-5" />
-                <span>Submit Application</span>
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
+    </>
   );
 };
 

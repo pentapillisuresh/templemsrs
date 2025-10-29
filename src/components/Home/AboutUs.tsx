@@ -77,21 +77,29 @@ const AboutUs: React.FC = () => {
     });
   }, []);
 
-  // Handle video hover play/pause
-  const handleMouseEnter = () => {
+  // Auto-play video when component mounts
+  useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(error => {
-        console.log("Video play failed:", error);
-      });
+      const playVideo = async () => {
+        try {
+          videoRef.current!.muted = true; // Ensure muted for autoplay
+          await videoRef.current!.play();
+        } catch (error) {
+          console.log("Video autoplay failed:", error);
+          // Fallback: try playing on user interaction
+          const handleUserInteraction = () => {
+            videoRef.current!.play().catch(console.error);
+            document.removeEventListener('click', handleUserInteraction);
+            document.removeEventListener('touchstart', handleUserInteraction);
+          };
+          document.addEventListener('click', handleUserInteraction);
+          document.addEventListener('touchstart', handleUserInteraction);
+        }
+      };
+      
+      playVideo();
     }
-  };
-
-  const handleMouseLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
-  };
+  }, []);
 
   return (
     <section className="py-16 relative overflow-hidden">
@@ -130,33 +138,21 @@ const AboutUs: React.FC = () => {
             className="lg:col-span-3 order-2 lg:order-1 flex flex-col"
             data-aos="fade-right"
           >
-            <div 
-              className="relative rounded-lg overflow-hidden shadow-lg group"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
+            <div className="relative rounded-lg overflow-hidden shadow-lg group">
               <video
                 ref={videoRef}
-                className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-[400px] object-cover"
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                autoPlay
+                preload="auto"
               >
                 <source src="./images/waterpour.mp4" type="video/mp4" />
                 <source src="./videos/temple-video.webm" type="video/webm" />
                 Your browser does not support the video tag.
               </video>
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-            
-              {/* Play icon overlay */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-70 group-hover:opacity-0 transition-opacity duration-300">
-                <div className="w-16 h-16 bg-black/50 rounded-full flex items-center justify-center">
-                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z"/>
-                  </svg>
-                </div>
-              </div>
             </div>
 
             {/* Stats Bar */}

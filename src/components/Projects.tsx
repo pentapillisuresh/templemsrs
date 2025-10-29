@@ -213,14 +213,21 @@ const Projects: React.FC = () => {
               Your support helps us expand these projects and reach more people
               in need. Every contribution makes a meaningful difference.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-[#2C3E50] font-semibold px-6 py-3 rounded-lg hover:shadow-lg font-roboto transition">
-                Make a Donation
-              </button>
-              <button className="bg-transparent border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#2C3E50] transition font-roboto">
-                Become Volunteer
-              </button>
-            </div>
+               <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <button
+        onClick={() => navigate("/donate")}
+        className="bg-white text-[#2C3E50] font-semibold px-6 py-3 rounded-lg hover:shadow-lg font-roboto transition"
+      >
+        Make a Donation
+      </button>
+
+      <button
+        onClick={() => navigate("/volunteer")}
+        className="bg-transparent border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#2C3E50] transition font-roboto"
+      >
+        Become Volunteer
+      </button>
+    </div>
           </div>
         </div>
       </section>

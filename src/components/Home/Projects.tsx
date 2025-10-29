@@ -78,8 +78,8 @@ const VolunteerAstrology = () => {
 
   const stats = [
     { number: 50, suffix: "+", label: "Years Legacy" },
-    { number: 20, suffix: "K+", label: "Kundalis Served" },
-    { number: 10, suffix: "K+", label: "Consultations Given" },
+    { number: 200, suffix: "K+", label: "Kundalis Served" },
+    { number: 100, suffix: "K+", label: "Consultations Given" },
     
     {
       number: 50,

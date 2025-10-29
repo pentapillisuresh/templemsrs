@@ -1,5 +1,6 @@
 import React from "react";
 import { Facebook, Instagram, Youtube } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -41,13 +42,12 @@ const Footer = () => {
             Quick Links
           </h3>
           <ul className="space-y-2 font-roboto text-sm">
-            <li><a href="/" className="hover:text-blue-400">Home</a></li>
-
-            <li><a href="/about" className="hover:text-blue-400">About Temple</a></li>
-            <li><a href="/gallery" className="hover:text-blue-400">Gallery</a></li>
-            <li><a href="/projects" className="hover:text-blue-400">Projects</a></li>
-            <li><a href="/board" className="hover:text-blue-400">Trustees</a></li>
-            <li><a href="/contact" className="hover:text-blue-400">Contact</a></li>
+            <li><Link to="/" className="hover:text-blue-400">Home</Link></li>
+            <li><Link to="/about" className="hover:text-blue-400">About Temple</Link></li>
+            <li><Link to="/gallery" className="hover:text-blue-400">Gallery</Link></li>
+            <li><Link to="/projects" className="hover:text-blue-400">Projects</Link></li>
+            <li><Link to="/board" className="hover:text-blue-400">Trustees</Link></li>
+            <li><Link to="/contact" className="hover:text-blue-400">Contact</Link></li>
           </ul>
         </div>
 
@@ -57,13 +57,12 @@ const Footer = () => {
             Our Services
           </h3>
           <ul className="space-y-2 font-roboto text-sm">
-            <li><a href="/volunteer" className="hover:text-blue-400">Volunteer</a></li>
-            <li><a href="/appointment" className="hover:text-blue-400">Appointment</a></li>
-            <li><a href="/donate" className="hover:text-blue-400">Donation</a></li>
-            <li><a href="/events" className="hover:text-blue-400">Events</a></li>
-            <li><a href="/governance" className="hover:text-blue-400">Governance</a></li>
-            <li><a href="/library" className="hover:text-blue-400">E-Library</a></li>
-
+            <li><Link to="/volunteer" className="hover:text-blue-400">Volunteer</Link></li>
+            <li><Link to="/appointment" className="hover:text-blue-400">Appointment</Link></li>
+            <li><Link to="/donate" className="hover:text-blue-400">Donation</Link></li>
+            <li><Link to="/events" className="hover:text-blue-400">Events</Link></li>
+            <li><Link to="/governance" className="hover:text-blue-400">Governance</Link></li>
+            <li><Link to="/library" className="hover:text-blue-400">E-Library</Link></li>
           </ul>
         </div>
 
@@ -114,26 +113,25 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-    <div className="border-t border-gray-700 mt-10 py-6 text-center font-roboto text-sm text-gray-200">
-  <p>
-    © 2025 MAHA SHREE RUDRA SAMSTHANAM FOUNDATION. All rights reserved. | 
-    <a href="#" className="ml-2 text-gray-100 hover:text-blue-400">Privacy Policy</a> | 
-    <a href="#" className="ml-2 text-gray-100 hover:text-blue-400">Terms of Service</a> | 
-    <a href="#" className="ml-2 text-gray-100 hover:text-blue-400">Sitemap</a>
-  </p>
-  <p className="mt-2 text-gray-300">
-    Developed by{" "}
-    <a
-      href="https://esotericprojects.tech/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-blue-400 hover:underline"
-    >
-      EsotericProjects
-    </a>
-  </p>
-</div>
-
+      <div className="border-t border-gray-700 mt-10 py-6 text-center font-roboto text-sm text-gray-200">
+        <p>
+          © 2025 MAHA SHREE RUDRA SAMSTHANAM FOUNDATION. All rights reserved. | 
+          <a href="#" className="ml-2 text-gray-100 hover:text-blue-400">Privacy Policy</a> | 
+          <a href="#" className="ml-2 text-gray-100 hover:text-blue-400">Terms of Service</a> | 
+          <a href="#" className="ml-2 text-gray-100 hover:text-blue-400">Sitemap</a>
+        </p>
+        <p className="mt-2 text-gray-300">
+          Developed by{" "}
+          <a
+            href="https://esotericprojects.tech/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:underline"
+          >
+            EsotericProjects
+          </a>
+        </p>
+      </div>
     </footer>
   );
 };

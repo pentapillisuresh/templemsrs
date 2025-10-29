@@ -17,7 +17,7 @@ const items: { title: string; desc: string; img: string }[] = [
   },
   {
     title: "Food Distribution",
-    desc: "Regular Annadanam (free food distribution) programs serving thousands, supporting underprivileged families and communities.",
+    desc: "Regular Annaprasadam (blessed food) programs serving thousands, supporting underprivileged families and communities.",
     img: "./images/line2.jpg", // food serving
   },
   {
