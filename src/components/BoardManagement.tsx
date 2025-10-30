@@ -4,7 +4,7 @@ import "aos/dist/aos.css";
 import { Check } from "lucide-react";
 
 // ✅ Hero banner image
-const aboutBanner = "./images/board.png";
+const aboutBanner = "./images/board1.png";
 
 const boardMembers = [
   {
