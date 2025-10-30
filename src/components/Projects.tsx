@@ -2,39 +2,12 @@ import React, { useEffect, useState } from "react";
 import ProjectGalleryModal from "./ProjectGalleryModal";
 import { useNavigate } from 'react-router-dom';
 
-
 const projects = [
   {
-    title: "Blood Banks",
-    metric: "5000+ Lives Saved",
+    title: "Annaprasadham",
+    metric: "1000+ Meals Served Daily",
     description:
-      "Our blood bank initiative organizes regular donation camps and maintains a database of donors. We have successfully collected over 5000 units of blood, helping save countless lives.",
-    image: "./images/project11.jpg",
-    status: "Active",
-    gallery: [
-      "./images/project11.jpg",
-      "./images/project11.jpg",
-      "./images/project11.jpg",
-    ],
-  },
-  {
-    title: "Educational Resources",
-    metric: "2000+ Students",
-    description:
-      "We support underprivileged children with free education, books, and learning materials. Includes scholarships, tutoring, and skill development courses.",
-    image: "./images/project12.jpg",
-    status: "Active",
-    gallery: [
-      "./images/project12.jpg",
-      "./images/project12.jpg",
-      "./images/project12.jpg",
-    ],
-  },
-  {
-    title: "Food Distribution",
-    metric: "500+ Daily Meals",
-    description:
-      "Daily food distribution program providing nutritious meals to the homeless and underprivileged. We serve over 500 meals daily and organize special food drives.",
+      "Sacred food distribution program offering pure vegetarian meals to devotees and needy people. Daily prasadam service with devotion and love.",
     image: "./images/project13.jpg",
     status: "Active",
     gallery: [
@@ -44,7 +17,111 @@ const projects = [
     ],
   },
   {
-    title: "Vedic Sanskrit Education",
+    title: "Education Support",
+    metric: "2000+ Students Helped",
+    description:
+      "Comprehensive educational support including school fees, books, uniforms, and stationery for underprivileged children across various schools.",
+    image: "./images/project12.jpg",
+    status: "Active",
+    gallery: [
+      "./images/project12.jpg",
+      "./images/project12.jpg",
+      "./images/project12.jpg",
+    ],
+  },
+  {
+    title: "Goshala Seva",
+    metric: "200+ Cows Cared",
+    description:
+      "Dedicated cow protection service with daily feeding, medical care, and shelter maintenance. Promoting Gau Seva as sacred duty.",
+    image: "./images/project15.jpg",
+    status: "Active",
+    gallery: [
+      "./images/project15.jpg",
+      "./images/project15.jpg",
+      "./images/project15.jpg",
+    ],
+  },
+  {
+    title: "Indian Culture Development",
+    metric: "50+ Events Organized",
+    description:
+      "Promoting Indian cultural values through festivals, workshops, and cultural programs. Preserving and propagating ancient traditions.",
+    image: "./images/project20.jpg",
+    status: "Active",
+    gallery: [
+      "./images/project20.jpg",
+      "./images/project20.jpg",
+      "./images/project20.jpg",
+    ],
+  },
+  {
+    title: "Infrastructure Progression",
+    metric: "10+ Projects Completed",
+    description:
+      "Developing and maintaining temple infrastructure, community centers, and service facilities to support our growing activities.",
+    image: "./images/project21.jpg",
+    status: "Active",
+    gallery: [
+      "./images/project21.jpg",
+      "./images/project21.jpg",
+      "./images/project21.jpg",
+    ],
+  },
+  {
+    title: "Medical Assistance",
+    metric: "3000+ Patients Treated",
+    description:
+      "Monthly free medical camps with qualified doctors. Includes checkups, medicine distribution, and free treatments.",
+    image: "./images/project17.jpg",
+    status: "Active",
+    gallery: [
+      "./images/project17.jpg",
+      "./images/mproject17.jpg",
+      "./images/project17.jpg",
+    ],
+  },
+  {
+    title: "Sanathana Sangeetham",
+    metric: "100+ Concerts Conducted",
+    description:
+      "Promoting classical music and spiritual bhajans through regular concerts, music classes, and cultural events for spiritual upliftment.",
+    image: "./images/project23.jpg",
+    status: "Active",
+    gallery: [
+      "./images/project23.jpg",
+      "./images/project23.jpg",
+      "./images/project23.jpg",
+    ],
+  },
+  {
+    title: "Social Welfare Drives",
+    metric: "5000+ Beneficiaries",
+    description:
+      "Regular social welfare campaigns including clothing distribution, hygiene kits, and essential supplies to marginalized communities.",
+    image: "./images/project24.jpg",
+    status: "Active",
+    gallery: [
+      "./images/project24.jpg",
+      "./images/project24.jpg",
+      "./images/project24.jpg",
+    ],
+  },
+  {
+    title: "Temple Activities",
+    metric: "Daily Services",
+    description:
+      "Regular temple rituals, pujas, festivals, and spiritual discourses. Maintaining sacred spaces for community worship and devotion.",
+    image: "./images/project25.jpeg",
+    status: "Active",
+    gallery: [
+      "./images/project25.jpeg",
+      "./images/project25.jpeg",
+      "./images/project25.jpeg",
+    ],
+  },
+  {
+    title: "Vedic Sanskrit",
     metric: "300+ Students",
     description:
       "Traditional Vedic education teaching Sanskrit, scriptures, and spiritual knowledge. Regular classes for all age groups.",
@@ -57,49 +134,10 @@ const projects = [
     ],
   },
   {
-    title: "Goshala",
-    metric: "100+ Cows Protected",
+    title: "Yoga Wellbeing",
+    metric: "1000+ Participants",
     description:
-      "Our Goshala provides shelter, food, and medical care for abandoned cows. Facility houses 100+ cows with proper veterinary care.",
-    image: "./images/project15.jpg",
-    status: "Active",
-    gallery: [
-      "./images/project15.jpg",
-      "./images/project15.jpg",
-      "./images/project15.jpg",
-    ],
-  },
-  {
-    title: "Help the People",
-    metric: "1000+ Families",
-    description:
-      "Support program for families in need: financial assistance, job placement, and emergency relief during disasters.",
-    image: "./images/project16.jpg",
-    status: "Active",
-    gallery: [
-      "./images/project16.jpg",
-      "./images/project16.jpg",
-      "./images/project16.jpg",
-    ],
-  },
-  {
-    title: "Medical Assistance",
-    metric: "3000+ Patients Treated",
-    description:
-      "Monthly free medical camps with qualified doctors. Includes checkups, medicine distribution, and free treatments.",
-    image: "./images/project17.jpg",
-    status: "Active",
-    gallery: [
-      "./images/project17.jpg",
-      "./images/project17.jpg",
-      "./images/project17.jpg",
-    ],
-  },
-  {
-    title: "Yoga Classes",
-    metric: "800+ Participants",
-    description:
-      "Free yoga and meditation classes for all age groups. Daily sessions focus on physical health and mental well-being.",
+      "Holistic wellness programs including yoga asanas, pranayama, meditation, and Ayurvedic lifestyle guidance for complete wellbeing.",
     image: "./images/project18.jpg",
     status: "Active",
     gallery: [
@@ -109,18 +147,18 @@ const projects = [
     ],
   },
   {
-    title: "Book Bank",
-    metric: "5000+ Books Distributed",
+    title: "Blood Banks",
+    metric: "5000+ Lives Saved",
     description:
-      "Free library with spiritual texts, educational, and general literature. Books distributed to students and book lovers.",
-    image: "./images/project19.jpg",
+      "Our blood bank initiative organizes regular donation camps and maintains a database of donors. We have successfully collected over 5000 units of blood, helping save countless lives.",
+    image: "./images/project11.jpg",
     status: "Active",
     gallery: [
-      "./images/project19.jpg",
-      "./images/project19.jpg",
-      "./images/project19.jpg",
+      "./images/project11.jpg",
+      "./images/project11.jpg",
+      "./images/project11.jpg",
     ],
-  },
+  }
 ];
 
 const Projects: React.FC = () => {

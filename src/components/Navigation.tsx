@@ -115,7 +115,7 @@ const Header = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center space-x-6">
+        <div className="hidden lg:flex items-center space-x-8">
           {mainItems.map((item) => (
             <Link
               key={item.id}
@@ -141,7 +141,7 @@ const Header = () => {
           ))}
 
           {/* Dropdown + Audio + Translator */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-6">
             {/* Dropdown Menu */}
             <div className="relative">
               <button
@@ -192,7 +192,7 @@ const Header = () => {
             </div>
 
             {/* Audio + Translate Container */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-4">
               {/* Audio Icon */}
               <button
                 onClick={toggleAudio}
@@ -210,16 +210,15 @@ const Header = () => {
               </button>
 
               {/* Google Translate */}
-             {/* Google Translate */}
-<div className={`translate-wrapper ${isScrolled ? 'bg-gray-100' : 'bg-white/20'} rounded-md overflow-hidden h-10 flex items-center`}>
-  <GoogleTranslate />
-</div>
+              <div className={`translate-wrapper overflow-hidden h-10 flex items-center`}>
+                <GoogleTranslate />
+              </div>
             </div>
           </div>
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="lg:hidden flex items-center space-x-3">
+        <div className="lg:hidden flex items-center space-x-4">
           {/* Audio Icon in Mobile Header */}
           <button
             onClick={toggleAudio}

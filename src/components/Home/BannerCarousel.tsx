@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Heart, Calendar, HandHeart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import WelcomeBanner from "../WelcomeBanner"; // Add this import
+// import WelcomeBanner from "../WelcomeBanner"; 
 
 const BannerCarousel: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [showWelcome, setShowWelcome] = useState(true);
+  // const [showWelcome, setShowWelcome] = useState(true);
   const navigate = useNavigate();
 
   const bannerData = [
     {
       image: "./images/banner1.jpg",
-      title: "Welcome to Maha Shree Rudra Samsthanam",
+      title: "Maha Shree Rudra Samsthanam Foundation",
       subtitle: "A Sacred Journey of Devotion and Service",
     },
     {
@@ -43,9 +43,9 @@ const BannerCarousel: React.FC = () => {
   return (
     <>
       {/* Welcome Banner */}
-      {showWelcome && (
-        <WelcomeBanner onClose={() => setShowWelcome(false)} delay={5000} />
-      )}
+      {/* {showWelcome && (
+        <WelcomeBanner onClose={() => setShowWelcome(false)} delay={3000} />
+      )} */}
 
       {/* Main Carousel */}
       <section className="relative w-full h-screen overflow-hidden">

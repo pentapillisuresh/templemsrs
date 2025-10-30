@@ -305,7 +305,7 @@ const VolunteerForm: React.FC = () => {
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] appearance-none transition-all duration-300"
                     >
-                      <option value="">Select Qualification</option>
+                      <option value="">Select</option>
                       {qualifications.map((qual) => (
                         <option key={qual} value={qual}>
                           {qual}
@@ -328,7 +328,7 @@ const VolunteerForm: React.FC = () => {
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] appearance-none transition-all duration-300"
                     >
-                      <option value="">Select Occupation</option>
+                      <option value="">Select</option>
                       {occupations.map((occupation) => (
                         <option key={occupation} value={occupation}>
                           {occupation}

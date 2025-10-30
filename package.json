@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
+    "@tsparticles/engine": "^3.9.1",
+    "@tsparticles/react": "^3.0.0",
     "aos": "^2.3.4",
     "bcryptjs": "^3.0.2",
     "canvas-confetti": "^1.9.4",

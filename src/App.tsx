@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useState}from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Hero from "./components/Home/Homepage";
@@ -19,11 +19,19 @@ import Whatsapp from "./components/Whatsapp";
 import Call from "./components/Call";
 import ScrollToTop from "./components/ScrollToTop";
 import Certificates from "./components/Certificates";
+import WelcomeBanner from "./components/WelcomeBanner";
 
 function App() {
+
+    const [showWelcome, setShowWelcome] = useState(true);
+  
   return (
 
     <div>
+  {showWelcome && (
+        <WelcomeBanner onClose={() => setShowWelcome(false)} delay={3000} />
+      )}
+
       <Whatsapp />
       <Call />
       <Router>
