@@ -14,35 +14,35 @@ function AboutTemple() {
     reachSectionRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
- const nakshatraTrees = [
-  { nakshatram: "Ashwini", tree: "Kuchila (Nux Vomica) (ఎజ్జు చెట్టు / Ejju Chettu)", benefit: "Brings energy & healing power" },
-  { nakshatram: "Bharani", tree: "Amla (Gooseberry) (ఉసిరి చెట్టు / Usiri Chettu)", benefit: "Longevity & divine strength" },
-  { nakshatram: "Krittika", tree: "Fig (Ficus Racemosa) (అత్తి చెట్టు / Atti Chettu)", benefit: "Prosperity & divine blessings" },
-  { nakshatram: "Rohini", tree: "Jamun (Black Plum) (నేరేడు చెట్టు / Neredu Chettu)", benefit: "Mental peace & fertility" },
-  { nakshatram: "Mrigashira", tree: "Banyan Tree (మర్రి చెట్టు / Marri Chettu)", benefit: "Stability & long life" },
-  { nakshatram: "Ardra", tree: "Neem (వేప చెట్టు / Veepa Chettu)", benefit: "Protection from negativity" },
-  { nakshatram: "Punarvasu", tree: "Bamboo (వెదురు / Veduru)", benefit: "Growth & harmony" },
-  { nakshatram: "Pushya", tree: "Peepal (అశ్వత్థం / Ashwattha or Raavi Chettu)", benefit: "Moksha & wisdom" },
-  { nakshatram: "Ashlesha", tree: "Nagakesara (నాగకేసర చెట్టు / Nagakesara Chettu)", benefit: "Protection from evil" },
-  { nakshatram: "Magha", tree: "Banyan Tree (మర్రి చెట్టు / Marri Chettu)", benefit: "Royal success" },
-  { nakshatram: "Purva Phalguni", tree: "Ashoka (అశోక చెట్టు / Ashoka Chettu)", benefit: "Happiness & love" },
-  { nakshatram: "Uttara Phalguni", tree: "Mango (మామిడి చెట్టు / Mamidi Chettu)", benefit: "Prosperity" },
-  { nakshatram: "Hasta", tree: "Jasmine (మల్లె చెట్టు / Malle Chettu)", benefit: "Spiritual clarity" },
-  { nakshatram: "Chitra", tree: "Bael (Bilva) (బిల్వ చెట్టు / Bilva Chettu)", benefit: "Shiva's grace" },
-  { nakshatram: "Swati", tree: "Arjuna (తారామూళి / Taramuli or Maddi Chettu)", benefit: "Balance & health" },
-  { nakshatram: "Vishakha", tree: "Amruta (Tinospora) (తిప్ప తీగ / Tippa Teega)", benefit: "Detox & immunity" },
-  { nakshatram: "Anuradha", tree: "Jackfruit (పనస చెట్టు / Panasa Chettu)", benefit: "Friendship & devotion" },
-  { nakshatram: "Jyeshtha", tree: "Champa (చంపక చెట్టు / Champaka Chettu)", benefit: "Leadership & fame" },
-  { nakshatram: "Moola", tree: "Banyan (మర్రి చెట్టు / Marri Chettu)", benefit: "Deep spiritual roots" },
-  { nakshatram: "Purvashadha", tree: "Palm (తాటి చెట్టు / Taati Chettu)", benefit: "Courage & endurance" },
-  { nakshatram: "Uttarashadha", tree: "Fig (అత్తి చెట్టు / Atti Chettu)", benefit: "Wisdom & patience" },
-  { nakshatram: "Shravana", tree: "Vata (వట వృక్షం / Vata Vriksham)", benefit: "Knowledge & listening" },
-  { nakshatram: "Dhanishta", tree: "Shami (సమీ చెట్టు / Sami Chettu)", benefit: "Victory & success" },
-  { nakshatram: "Shatabhisha", tree: "Kadamba (కదంబ చెట్టు / Kadamba Chettu)", benefit: "Healing power" },
-  { nakshatram: "Purvabhadra", tree: "Neem (వేప చెట్టు / Veepa Chettu)", benefit: "Purity & protection" },
-  { nakshatram: "Uttarabhadra", tree: "Tamarind (చింత చెట్టు / Chinta Chettu)", benefit: "Stability in life" },
-  { nakshatram: "Revathi", tree: "Kadamba (కదంబ చెట్టు / Kadamba Chettu)", benefit: "Peace & happiness" }
-];
+  const nakshatraTrees = [
+    { nakshatram: "Ashwini", tree: "Kuchila (Nux Vomica) (ఎజ్జు చెట్టు / Ejju Chettu)", benefit: "Brings energy & healing power" },
+    { nakshatram: "Bharani", tree: "Amla (Gooseberry) (ఉసిరి చెట్టు / Usiri Chettu)", benefit: "Longevity & divine strength" },
+    { nakshatram: "Krittika", tree: "Fig (Ficus Racemosa) (అత్తి చెట్టు / Atti Chettu)", benefit: "Prosperity & divine blessings" },
+    { nakshatram: "Rohini", tree: "Jamun (Black Plum) (నేరేడు చెట్టు / Neredu Chettu)", benefit: "Mental peace & fertility" },
+    { nakshatram: "Mrigashira", tree: "Banyan Tree (మర్రి చెట్టు / Marri Chettu)", benefit: "Stability & long life" },
+    { nakshatram: "Ardra", tree: "Neem (వేప చెట్టు / Veepa Chettu)", benefit: "Protection from negativity" },
+    { nakshatram: "Punarvasu", tree: "Bamboo (వెదురు / Veduru)", benefit: "Growth & harmony" },
+    { nakshatram: "Pushya", tree: "Peepal (అశ్వత్థం / Ashwattha or Raavi Chettu)", benefit: "Moksha & wisdom" },
+    { nakshatram: "Ashlesha", tree: "Nagakesara (నాగకేసర చెట్టు / Nagakesara Chettu)", benefit: "Protection from evil" },
+    { nakshatram: "Magha", tree: "Banyan Tree (మర్రి చెట్టు / Marri Chettu)", benefit: "Royal success" },
+    { nakshatram: "Purva Phalguni", tree: "Ashoka (అశోక చెట్టు / Ashoka Chettu)", benefit: "Happiness & love" },
+    { nakshatram: "Uttara Phalguni", tree: "Mango (మామిడి చెట్టు / Mamidi Chettu)", benefit: "Prosperity" },
+    { nakshatram: "Hasta", tree: "Jasmine (మల్లె చెట్టు / Malle Chettu)", benefit: "Spiritual clarity" },
+    { nakshatram: "Chitra", tree: "Bael (Bilva) (బిల్వ చెట్టు / Bilva Chettu)", benefit: "Shiva's grace" },
+    { nakshatram: "Swati", tree: "Arjuna (తారామూళి / Taramuli or Maddi Chettu)", benefit: "Balance & health" },
+    { nakshatram: "Vishakha", tree: "Amruta (Tinospora) (తిప్ప తీగ / Tippa Teega)", benefit: "Detox & immunity" },
+    { nakshatram: "Anuradha", tree: "Jackfruit (పనస చెట్టు / Panasa Chettu)", benefit: "Friendship & devotion" },
+    { nakshatram: "Jyeshtha", tree: "Champa (చంపక చెట్టు / Champaka Chettu)", benefit: "Leadership & fame" },
+    { nakshatram: "Moola", tree: "Banyan (మర్రి చెట్టు / Marri Chettu)", benefit: "Deep spiritual roots" },
+    { nakshatram: "Purvashadha", tree: "Palm (తాటి చెట్టు / Taati Chettu)", benefit: "Courage & endurance" },
+    { nakshatram: "Uttarashadha", tree: "Fig (అత్తి చెట్టు / Atti Chettu)", benefit: "Wisdom & patience" },
+    { nakshatram: "Shravana", tree: "Vata (వట వృక్షం / Vata Vriksham)", benefit: "Knowledge & listening" },
+    { nakshatram: "Dhanishta", tree: "Shami (సమీ చెట్టు / Sami Chettu)", benefit: "Victory & success" },
+    { nakshatram: "Shatabhisha", tree: "Kadamba (కదంబ చెట్టు / Kadamba Chettu)", benefit: "Healing power" },
+    { nakshatram: "Purvabhadra", tree: "Neem (వేప చెట్టు / Veepa Chettu)", benefit: "Purity & protection" },
+    { nakshatram: "Uttarabhadra", tree: "Tamarind (చింత చెట్టు / Chinta Chettu)", benefit: "Stability in life" },
+    { nakshatram: "Revathi", tree: "Kadamba (కదంబ చెట్టు / Kadamba Chettu)", benefit: "Peace & happiness" }
+  ];
 
 
   return (
@@ -456,45 +456,45 @@ function AboutTemple() {
       </section>
 
       {/* Weekly Special Sevas */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12" data-aos="fade-up">
-            <h2 className="text-4xl font-serif text-[#2C3E50] mb-4">
-              Weekly Special Sevas
-            </h2>
-            <p className="text-gray-600 text-lg">
-              Special rituals and ceremonies throughout the week
-            </p>
-          </div>
+  <section className="py-20">
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="text-center mb-12" data-aos="fade-up">
+      <h2 className="text-4xl font-serif text-[#2C3E50] mb-4">
+        Yearly and Monthly Rituals
+      </h2>
+      <p className="text-gray-600 text-lg">
+        Annual festivals and special monthly ceremonies
+      </p>
+    </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { day: "Monday", seva: "Rudrabhishekam", desc: "Special Abhishekam for Lord Shiva" },
-              { day: "Tuesday", seva: "Durga Archana", desc: "Powerful pooja for Mata Durga Devi" },
-              { day: "Friday", seva: "Kumkumarchana & Lalitha Sahasranama", desc: "Auspicious pooja for divine feminine blessings" },
-              { day: "Saturday", seva: "Navagraha Homa", desc: "For planetary peace and protection" },
-              { day: "Pournami", seva: "Chandi Homam", desc: "For prosperity, protection, and health" },
-              { day: "Amavasya", seva: "Maha Rudra Yagna", desc: "For peace of ancestors and blessings" },
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow"
-                data-aos="fade-up"
-                data-aos-delay={idx * 100}
-              >
-                <div className="text-center">
-                  <div className="bg-[#2C3E50] text-white w-16 h-16 rounded-full flex items-center justify-center text-xl mx-auto mb-4">
-                    {item.day.substring(0, 3)}
-                  </div>
-                  <h3 className="font-bold text-[#2C3E50] text-lg mb-2">{item.day}</h3>
-                  <p className="font-semibold text-gray-800 mb-2">{item.seva}</p>
-                  <p className="text-gray-600 text-sm">{item.desc}</p>
-                </div>
-              </div>
-            ))}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {[
+        { day: "Every Year", seva: "Akshaya Tritiya – Simhachalam Yatra", desc: "Annual pilgrimage and special rituals" },
+        { day: "Sankatahara Chaturthi", seva: "Ganapathi Pooja, Lakshmi Ganapathi Homam", desc: "Monthly Lord Ganesha worship" },
+        { day: "Pournami", seva: "Shri Chakra Vishesha Sahasra Kumkuma Archana, Maha Chandi Yagam, Sri Satyanarayana Swamy Vratham", desc: "Special full moon day rituals and ceremonies" },
+        { day: "Amavasya", seva: "Maha Rudra Yagam, Kalabhairava Pooja", desc: "New moon day rituals for peace and protection" },
+        { day: "Masa Shivaratri", seva: "Pradosha Kalam – Maha Nandiswara Abhishekam", desc: "Monthly Shiva worship during Pradosha time" },
+      ].map((item, idx) => (
+        <div
+          key={idx}
+          className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow"
+          data-aos="fade-up"
+          data-aos-delay={idx * 100}
+        >
+          <div className="text-center">
+            <div className="bg-[#2C3E50] text-white w-16 h-16 rounded-full flex items-center justify-center text-xl mx-auto mb-4">
+              {item.day.substring(0, 3)}
+            </div>
+            <h3 className="font-bold text-[#2C3E50] text-lg mb-2">{item.day}</h3>
+            <p className="font-semibold text-gray-800 mb-2">{item.seva}</p>
+            <p className="text-gray-600 text-sm">{item.desc}</p>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* Nakshatra Vanam Section */}
       <section className="bg-gray-50 py-20">
@@ -617,75 +617,75 @@ function AboutTemple() {
             {[
               {
                 month: "January",
-                festival: "Makara Sankranti & Bhogi Pooja",
-                desc: "Offering gratitude to Surya Bhagavan and Agni Devata for prosperity",
-                img: "./images/jan.jpg"
+                festival: "Vaikunta Ekadasi / Bhogi / Sankranthi Sambaralu",
+                desc: "Vaikunta Ekadasi, Bhogi – Goda Devi Ranganatha Swamy Kalyanam, Sankranthi Sambaralu",
+                img: "./images/jan1.jpg",
               },
               {
                 month: "February",
-                festival: "Maha Shivaratri Utsavam",
-                desc: "Grand Rudrabhishekam, Lingodbhava Seva, and Akhanda Rudra Japan",
-                img: "./images/about31.png"
+                festival: "Maha Shivaratri (Major Event)",
+                desc: "Maha Shivaratri, Bhishma Ekadashi – Vishnu Sahasranama Parayanam, Magha Purnima – Shiva Parvati Kalyanam",
+                img: "./images/about31.png",
               },
               {
                 month: "March",
-                festival: "Ugadi (Telugu New Year)",
-                desc: "Panchanga Sravanam, special Lakshmi Ganapathi Pooja for new beginnings",
-                img: "./images/march.jpg"
+                festival: "Ugadi & Vasantha Navaratri",
+                desc: "Ugadi – Telugu New Year, Vasantha Navaratri",
+                img: "./images/march.jpeg",
               },
               {
                 month: "April",
-                festival: "Sri Rama Navami",
-                desc: "Kalyanotsavam of Lord Sri Rama & Sita Devi",
-                img: "./images/about34.jpg"
+                festival: "Sri Ramayana Parayanam & Sri Seetha Rama Kalyanam",
+                desc: "Sri Ramayana Parayanam, Sri Seetha Rama Kalyanam, Maha Samrajya Pattabhishekam, Veda Ashirvachanam, Sundarakanda Parayanam, Hanuman Jayanti, Hanuman Shobha Yatra",
+                img: "./images/about34.jpg",
               },
               {
                 month: "May",
-                festival: "Narasimha Jayanthi / Vaikasi Visakam",
-                desc: "Homam for protection and strength",
-                img: "./images/may.jpg"
+                festival: "Common Monthly Activities",
+                desc: "Regular poojas and weekly temple sevas",
+                img: "./images/may.jpg",
               },
               {
                 month: "June",
-                festival: "Guru Purnima",
-                desc: "Guru Vandana, Veda Parayanam, and Annadanam Seva",
-                img: "./images/june.jpeg"
+                festival: "Common Monthly Activities",
+                desc: "Devotional parayanams and Annadanam seva",
+                img: "./images/june.jpg",
               },
               {
                 month: "July",
-                festival: "Aashada Navaratri & Vana Bhojanam",
-                desc: "Worship of Devi in Vanam and community lunch",
-                img: "./images/july.jpg"
+                festival: "Guru Pooja Mahotsavam",
+                desc: "Offerings and poojas for Gurus and Acharyas",
+                img: "./images/about12.jpg",
               },
               {
                 month: "August",
-                festival: "Varalakshmi Vratham / Krishna Janmashtami",
-                desc: "Varalakshmi special alankarana, Bhajan night for Lord Krishna",
-                img: "./images/about35.jpg"
+                festival: "Krishna Janmashtami & Varalakshmi Vratham",
+                desc: "Shri Krishna Janmashtami, Varalakshmi Devi Vratham, Every Week – Special Poojas, Weekly Ammavari Alankaram",
+                img: "./images/august1.jpeg",
               },
               {
                 month: "September",
-                festival: "Vinayaka Chavithi / Navagraha Shanti Pooja",
-                desc: "Ganapathi homam and Navagraha Abhishekam for planetary harmony",
-                img: "./images/sep.jpeg"
+                festival: "Ganapathi Navaratri",
+                desc: "Lord Ganesha special poojas and homams",
+                img: "./images/sep.jpeg",
               },
               {
                 month: "October",
-                festival: "Devi Sharamnavaratri Utsavam (9 Days)",
-                desc: "Daily Kumkumarchana, Chandi Homam, and Devi Alankaram in 9 forms",
-                img: "./images/about33.jpg"
+                festival: "Durga Devi Navaratri 2025",
+                desc: "9 days of Devi Alankaram, Chandi Parayanam",
+                img: "./images/october.jpeg",
               },
               {
                 month: "November",
-                festival: "Karthika Masam Deepotsavam",
-                desc: "Shiva Abhishekam, Deepa Aaradhana, Rudra Homam every Monday",
-                img: "./images/nov.jpg"
+                festival: "Diwali, Karthika Pournami, Ekadashi Rudrabhishekam",
+                desc: "Diwali Celebration, Karthika Somavaram, Karthika Pournami Deepotsavam, Jwala Thoranam, Ekadashi Rudrabhishekam, Maha Kumbh Abhishekam, Laksha Bilvarchana",
+                img: "./images/nov.jpg",
               },
               {
                 month: "December",
-                festival: "Dhanurmasa Pooja & Vaikunta Ekadasi",
-                desc: "Early morning Suprabhata Seva and Vishnu Sahasranama Parayanam",
-                img: "./images/dec.jpeg"
+                festival: "Subramanya Sashti & Dhanurmasam Mahotsavam",
+                desc: "Subramanya Sashti, Valli Devasena Subramanya Swamy Kalyanam, Thiruppavai Pasuram, Dhanurmasam Mahotsavam",
+                img: "./images/december.jpeg",
               },
             ].map((item, idx) => (
               <div
@@ -702,8 +702,12 @@ function AboutTemple() {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-lg font-bold text-[#2C3E50] mb-2">{item.month}</h3>
-                  <h4 className="text-xl font-serif text-[#3D4C6D] mb-2">{item.festival}</h4>
+                  <h3 className="text-lg font-bold text-[#2C3E50] mb-2">
+                    {item.month}
+                  </h3>
+                  <h4 className="text-xl font-serif text-[#3D4C6D] mb-2">
+                    {item.festival}
+                  </h4>
                   <p className="text-gray-600 text-sm">{item.desc}</p>
                 </div>
               </div>
@@ -711,6 +715,8 @@ function AboutTemple() {
           </div>
         </div>
       </section>
+
+
 
       {/* How to Reach */}
       <section ref={reachSectionRef} className="bg-gray-50 py-20">
