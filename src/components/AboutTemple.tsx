@@ -550,7 +550,7 @@ function AboutTemple() {
               className="flex justify-center items-center overflow-hidden rounded-2xl shadow-2xl"
             >
               <img
-                src="./images/plant.jpeg"
+                src="./images/plants.png"
                 alt="Nakshatra Vanam"
                 className="w-full h-[300px] md:h-[400px] object-cover transform transition-transform duration-[3000ms] hover:scale-110"
               />
