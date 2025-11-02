@@ -13,6 +13,8 @@ import {
   ChevronDown,
   X,
 } from 'lucide-react';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const VolunteerForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -34,6 +36,16 @@ const VolunteerForm: React.FC = () => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+  }, []);
 
   const interests = [
     'Temple Service',
@@ -252,9 +264,30 @@ const VolunteerForm: React.FC = () => {
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-[#2C3E50]/80 to-[#3D4C6D]/60"></div>
-          <h2 className="relative text-4xl md:text-5xl font-serif font-bold text-white text-center px-4">
-            Become a <span className="text-white">Volunteer</span>
-          </h2>
+          <div className="relative text-center px-4 max-w-4xl mx-auto">
+            <h2 
+              className="text-4xl md:text-5xl font-serif font-bold text-white mb-4 drop-shadow-lg"
+              data-aos="fade-down"
+              data-aos-delay="100"
+            >
+              Become a <span className="text-white">Volunteer</span>
+            </h2>
+            
+            {/* Divider Line */}
+            {/* <div 
+              className="w-24 h-1 bg-white mb-4 rounded-full"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            ></div> */}
+            
+            <p 
+              className="text-lg md:text-xl text-white leading-relaxed drop-shadow-md"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              Join our mission to serve the community and make a meaningful difference
+            </p>
+          </div>
         </div>
 
         {/* Form */}

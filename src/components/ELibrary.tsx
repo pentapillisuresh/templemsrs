@@ -154,11 +154,27 @@ const ELibrary: React.FC = () => {
         }}
       >
         <div className="absolute inset-0 bg-[#2C3E50]/70"></div>
-        <div className="relative text-center text-white z-10">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-3">
+        <div className="relative text-center text-white z-10 max-w-4xl mx-auto px-4">
+          <h1 
+            className="text-4xl md:text-5xl font-serif font-bold mb-4 drop-shadow-lg"
+            data-aos="fade-down"
+            data-aos-delay="100"
+          >
             E-Library
           </h1>
-          <p className="text-lg max-w-2xl mx-auto">
+          
+          {/* Divider Line */}
+          {/* <div 
+            className="w-24 h-1 bg-white mx-auto mb-4 rounded-full"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          ></div> */}
+          
+          <p 
+            className="text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-md"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
             Explore spiritual wisdom, philosophy, and knowledge resources.
           </p>
         </div>

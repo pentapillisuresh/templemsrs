@@ -99,19 +99,47 @@ const Header = () => {
         isScrolled ? "bg-white shadow-lg" : "bg-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
-        {/* Logo */}
+      <nav className="max-w-7xl mx-auto flex items-center justify-between px-0 py-0">
+        {/* Logo with Text - Clean Design */}
         <Link
           to="/"
-          className="flex items-center space-x-2 group transition-transform duration-300 hover:scale-105"
+          className="flex items-center space-x-4 group transition-all duration-300 hover:scale-105"
         >
-          <span
-            className={`text-lg font-bold font-serif tracking-tight ${
-              isScrolled ? "text-gray-900" : "text-white"
-            }`}
-          >
-            MAHA SHREE RUDRA SAMSTHANAM FOUNDATION
-          </span>
+          {/* Large Logo Image without background */}
+          <div className="flex-shrink-0">
+            <img 
+              src="/images/logomaha.svg" 
+              alt="MAHA SHREE RUDRA SAMSTHANAM FOUNDATION Logo"
+              className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain transition-all duration-300"
+              onError={(e) => {
+                // Fallback if logo doesn't exist
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+              }}
+            />
+          </div>
+          
+          {/* Text Container with Better Typography */}
+          <div className="flex flex-col space-y-0">
+            <span
+              className={`text-xl md:text-1xl font-bold font-serif leading-tight tracking-wide ${
+                isScrolled ? "text-gray-900" : "text-white"
+              } group-hover:text-[#3B4A69] transition-colors duration-300`}
+            >
+              MAHA SHREE RUDRA
+            </span>
+            <span
+              className={`text-sm md:text-base font-semibold font-sans leading-tight tracking-normal ${
+                isScrolled ? "text-gray-700" : "text-white/90"
+              } group-hover:text-[#3B4A69] transition-colors duration-300`}
+            >
+              SAMSTHANAM FOUNDATION
+            </span>
+            {/* Subtle decorative line */}
+            <div className={`w-16 h-0.5 rounded-full transition-all duration-300 ${
+              isScrolled ? "bg-[#3B4A69]" : "bg-white/70"
+            } group-hover:bg-[#3B4A69] group-hover:w-20`}></div>
+          </div>
         </Link>
 
         {/* Desktop Navigation */}

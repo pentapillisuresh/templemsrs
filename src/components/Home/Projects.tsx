@@ -213,7 +213,7 @@ const VolunteerAstrology = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
             <div className="absolute bottom-8 left-8 right-8">
-              <h3 className="text-xl md:text-2xl font-serif text-white leading-snug mb-4 drop-shadow-lg">
+              <h3 className="text-2xl md:text-3xl font-serif text-white leading-snug mb-4 drop-shadow-lg">
                 {poojaRitualsSection.title}
               </h3>
               <button

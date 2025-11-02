@@ -1,5 +1,7 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useEffect } from 'react';
 import { Send, X, CheckCircle } from 'lucide-react';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const aboutBanner = './images/contactbanner1.jpg';
 
@@ -23,6 +25,16 @@ export default function ContactPage() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [showPopup, setShowPopup] = useState(false);
   const [userName, setUserName] = useState('');
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -143,8 +155,26 @@ export default function ContactPage() {
         ></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white px-4">
-          <h1 className="text-4xl md:text-5xl font-serif mb-4">Contact Our Temple</h1>
-          <p className="text-lg md:text-xl max-w-2xl">
+          <h1 
+            className="text-4xl md:text-5xl font-serif mb-4 drop-shadow-lg"
+            data-aos="fade-down"
+            data-aos-delay="100"
+          >
+            Contact Our Temple
+          </h1>
+          
+          {/* Divider Line */}
+          {/* <div 
+            className="w-24 h-1 bg-white mb-4 rounded-full"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          ></div> */}
+          
+          <p 
+            className="text-lg md:text-xl max-w-2xl leading-relaxed drop-shadow-md"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
             A sacred place of worship, learning, and community service.
           </p>
         </div>
@@ -154,7 +184,11 @@ export default function ContactPage() {
       <section className="w-full py-12 px-4 md:px-12 lg:px-20">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           {/* LEFT: CONTACT FORM */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col justify-center">
+          <div 
+            className="bg-white rounded-2xl shadow-lg p-8 flex flex-col justify-center"
+            data-aos="fade-right"
+            data-aos-delay="100"
+          >
             <h2 className="text-2xl font-serif text-[#2C3E50] mb-4">Get in touch</h2>
             <p className="text-sm mb-6 text-[#3D4C6D]">
               Kindly complete the form, and our MSRS Foundation team will get back to you within 1-2 working days.
@@ -269,7 +303,11 @@ export default function ContactPage() {
           </div>
 
           {/* RIGHT: MAP */}
-          <div className="rounded-2xl overflow-hidden shadow-lg bg-white h-full">
+          <div 
+            className="rounded-2xl overflow-hidden shadow-lg bg-white h-full"
+            data-aos="fade-left"
+            data-aos-delay="100"
+          >
             <iframe
               title="Our location"
               src={mapSrc}

@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Users, Heart, Star, Award } from "lucide-react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 // ✅ Count-up number animation component
 // Duration is set to 1.5 seconds for a snappier animation
@@ -67,6 +69,16 @@ const CountUpNumber = ({ from, to, duration = 1.5, suffix = "" }) => {
 
 const Team: React.FC = () => {
   const navigate = useNavigate();
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+  }, []);
 
   const teamMembers = [
     {
@@ -154,9 +166,30 @@ const Team: React.FC = () => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-[#2C3E50]/70 flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl font-serif text-white font-bold">
-            Our Team
-          </h1>
+          <div className="text-center px-4 max-w-4xl mx-auto">
+            <h1 
+              className="text-4xl md:text-5xl font-serif text-white font-bold mb-4 drop-shadow-lg"
+              data-aos="fade-down"
+              data-aos-delay="100"
+            >
+              Our Team
+            </h1>
+            
+            {/* Divider Line */}
+            {/* <div 
+              className="w-24 h-1 bg-white mx-auto mb-4 rounded-full"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            ></div> */}
+            
+            <p 
+              className="text-lg md:text-xl text-white leading-relaxed drop-shadow-md"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              Meet the passionate individuals driving our mission forward with dedication and innovation
+            </p>
+          </div>
         </div>
       </div>
 

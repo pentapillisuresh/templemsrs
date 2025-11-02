@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Shield,
   Scale,
@@ -9,8 +9,20 @@ import {
   ShieldCheck,
   Check,
 } from "lucide-react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Governance: React.FC = () => {
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+  }, []);
+
   const governancePrinciples = [
     {
       title: "Transparency",
@@ -115,22 +127,39 @@ const Governance: React.FC = () => {
   return (
     <section className="bg-gray-50 font-['Roboto']">
       {/* 🔹 Banner Section */}
-    <div className="relative w-full h-[400px]">
-  <img
-    src="./images/templegov1.jpg"
-    alt="Temple Governance Banner"
-    className="w-full h-full object-cover"
-  />
-  <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center px-4">
-    <h1 className="text-white text-5xl md:text-6xl font-serif font-bold drop-shadow-lg">
-      Governance
-    </h1>
-    <p className="text-white text-lg md:text-xl italic mt-2 drop-shadow-md">
-      Preserving tradition with transparency and devotion
-    </p>
-  </div>
-</div>
-
+      <div className="relative w-full h-[400px]">
+        <img
+          src="./images/templegov1.jpg"
+          alt="Temple Governance Banner"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+          <div className="text-center px-4 max-w-4xl mx-auto">
+            <h1 
+              className="text-white text-4xl md:text-5xl font-serif font-bold mb-4 drop-shadow-lg"
+              data-aos="fade-down"
+              data-aos-delay="100"
+            >
+              Governance
+            </h1>
+            
+            {/* Divider Line */}
+            {/* <div 
+              className="w-24 h-1 bg-white mx-auto mb-4 rounded-full"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            ></div> */}
+            
+            <p 
+              className="text-white text-lg md:text-xl  leading-relaxed drop-shadow-md"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              Preserving tradition with transparency and devotion
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* 🔹 Content Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">

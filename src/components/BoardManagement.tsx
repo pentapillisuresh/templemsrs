@@ -4,7 +4,7 @@ import "aos/dist/aos.css";
 import { Check } from "lucide-react";
 
 // ✅ Hero banner image
-const aboutBanner = "./images/board1.png";
+const aboutBanner = "./images/boardt.png";
 
 const boardMembers = [
   {
@@ -96,10 +96,26 @@ const BoardManagement: React.FC = () => {
         ></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white px-4">
-          <h1 className="text-4xl md:text-5xl font-serif mb-4">
+          <h1 
+            className="text-4xl md:text-5xl font-serif mb-4 drop-shadow-lg"
+            data-aos="fade-down"
+            data-aos-delay="100"
+          >
             Board of Trustees & Management
           </h1>
-          <p className="text-lg md:text-xl font-roboto max-w-2xl">
+          
+          {/* Divider Line */}
+          {/* <div 
+            className="w-24 h-1 bg-white mb-4 rounded-full"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          ></div> */}
+          
+          <p 
+            className="text-lg md:text-xl font-roboto max-w-2xl leading-relaxed drop-shadow-md"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
             Guiding our temple with wisdom, transparency, and community service
           </p>
         </div>

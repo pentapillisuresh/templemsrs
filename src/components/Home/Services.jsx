@@ -52,68 +52,68 @@ const ServicesSection = () => {
      {
       title: "Temple Activities",
       description: "Daily rituals, festivals, and spiritual ceremonies for devotees",
-      image: "./images/circle1.png",
+      image: "./images/one1.png",
       animation: "fade-left"
     },
     {
       title: "Annaprasadham",
       description: "Sacred food distribution and free meals for devotees and needy communities",
-      image: "./images/circle3.png",
+      image: "./images/two.png",
       animation: "fade-right"
     },
     {
       title: "Education Support",
       description: "Scholarships, educational resources, and academic guidance for underprivileged students",
-      image: "./images/icon3.png",
+      image: "./images/three.png",
       animation: "fade-up"
     },
     {
       title: "Goshala Seva",
       description: "Cow protection, care, and preservation of indigenous cattle breeds",
-      image: "./images/circle2.png",
+      image: "./images/four.png",
       animation: "fade-left"
     },
     {
       title: "Indian Culture Development",
       description: "Promoting traditional arts, customs, and cultural heritage preservation",
-      image: "./images/circle5.png",
+      image: "./images/five.png",
       animation: "fade-right"
     },
     {
       title: "Infrastructure Progression",
       description: "Temple renovations and community infrastructure development projects",
-      image: "./images/circle6.png",
+      image: "./images/six.png",
       animation: "fade-up"
     },
     {
       title: "Medical Assistance",
       description: "Health camps, medical aid, and healthcare support for communities",
-      image: "./images/icon4.png",
+      image: "./images/seven.png",
       animation: "fade-left"
     },
     {
       title: "Sanathana Sangeetham",
       description: "Traditional Indian classical music and spiritual musical programs",
-      image: "./images/circle8.png",
+      image: "./images/eight.png",
       animation: "fade-right"
     },
     {
       title: "Social Welfare Drives",
       description: "Community outreach programs and humanitarian initiatives",
-      image: "./images/icon2.png",
+      image: "./images/nine.png",
       animation: "fade-up"
     },
    
     {
       title: "Vedic Sanskrit",
       description: "Ancient language studies and Vedic scripture learning programs",
-      image: "./images/circle10.png",
+      image: "./images/ten.png",
       animation: "fade-right"
     },
     {
       title: "Yoga Wellbeing",
       description: "Yoga classes, meditation sessions, and holistic wellness programs",
-      image: "./images/icon6.png",
+      image: "./images/eleven.png",
       animation: "fade-up"
     }
   ];

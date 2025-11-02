@@ -1,5 +1,6 @@
 import React from "react";
 import { Calendar } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const events = [
   {
@@ -37,6 +38,12 @@ const events = [
 ];
 
 const EventSection = () => {
+  const navigate = useNavigate();
+
+  const handleViewAllEvents = () => {
+    navigate('/events');
+  };
+
   return (
     <section className="bg-gray-50 py-12 md:py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -116,7 +123,10 @@ const EventSection = () => {
 
         {/* More Events Button */}
         <div className="text-center mt-10 md:mt-12">
-          <button className="bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white px-8 py-3.5 rounded-full text-sm font-medium transition-all duration-200 shadow-sm font-roboto hover:shadow-md transform hover:-translate-y-0.5">
+          <button 
+            onClick={handleViewAllEvents}
+            className="bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white px-8 py-3.5 rounded-full text-sm font-medium transition-all duration-200 shadow-sm font-roboto hover:shadow-md transform hover:-translate-y-0.5"
+          >
             View All Events
           </button>
         </div>

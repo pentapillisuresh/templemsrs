@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { User, Heart, Calendar, Info, X, CheckCircle } from "lucide-react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Appointment: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -33,6 +35,16 @@ const Appointment: React.FC = () => {
     "Temple Rituals",
     "Other",
   ];
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+  }, []);
 
   // Get today's date in YYYY-MM-DD format for min date
   const getTodayDate = () => {
@@ -220,17 +232,33 @@ const Appointment: React.FC = () => {
         <div
           className="relative h-72 md:h-96 flex items-center justify-center mb-16"
           style={{
-            backgroundImage: "url('./images/ast.jpg')",
+            backgroundImage: "url('./images/ast.jpeg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-[#2C3E50]/80 to-[#3D4C6D]/60"></div>
-          <div className="relative text-center px-4">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-3">
+          <div className="relative text-center px-4 max-w-4xl mx-auto">
+            <h1 
+              className="text-4xl md:text-5xl font-serif font-bold text-white mb-4 drop-shadow-lg"
+              data-aos="fade-down"
+              data-aos-delay="100"
+            >
               Astrology & Ritual Appointment
             </h1>
-            <p className="text-lg md:text-xl text-white">
+            
+            {/* Divider Line */}
+            {/* <div 
+              className="w-24 h-1 bg-white mx-auto mb-4 rounded-full"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            ></div> */}
+            
+            <p 
+              className="text-lg md:text-xl text-white leading-relaxed drop-shadow-md"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
               Book your consultation for astrology services, temple rituals, and spiritual ceremonies
             </p>
           </div>
@@ -246,6 +274,7 @@ const Appointment: React.FC = () => {
                 Personal Details
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Full Name */}
                 <input
                   type="text"
                   name="name"
@@ -256,54 +285,27 @@ const Appointment: React.FC = () => {
                   required
                 />
 
-                {/* Date of Birth with floating label */}
-                <div className="relative">
-                  <input
-                    type="date"
-                    id="dob"
-                    name="dob"
-                    value={formData.dob}
-                    onChange={handleInputChange}
-                    onFocus={(e) => e.target.labels?.[0]?.classList.add("text-xs", "-top-2")}
-                    onBlur={(e) => {
-                      if (!e.target.value)
-                        e.target.labels?.[0]?.classList.remove("text-xs", "-top-2");
-                    }}
-                    className="peer w-full border border-gray-300 rounded-lg px-4 pt-5 pb-2 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                    required
-                  />
-                  <label
-                    htmlFor="dob"
-                    className="absolute left-4 top-3 text-gray-400 text-sm pointer-events-none transition-all peer-focus:-top-2 peer-focus:text-xs peer-focus:text-[#2C3E50]"
-                  >
-                    Date of Birth
-                  </label>
-                </div>
+                {/* Date of Birth */}
+                <input
+                  type="date"
+                  name="dob"
+                  value={formData.dob}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
+                  required
+                />
 
-                {/* Time of Birth with floating label */}
-                <div className="relative">
-                  <input
-                    type="time"
-                    id="tob"
-                    name="tob"
-                    value={formData.tob}
-                    onChange={handleInputChange}
-                    onFocus={(e) => e.target.labels?.[0]?.classList.add("text-xs", "-top-2")}
-                    onBlur={(e) => {
-                      if (!e.target.value)
-                        e.target.labels?.[0]?.classList.remove("text-xs", "-top-2");
-                    }}
-                    className="peer w-full border border-gray-300 rounded-lg px-4 pt-5 pb-2 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                    required
-                  />
-                  <label
-                    htmlFor="tob"
-                    className="absolute left-4 top-3 text-gray-400 text-sm pointer-events-none transition-all peer-focus:-top-2 peer-focus:text-xs peer-focus:text-[#2C3E50]"
-                  >
-                    Time of Birth
-                  </label>
-                </div>
+                {/* Time of Birth */}
+                <input
+                  type="time"
+                  name="tob"
+                  value={formData.tob}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
+                  required
+                />
 
+                {/* Location */}
                 <input
                   type="text"
                   name="location"
@@ -313,6 +315,8 @@ const Appointment: React.FC = () => {
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
                   required
                 />
+
+                {/* Age */}
                 <input
                   type="text"
                   name="age"
@@ -322,6 +326,8 @@ const Appointment: React.FC = () => {
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
                   required
                 />
+
+                {/* Gender */}
                 <select 
                   name="gender"
                   value={formData.gender}
@@ -334,6 +340,8 @@ const Appointment: React.FC = () => {
                   <option value="female">Female</option>
                   <option value="other">Other</option>
                 </select>
+
+                {/* Phone */}
                 <input
                   type="text"
                   name="phone"
@@ -343,6 +351,8 @@ const Appointment: React.FC = () => {
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
                   required
                 />
+
+                {/* Email */}
                 <input
                   type="email"
                   name="email"
@@ -353,6 +363,8 @@ const Appointment: React.FC = () => {
                   required
                 />
               </div>
+
+              {/* Address */}
               <textarea
                 name="address"
                 placeholder="Enter your complete address"
@@ -407,33 +419,26 @@ const Appointment: React.FC = () => {
                 Preferred Appointment Date & Time
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="relative">
-                  <input
-                    type="date"
-                    name="appointmentDate"
-                    value={formData.appointmentDate}
-                    onChange={handleInputChange}
-                    min={getTodayDate()}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                    required
-                  />
-                  <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-                   
-                  </div>
-                </div>
-                <div className="relative">
-                  <input
-                    type="time"
-                    name="appointmentTime"
-                    value={formData.appointmentTime}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                    required
-                  />
-                  <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-               
-                  </div>
-                </div>
+                {/* Appointment Date */}
+                <input
+                  type="date"
+                  name="appointmentDate"
+                  value={formData.appointmentDate}
+                  onChange={handleInputChange}
+                  min={getTodayDate()}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
+                  required
+                />
+
+                {/* Appointment Time */}
+                <input
+                  type="time"
+                  name="appointmentTime"
+                  value={formData.appointmentTime}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
+                  required
+                />
               </div>
               <p className="text-xs text-gray-500 mt-2">
                 * Please select a future date for your appointment
@@ -446,6 +451,8 @@ const Appointment: React.FC = () => {
                 <Info className="w-5 h-5 text-[#3D4C6D] mr-2" />
                 Additional Information
               </h3>
+              
+              {/* Additional Info Textarea */}
               <textarea
                 name="additionalInfo"
                 placeholder="Please describe your requirements in detail..."
@@ -454,16 +461,16 @@ const Appointment: React.FC = () => {
                 rows={4}
                 className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent mb-6 transition"
               ></textarea>
-              <div className="grid grid-cols-1 gap-6">
-                <input
-                  type="text"
-                  name="attendees"
-                  placeholder="How many people will attend?"
-                  value={formData.attendees}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                />
-              </div>
+
+              {/* Attendees */}
+              <input
+                type="text"
+                name="attendees"
+                placeholder="How many people will attend?"
+                value={formData.attendees}
+                onChange={handleInputChange}
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
+              />
             </div>
 
             {/* Declaration */}

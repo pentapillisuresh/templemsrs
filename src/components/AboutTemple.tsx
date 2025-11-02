@@ -115,345 +115,154 @@ function AboutTemple() {
       </section>
 
       {/* Temple Schedule */}
-      <section className="bg-gray-50 py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16" data-aos="fade-up">
-            <h2 className="text-4xl font-serif text-[#2C3E50] mb-4">
-              Temple Daily Schedule
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Daily worship timings and spiritual activities as per ancient traditions
-            </p>
-          </div>
+    <section className="bg-gray-50 py-20">
+  <div className="max-w-7xl mx-auto px-6">
+    
+    {/* Heading */}
+    <div className="text-center mb-16" data-aos="fade-up">
+      <h2 className="text-4xl font-serif text-[#2C3E50] mb-4">
+        Temple Daily Schedule
+      </h2>
+      <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+        Daily worship timings and spiritual activities as per ancient traditions
+      </p>
+    </div>
 
-          {/* Grouped by Time Periods */}
-          <div className="space-y-16">
-            {/* Early Morning */}
-            <div data-aos="fade-up">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-1 h-16 bg-gradient-to-b from-[#2C3E50] to-[#3D4C6D] rounded-full"></div>
-                <div>
-                  <h3 className="text-2xl font-serif text-[#2C3E50] flex items-center gap-3">
-                    <div className="w-10 h-10 bg-[#2C3E50] rounded-full flex items-center justify-center">
-                      <Sunrise className="text-white w-5 h-5" />
-                    </div>
-                    Early Morning Divine Hours
-                  </h3>
-                  <p className="text-gray-500 text-sm mt-1">4:00 AM - 7:00 AM</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  {
-                    time: "4:00 AM – 5:00 AM",
-                    activity: "Suprabhata Seva - Awakening deities with Stotras, bells, and Vedic chants",
-                    icon: "Bell"
-                  },
-                  {
-                    time: "5:00 AM – 5:30 AM",
-                    activity: "Abhishekam (Mangala Snanam) - Holy bath to Lord Shiva & Mata Durga",
-                    icon: "Droplets"
-                  },
-                  {
-                    time: "5:30 AM – 6:00 AM",
-                    activity: "Alankarana Seva - Decoration of deities with flowers and jewels",
-                    icon: "Sparkles"
-                  },
-                  {
-                    time: "6:00 AM – 6:30 AM",
-                    activity: "Mangal Archana & Aarati - Chanting of 108 names, offering of lamps",
-                    icon: "Flame"
-                  },
-                  {
-                    time: "6:30 AM – 7:00 AM",
-                    activity: "Naivedyam - Morning offering of fruits, pongal, and tulasi",
-                    icon: "Apple"
-                  },
-                ].map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#2C3E50]/30 group"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="bg-gradient-to-br from-[#2C3E50] to-[#3D4C6D] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                        {idx + 1}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-bold text-[#2C3E50] text-lg mb-2 leading-tight">{item.time}</p>
-                        <p className="text-gray-600 text-sm leading-relaxed">{item.activity}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+    <div className="space-y-16">
 
-            {/* Morning */}
-            <div data-aos="fade-up">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-1 h-16 bg-gradient-to-b from-[#2C3E50] to-[#3D4C6D] rounded-full"></div>
-                <div>
-                  <h3 className="text-2xl font-serif text-[#2C3E50] flex items-center gap-3">
-                    <div className="w-10 h-10 bg-[#2C3E50] rounded-full flex items-center justify-center">
-                      <Sun className="text-white w-5 h-5" />
-                    </div>
-                    Morning Sevas
-                  </h3>
-                  <p className="text-gray-500 text-sm mt-1">7:00 AM - 12:00 PM</p>
+      {/* Utility Component to Keep Code Shorter */}
+      {[
+        {
+          title: "Early Morning Divine Hours",
+          subtitle: "4:00 AM - 7:00 AM",
+          icon: <Sunrise className="text-white w-5 h-5" />,
+          startIndex: 1,
+          items: [
+            ["Suprabhata Seva - Awakening deities with Stotras, bells, and Vedic chants", "4:00 AM – 5:00 AM"],
+            ["Abhishekam (Mangala Snanam) - Holy bath to Lord Shiva & Mata Durga", "5:00 AM – 5:30 AM"],
+            ["Alankarana Seva - Decoration of deities with flowers and jewels", "5:30 AM – 6:00 AM"],
+            ["Mangal Archana & Aarati - Chanting of 108 names, offering of lamps", "6:00 AM – 6:30 AM"],
+            ["Naivedyam - Morning offering of fruits, pongal, and tulasi", "6:30 AM – 7:00 AM"]
+          ]
+        },
+        {
+          title: "Morning Sevas",
+          subtitle: "7:00 AM - 12:00 PM",
+          icon: <Sun className="text-white w-5 h-5" />,
+          startIndex: 6,
+          items: [
+            ["Sarva Darshanam - Temple open for devotees' darshan and archana", "7:00 AM – 8:00 AM"],
+            ["Ganapathi & Navagraha Archana - For obstacle removal and prosperity", "8:00 AM – 9:00 AM"],
+            ["Rudra Japam / Durga Saptashati Parayanam - Daily chanting for peace", "9:00 AM – 10:00 AM"],
+            ["Special Homam / Agni Karyam - Optional Homa rituals", "10:00 AM – 11:00 AM"],
+            ["Madhyahna Pooja - Grand worship with sacred chanting and Aarati", "11:00 AM – 12:00 PM"]
+          ]
+        },
+        {
+          title: "Noon Worship",
+          subtitle: "12:00 PM - 1:00 PM",
+          icon: <Clock className="text-white w-5 h-5" />,
+          startIndex: 11,
+          items: [
+            ["Maha Naivedyam & Maha Mangala Aarati - Main food offering and blessings", "12:00 PM – 1:00 PM"]
+          ]
+        },
+        {
+          title: "Afternoon Break",
+          subtitle: "1:00 PM - 3:00 PM",
+          icon: <Moon className="text-white w-5 h-5" />,
+          startIndex: 12,
+          items: [
+            ["Temple Closed - Alaya Shuddhi, deity's rest time", "1:00 PM – 3:00 PM"]
+          ]
+        },
+        {
+          title: "Evening Devotional Hours",
+          subtitle: "3:00 PM - 7:00 PM",
+          icon: <Sunset className="text-white w-5 h-5" />,
+          startIndex: 13,
+          items: [
+            ["Temple Reopens – Pravesha Seva with bell and mantra chanting", "3:00 PM – 4:00 PM"],
+            ["Deeparadhana & Devotee Archana - Evening lamp offering with bhajans", "4:00 PM – 5:00 PM"],
+            ["Rudrabhishekam / Kumkumarchana - As per day schedule", "5:00 PM – 6:00 PM"],
+            ["Sandhya Aarati - Sunset prayer and offering of deepam", "6:00 PM – 7:00 PM"]
+          ]
+        },
+        {
+          title: "Night Worship",
+          subtitle: "7:00 PM - 9:00 PM",
+          icon: <MoonStar className="text-white w-5 h-5" />,
+          startIndex: 17,
+          items: [
+            ["Bhajans / Devotional Music / Pravachanam - Spiritual discourse", "7:00 PM – 8:00 PM"],
+            ["Ekaanta Seva / Sayana Pooja - Night pooja before deity's rest", "8:00 PM – 8:30 PM"],
+            ["Shayana Aarati & Temple Closure - Final Aarati and closing ceremony", "8:30 PM – 9:00 PM"]
+          ]
+        }
+      ].map((period, index) => (
+        <div data-aos="fade-up" key={index}>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-1 h-16 bg-gradient-to-b from-[#2C3E50] to-[#3D4C6D] rounded-full"></div>
+            <div>
+              <h3 className="text-2xl font-serif text-[#2C3E50] flex items-center gap-3">
+                <div className="w-10 h-10 bg-[#2C3E50] rounded-full flex items-center justify-center">
+                  {period.icon}
                 </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  {
-                    time: "7:00 AM – 8:00 AM",
-                    activity: "Sarva Darshanam - Temple open for devotees' darshan and archana",
-                    icon: "Users"
-                  },
-                  {
-                    time: "8:00 AM – 9:00 AM",
-                    activity: "Ganapathi & Navagraha Archana - For obstacle removal and prosperity",
-                    icon: "Star"
-                  },
-                  {
-                    time: "9:00 AM – 10:00 AM",
-                    activity: "Rudra Japam / Durga Saptashati Parayanam - Daily chanting for peace",
-                    icon: "BookOpen"
-                  },
-                  {
-                    time: "10:00 AM – 11:00 AM",
-                    activity: "Special Homam / Agni Karyam - Optional Homa rituals",
-                    icon: "Flame"
-                  },
-                  {
-                    time: "11:00 AM – 12:00 PM",
-                    activity: "Madhyahna Pooja - Grand worship with sacred chanting and Aarati",
-                    icon: "Music"
-                  },
-                ].map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#2C3E50]/30 group"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="bg-gradient-to-br from-[#2C3E50] to-[#3D4C6D] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                        {idx + 6}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-bold text-[#2C3E50] text-lg mb-2 leading-tight">{item.time}</p>
-                        <p className="text-gray-600 text-sm leading-relaxed">{item.activity}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Noon */}
-            <div data-aos="fade-up">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-1 h-16 bg-gradient-to-b from-[#2C3E50] to-[#3D4C6D] rounded-full"></div>
-                <div>
-                  <h3 className="text-2xl font-serif text-[#2C3E50] flex items-center gap-3">
-                    <div className="w-10 h-10 bg-[#2C3E50] rounded-full flex items-center justify-center">
-                      <Clock className="text-white w-5 h-5" />
-                    </div>
-                    Noon Worship
-                  </h3>
-                  <p className="text-gray-500 text-sm mt-1">12:00 PM - 1:00 PM</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  {
-                    time: "12:00 PM – 1:00 PM",
-                    activity: "Maha Naivedyam & Maha Mangala Aarati - Main food offering and blessings",
-                    icon: "Heart"
-                  },
-                ].map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#2C3E50]/30 group"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="bg-gradient-to-br from-[#2C3E50] to-[#3D4C6D] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                        {idx + 11}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-bold text-[#2C3E50] text-lg mb-2 leading-tight">{item.time}</p>
-                        <p className="text-gray-600 text-sm leading-relaxed">{item.activity}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Afternoon */}
-            <div data-aos="fade-up">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-1 h-16 bg-gradient-to-b from-[#2C3E50] to-[#3D4C6D] rounded-full"></div>
-                <div>
-                  <h3 className="text-2xl font-serif text-[#2C3E50] flex items-center gap-3">
-                    <div className="w-10 h-10 bg-[#2C3E50] rounded-full flex items-center justify-center">
-                      <Moon className="text-white w-5 h-5" />
-                    </div>
-                    Afternoon Break
-                  </h3>
-                  <p className="text-gray-500 text-sm mt-1">1:00 PM - 3:00 PM</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  {
-                    time: "1:00 PM – 3:00 PM",
-                    activity: "Temple Closed - Alaya Shuddhi, deity's rest time",
-                    icon: "Lock"
-                  },
-                ].map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#2C3E50]/30 group"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="bg-gradient-to-br from-[#2C3E50] to-[#3D4C6D] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                        {idx + 12}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-bold text-[#2C3E50] text-lg mb-2 leading-tight">{item.time}</p>
-                        <p className="text-gray-600 text-sm leading-relaxed">{item.activity}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Evening */}
-            <div data-aos="fade-up">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-1 h-16 bg-gradient-to-b from-[#2C3E50] to-[#3D4C6D] rounded-full"></div>
-                <div>
-                  <h3 className="text-2xl font-serif text-[#2C3E50] flex items-center gap-3">
-                    <div className="w-10 h-10 bg-[#2C3E50] rounded-full flex items-center justify-center">
-                      <Sunset className="text-white w-5 h-5" />
-                    </div>
-                    Evening Devotional Hours
-                  </h3>
-                  <p className="text-gray-500 text-sm mt-1">3:00 PM - 7:00 PM</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  {
-                    time: "3:00 PM – 4:00 PM",
-                    activity: "Temple Reopens – Pravesha Seva with bell and mantra chanting",
-                    icon: "DoorOpen"
-                  },
-                  {
-                    time: "4:00 PM – 5:00 PM",
-                    activity: "Deeparadhana & Devotee Archana - Evening lamp offering with bhajans",
-                    icon: "Lamp"
-                  },
-                  {
-                    time: "5:00 PM – 6:00 PM",
-                    activity: "Rudrabhishekam / Kumkumarchana - As per day schedule",
-                    icon: "Droplets"
-                  },
-                  {
-                    time: "6:00 PM – 7:00 PM",
-                    activity: "Sandhya Aarati - Sunset prayer and offering of deepam",
-                    icon: "Flame"
-                  },
-                ].map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#2C3E50]/30 group"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="bg-gradient-to-br from-[#2C3E50] to-[#3D4C6D] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                        {idx + 13}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-bold text-[#2C3E50] text-lg mb-2 leading-tight">{item.time}</p>
-                        <p className="text-gray-600 text-sm leading-relaxed">{item.activity}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Night */}
-            <div data-aos="fade-up">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-1 h-16 bg-gradient-to-b from-[#2C3E50] to-[#3D4C6D] rounded-full"></div>
-                <div>
-                  <h3 className="text-2xl font-serif text-[#2C3E50] flex items-center gap-3">
-                    <div className="w-10 h-10 bg-[#2C3E50] rounded-full flex items-center justify-center">
-                      <MoonStar className="text-white w-5 h-5" />
-                    </div>
-                    Night Worship
-                  </h3>
-                  <p className="text-gray-500 text-sm mt-1">7:00 PM - 9:00 PM</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  {
-                    time: "7:00 PM – 8:00 PM",
-                    activity: "Bhajans / Devotional Music / Pravachanam - Spiritual discourse",
-                    icon: "Music"
-                  },
-                  {
-                    time: "8:00 PM – 8:30 PM",
-                    activity: "Ekaanta Seva / Sayana Pooja - Night pooja before deity's rest",
-                    icon: "Bed"
-                  },
-                  {
-                    time: "8:30 PM – 9:00 PM",
-                    activity: "Shayana Aarati & Temple Closure - Final Aarati and closing ceremony",
-                    icon: "Lock"
-                  },
-                ].map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#2C3E50]/30 group"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="bg-gradient-to-br from-[#2C3E50] to-[#3D4C6D] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                        {idx + 17}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-bold text-[#2C3E50] text-lg mb-2 leading-tight">{item.time}</p>
-                        <p className="text-gray-600 text-sm leading-relaxed">{item.activity}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                {period.title}
+              </h3>
+              <p className="text-gray-500 text-sm mt-1">{period.subtitle}</p>
             </div>
           </div>
 
-          {/* Additional Info Cards */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div
-              className="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
-              data-aos="fade-right"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#2C3E50] to-[#3D4C6D] rounded-full flex items-center justify-center">
-                  <Utensils className="text-white w-6 h-6" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {period.items.map(([text, time], i) => (
+              <div
+                key={i}
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#2C3E50]/30 group"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="bg-gradient-to-br from-[#2C3E50] to-[#3D4C6D] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold shadow-lg group-hover:scale-110 transition-all duration-300">
+                    {period.startIndex + i}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-bold text-[#2C3E50] text-lg leading-tight mb-1">
+                      {text}
+                    </p>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      {time}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-bold text-[#2C3E50] text-xl">Daily Annaprasdam</h3>
               </div>
-              <p className="text-gray-700 font-semibold mb-2 text-lg">Timing: 12:30 PM – 2:30 PM</p>
-              <p className="text-gray-600 leading-relaxed">
-                Free food distribution for devotees and needy under Anna Daanam Maha Daanam seva.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
-      </section>
+      ))}
+
+    </div>
+
+    {/* Additional Info */}
+    <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div
+        className="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
+        data-aos="fade-right"
+      >
+        <div className="flex items-center gap-4 mb-4">
+          <div className="w-12 h-12 bg-gradient-to-br from-[#2C3E50] to-[#3D4C6D] rounded-full flex items-center justify-center">
+            <Utensils className="text-white w-6 h-6" />
+          </div>
+          <h3 className="font-bold text-[#2C3E50] text-xl">Daily Annaprasadam</h3>
+        </div>
+        <p className="text-gray-700 font-semibold mb-2 text-lg">Timing: 12:30 PM – 2:30 PM</p>
+        <p className="text-gray-600 leading-relaxed">
+          Free food distribution for devotees and needy under Anna Daanam Maha Daanam seva.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
       {/* Weekly Special Sevas */}
   <section className="py-20">
@@ -679,7 +488,7 @@ function AboutTemple() {
                 month: "November",
                 festival: "Diwali, Karthika Pournami, Ekadashi Rudrabhishekam",
                 desc: "Diwali Celebration, Karthika Somavaram, Karthika Pournami Deepotsavam, Jwala Thoranam, Ekadashi Rudrabhishekam, Maha Kumbh Abhishekam, Laksha Bilvarchana",
-                img: "./images/nov.jpg",
+                img: "./images/diwali.jpeg",
               },
               {
                 month: "December",

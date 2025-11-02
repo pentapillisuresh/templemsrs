@@ -184,11 +184,27 @@ const Donation: React.FC = () => {
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#2C3E50]/80 to-[#3D4C6D]/60"></div>
-        <div className="relative text-center px-4">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-3">
+        <div className="relative text-center px-4 max-w-4xl mx-auto">
+          <h1 
+            className="text-4xl md:text-5xl font-serif font-bold text-white mb-4 drop-shadow-lg"
+            data-aos="fade-down"
+            data-aos-delay="100"
+          >
             Make a Donation
           </h1>
-          <p className="text-lg md:text-xl text-white">
+          
+          {/* Divider Line */}
+          {/* <div 
+            className="w-24 h-1 bg-white mx-auto mb-4 rounded-full"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          ></div> */}
+          
+          <p 
+            className="text-lg md:text-xl text-white leading-relaxed drop-shadow-md"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
             Your contribution helps maintain our sacred traditions and serve the community
           </p>
         </div>

@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Camera, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const galleryBanner = './images/gallerybanner1.jpg'; // Banner image (replace with actual path)
 
 const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+  }, []);
 
   const galleryImages = [
     {
@@ -83,9 +95,27 @@ const Gallery: React.FC = () => {
           style={{ backgroundImage: `url(${galleryBanner})` }}
         ></div>
         <div className="absolute inset-0 bg-black/40"></div>
-        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white px-4">
-          <h1 className="text-4xl md:text-5xl font-serif mb-4">Temple Gallery</h1>
-          <p className="text-lg md:text-xl font-roboto max-w-2xl">
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white px-4 max-w-4xl mx-auto">
+          <h1 
+            className="text-4xl md:text-5xl font-serif mb-4 drop-shadow-lg"
+            data-aos="fade-down"
+            data-aos-delay="100"
+          >
+            Temple Gallery
+          </h1>
+          
+          {/* Divider Line */}
+          {/* <div 
+            className="w-24 h-1 bg-white mb-4 rounded-full"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          ></div> */}
+          
+          <p 
+            className="text-lg md:text-xl font-roboto max-w-2xl leading-relaxed drop-shadow-md"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
             Explore sacred spaces, vibrant festivals, and spiritual activities
           </p>
         </div>
