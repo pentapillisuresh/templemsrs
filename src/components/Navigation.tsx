@@ -108,7 +108,7 @@ const Header = () => {
           {/* Large Logo Image without background */}
           <div className="flex-shrink-0">
             <img 
-              src="/images/logomaha.svg" 
+              src="/images/logomaha21.png" 
               alt="MAHA SHREE RUDRA SAMSTHANAM FOUNDATION Logo"
               className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain transition-all duration-300"
               onError={(e) => {

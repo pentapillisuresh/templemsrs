@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   User,
   Mail,
+  GraduationCap,
   Briefcase,
   Calendar,
   MapPin,
@@ -12,6 +13,9 @@ import {
   Droplet,
   ChevronDown,
   X,
+  Users,
+  Circle,
+  BookOpen,
 } from 'lucide-react';
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -273,13 +277,6 @@ const VolunteerForm: React.FC = () => {
               Become a <span className="text-white">Volunteer</span>
             </h2>
             
-            {/* Divider Line */}
-            {/* <div 
-              className="w-24 h-1 bg-white mb-4 rounded-full"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            ></div> */}
-            
             <p 
               className="text-lg md:text-xl text-white leading-relaxed drop-shadow-md"
               data-aos="fade-up"
@@ -329,7 +326,7 @@ const VolunteerForm: React.FC = () => {
                 {/* Qualification */}
                 <div className="relative">
                   <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
-                    <Briefcase className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Qualification
+                    <GraduationCap className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Qualification
                   </label>
                   <div className="relative">
                     <select
@@ -352,7 +349,7 @@ const VolunteerForm: React.FC = () => {
                 {/* Occupation */}
                 <div className="relative">
                   <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
-                    <Briefcase className="w-5 h-5 mr-2 text-[#3D4C6D]" />Profession
+                    <Briefcase className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Profession
                   </label>
                   <div className="relative">
                     <select
@@ -374,8 +371,8 @@ const VolunteerForm: React.FC = () => {
 
                 {/* Gender */}
                 <div className="relative">
-                  <label className="text-[#2C3E50] font-semibold mb-2 block">
-                    Gender
+                  <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                    <Users className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Gender
                   </label>
                   <div className="relative">
                     <select
@@ -407,7 +404,7 @@ const VolunteerForm: React.FC = () => {
                   />
                 </div>
 
-                {/* Blood Group and Active Donor Side by Side */}
+                {/* Blood Group */}
                 <div className="relative">
                   <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
                     <Droplet className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Blood Group
@@ -430,10 +427,10 @@ const VolunteerForm: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Active Donor - Updated to match form style */}
+                {/* Active Donor */}
                 <div>
                   <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
-                    <Droplet className="w-5 h-5 mr-2 text-[#3D4C6D]" /> 
+                    <Heart className="w-5 h-5 mr-2 text-[#3D4C6D]" /> 
                     Would you like to be a blood donor?
                   </label>
                   <div className="flex items-center space-x-4 p-3 border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-[#2C3E50] transition-all duration-300">
@@ -487,8 +484,8 @@ const VolunteerForm: React.FC = () => {
                   />
                 </div>
                 <div className="relative">
-                  <label className="text-[#2C3E50] font-semibold mb-2 block">
-                    Marital Status
+                  <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                    <Circle className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Marital Status
                   </label>
                   <div className="relative">
                     <select
@@ -508,7 +505,7 @@ const VolunteerForm: React.FC = () => {
                 </div>
               </div>
 
-              {/* Address - Changed to textarea */}
+              {/* Address */}
               <div className="space-y-2">
                 <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
                   <MapPin className="w-5 h-5 mr-2 text-[#3D4C6D]" /> Address
@@ -526,7 +523,7 @@ const VolunteerForm: React.FC = () => {
               {/* Volunteer Preferences */}
               <div className="space-y-6">
                 <h3 className="flex items-center text-xl font-serif text-[#2C3E50] mb-4">
-                  <Heart className="w-6 h-6 mr-2 text-[#3D4C6D]" />
+                  <BookOpen className="w-6 h-6 mr-2 text-[#3D4C6D]" />
                   Volunteer Preferences
                 </h3>
                 

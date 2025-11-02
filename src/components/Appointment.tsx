@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { User, Heart, Calendar, Info, X, CheckCircle } from "lucide-react";
+import { User, Heart, Calendar, Info, X, CheckCircle, Mail, Phone, MapPin, Clock, Users, Venue } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -227,10 +227,10 @@ const Appointment: React.FC = () => {
     <>
       <SuccessPopup />
       
-      <section className="bg-gray-50 min-h-screen">
+      <section className="bg-gradient-to-br from-slate-50 to-gray-50 min-h-screen">
         {/* Banner */}
         <div
-          className="relative h-72 md:h-96 flex items-center justify-center mb-16"
+          className="relative h-72 md:h-96 flex items-center justify-center mb-12"
           style={{
             backgroundImage: "url('./images/ast.jpeg')",
             backgroundSize: "cover",
@@ -247,13 +247,6 @@ const Appointment: React.FC = () => {
               Astrology & Ritual Appointment
             </h1>
             
-            {/* Divider Line */}
-            {/* <div 
-              className="w-24 h-1 bg-white mx-auto mb-4 rounded-full"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            ></div> */}
-            
             <p 
               className="text-lg md:text-xl text-white leading-relaxed drop-shadow-md"
               data-aos="fade-up"
@@ -265,246 +258,336 @@ const Appointment: React.FC = () => {
         </div>
 
         {/* Form Card */}
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-20">
-          <form onSubmit={handleSubmit} className="bg-white rounded-3xl shadow-xl p-8 md:p-12 font-roboto">
-            {/* Personal Details */}
-            <div className="mb-10">
-              <h3 className="flex items-center text-xl font-serif text-[#2C3E50] mb-6">
-                <User className="w-5 h-5 text-[#3D4C6D] mr-2" />
-                Personal Details
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Full Name */}
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Enter your full name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                  required
-                />
-
-                {/* Date of Birth */}
-                <input
-                  type="date"
-                  name="dob"
-                  value={formData.dob}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                  required
-                />
-
-                {/* Time of Birth */}
-                <input
-                  type="time"
-                  name="tob"
-                  value={formData.tob}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                  required
-                />
-
-                {/* Location */}
-                <input
-                  type="text"
-                  name="location"
-                  placeholder="City, State, Country"
-                  value={formData.location}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                  required
-                />
-
-                {/* Age */}
-                <input
-                  type="text"
-                  name="age"
-                  placeholder="Your age"
-                  value={formData.age}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                  required
-                />
-
-                {/* Gender */}
-                <select 
-                  name="gender"
-                  value={formData.gender}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition" 
-                  required
-                >
-                  <option value="">Select Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
-
-                {/* Phone */}
-                <input
-                  type="text"
-                  name="phone"
-                  placeholder="Mobile/WhatsApp Number"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                  required
-                />
-
-                {/* Email */}
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter your email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                  required
-                />
-              </div>
-
-              {/* Address */}
-              <textarea
-                name="address"
-                placeholder="Enter your complete address"
-                value={formData.address}
-                onChange={handleInputChange}
-                className="mt-6 w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                rows={3}
-                required
-              ></textarea>
-            </div>
-
-            {/* Service Required */}
-            <div className="mb-10">
-              <h3 className="flex items-center text-xl font-serif text-[#2C3E50] mb-6">
-                <Heart className="w-5 h-5 text-[#3D4C6D] mr-2" />
-                Service Required (Select all that apply)
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {services.map((service, i) => (
-                  <label
-                    key={i}
-                    className="flex items-center border rounded-lg px-4 py-3 cursor-pointer hover:bg-gray-50 transition"
-                  >
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 mb-12">
+          <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12 font-roboto">
+            <form onSubmit={handleSubmit} className="space-y-8">
+              {/* Personal Details */}
+              <div>
+                <h3 className="flex items-center text-xl font-serif text-[#2C3E50] mb-6">
+                  <User className="w-6 h-6 text-[#3D4C6D] mr-2" />
+                  Personal Details
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Full Name */}
+                  <div>
+                    <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                      <User className="w-5 h-5 mr-2 text-[#3D4C6D]" />
+                      Full Name *
+                    </label>
                     <input
-                      type="checkbox"
-                      value={service}
-                      checked={selectedServices.includes(service)}
-                      onChange={() => handleServiceToggle(service)}
-                      className="mr-3 accent-[#2C3E50] w-4 h-4"
+                      type="text"
+                      name="name"
+                      placeholder="Enter your full name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition-all duration-300"
+                      required
                     />
-                    <span className="text-[#2C3E50] text-sm">{service}</span>
+                  </div>
+
+                  {/* Date of Birth */}
+                  <div>
+                    <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                      <Calendar className="w-5 h-5 mr-2 text-[#3D4C6D]" />
+                      Date of Birth *
+                    </label>
+                    <input
+                      type="date"
+                      name="dob"
+                      value={formData.dob}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition-all duration-300"
+                      required
+                    />
+                  </div>
+
+                  {/* Time of Birth */}
+                  <div>
+                    <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                      <Clock className="w-5 h-5 mr-2 text-[#3D4C6D]" />
+                      Time of Birth *
+                    </label>
+                    <input
+                      type="time"
+                      name="tob"
+                      value={formData.tob}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition-all duration-300"
+                      required
+                    />
+                  </div>
+
+                  {/* Location */}
+                  <div>
+                    <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                      <MapPin className="w-5 h-5 mr-2 text-[#3D4C6D]" />
+                      City, State, Country *
+                    </label>
+                    <input
+                      type="text"
+                      name="location"
+                      placeholder="Enter your location"
+                      value={formData.location}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition-all duration-300"
+                      required
+                    />
+                  </div>
+
+                  {/* Age */}
+                  <div>
+                    <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                      <Users className="w-5 h-5 mr-2 text-[#3D4C6D]" />
+                      Age *
+                    </label>
+                    <input
+                      type="text"
+                      name="age"
+                      placeholder="Enter your age"
+                      value={formData.age}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition-all duration-300"
+                      required
+                    />
+                  </div>
+
+                  {/* Gender */}
+                  <div>
+                    <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                      <Users className="w-5 h-5 mr-2 text-[#3D4C6D]" />
+                      Gender *
+                    </label>
+                    <select 
+                      name="gender"
+                      value={formData.gender}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition-all duration-300"
+                      required
+                    >
+                      <option value="">Select Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  {/* Phone */}
+                  <div>
+                    <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                      <Phone className="w-5 h-5 mr-2 text-[#3D4C6D]" />
+                      Mobile/WhatsApp Number *
+                    </label>
+                    <input
+                      type="text"
+                      name="phone"
+                      placeholder="Enter your phone number"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition-all duration-300"
+                      required
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                      <Mail className="w-5 h-5 mr-2 text-[#3D4C6D]" />
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Enter your email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition-all duration-300"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Address */}
+                <div className="mt-6">
+                  <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                    <MapPin className="w-5 h-5 mr-2 text-[#3D4C6D]" />
+                    Complete Address *
                   </label>
-                ))}
-              </div>
-
-              {selectedServices.includes("Other") && (
-                <input
-                  type="text"
-                  placeholder="Please specify"
-                  value={otherService}
-                  onChange={(e) => setOtherService(e.target.value)}
-                  className="mt-4 w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                  required
-                />
-              )}
-            </div>
-
-            {/* Preferred Appointment */}
-            <div className="mb-10">
-              <h3 className="flex items-center text-xl font-serif text-[#2C3E50] mb-6">
-                <Calendar className="w-5 h-5 text-[#3D4C6D] mr-2" />
-                Preferred Appointment Date & Time
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Appointment Date */}
-                <input
-                  type="date"
-                  name="appointmentDate"
-                  value={formData.appointmentDate}
-                  onChange={handleInputChange}
-                  min={getTodayDate()}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                  required
-                />
-
-                {/* Appointment Time */}
-                <input
-                  type="time"
-                  name="appointmentTime"
-                  value={formData.appointmentTime}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-                  required
-                />
-              </div>
-              <p className="text-xs text-gray-500 mt-2">
-                * Please select a future date for your appointment
-              </p>
-            </div>
-
-            {/* Additional Info */}
-            <div className="mb-10">
-              <h3 className="flex items-center text-xl font-serif text-[#2C3E50] mb-6">
-                <Info className="w-5 h-5 text-[#3D4C6D] mr-2" />
-                Additional Information
-              </h3>
-              
-              {/* Additional Info Textarea */}
-              <textarea
-                name="additionalInfo"
-                placeholder="Please describe your requirements in detail..."
-                value={formData.additionalInfo}
-                onChange={handleInputChange}
-                rows={4}
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent mb-6 transition"
-              ></textarea>
-
-              {/* Attendees */}
-              <input
-                type="text"
-                name="attendees"
-                placeholder="How many people will attend?"
-                value={formData.attendees}
-                onChange={handleInputChange}
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition"
-              />
-            </div>
-
-            {/* Declaration */}
-            <div className="bg-[#E5E7EB] p-6 rounded-xl mb-8 text-sm text-[#2C3E50]">
-              <div className="flex items-start">
-                <input
-                  type="checkbox"
-                  checked={declarationAccepted}
-                  onChange={(e) => setDeclarationAccepted(e.target.checked)}
-                  className="mr-1 accent-[#2C3E50] w-5 h-5 mt-2 flex-shrink-0"
-                  required
-                />
-                <div>
-                  <h4 className="font-semibold mb-2 text-[#3D4C6D]">Declaration</h4>
-                  <p className="mb-0">
-                    I confirm that the above details are true and accurate. I request
-                    to book an appointment for the mentioned service and understand
-                    that the final confirmation will be provided by the temple
-                    administration of Maha Shree Rudra Samsthanam Foundation.
-                  </p>
+                  <textarea
+                    name="address"
+                    placeholder="Enter your complete address"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition-all duration-300 resize-vertical"
+                    rows={3}
+                    required
+                  />
                 </div>
               </div>
-            </div>
 
-            {/* Submit */}
-            <div className="text-center">
-              <button
-                type="submit"
-                className="w-full md:w-auto px-8 py-4 rounded-lg text-white font-serif bg-gradient-to-r from-[#2C3E50] to-[#3D4C6D] hover:shadow-lg transition"
-              >
-                Submit Appointment Request
-              </button>
-            </div>
-          </form>
+              {/* Service Required */}
+              <div>
+                <h3 className="flex items-center text-xl font-serif text-[#2C3E50] mb-6">
+                  <Heart className="w-6 h-6 text-[#3D4C6D] mr-2" />
+                  Service Required (Select all that apply)
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {services.map((service, index) => (
+                    <label
+                      key={index}
+                      className="flex items-center p-4 border border-gray-300 rounded-lg hover:border-[#2C3E50] transition-all duration-300 cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        value={service}
+                        checked={selectedServices.includes(service)}
+                        onChange={() => handleServiceToggle(service)}
+                        className="w-4 h-4 text-[#2C3E50] border-gray-300 rounded focus:ring-[#2C3E50] mr-3"
+                      />
+                      <span className="text-[#2C3E50] text-sm font-medium">{service}</span>
+                    </label>
+                  ))}
+                </div>
+
+                {selectedServices.includes("Other") && (
+                  <div className="mt-4">
+                    <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                      <Info className="w-5 h-5 mr-2 text-[#3D4C6D]" />
+                      Please specify other service *
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Describe the service you need"
+                      value={otherService}
+                      onChange={(e) => setOtherService(e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition-all duration-300"
+                      required
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* Preferred Appointment */}
+              <div>
+                <h3 className="flex items-center text-xl font-serif text-[#2C3E50] mb-6">
+                  <Calendar className="w-6 h-6 text-[#3D4C6D] mr-2" />
+                  Preferred Appointment Date & Time
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Appointment Date */}
+                  <div>
+                    <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                      <Calendar className="w-5 h-5 mr-2 text-[#3D4C6D]" />
+                      Preferred Date *
+                    </label>
+                    <input
+                      type="date"
+                      name="appointmentDate"
+                      value={formData.appointmentDate}
+                      onChange={handleInputChange}
+                      min={getTodayDate()}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition-all duration-300"
+                      required
+                    />
+                  </div>
+
+                  {/* Appointment Time */}
+                  <div>
+                    <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                      <Clock className="w-5 h-5 mr-2 text-[#3D4C6D]" />
+                      Preferred Time *
+                    </label>
+                    <input
+                      type="time"
+                      name="appointmentTime"
+                      value={formData.appointmentTime}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition-all duration-300"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <p className="text-sm text-gray-500 mt-2">
+                  * Please select a future date for your appointment
+                </p>
+              </div>
+
+              {/* Additional Information */}
+              <div>
+                <h3 className="flex items-center text-xl font-serif text-[#2C3E50] mb-6">
+                  <Info className="w-6 h-6 text-[#3D4C6D] mr-2" />
+                  Additional Information
+                </h3>
+                
+                {/* Additional Info Textarea */}
+                <div className="mb-6">
+                  <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                    <Info className="w-5 h-5 mr-2 text-[#3D4C6D]" />
+                    Detailed Requirements
+                  </label>
+                  <textarea
+                    name="additionalInfo"
+                    placeholder="Please describe your requirements in detail, including any specific concerns or questions you have..."
+                    value={formData.additionalInfo}
+                    onChange={handleInputChange}
+                    rows={4}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition-all duration-300 resize-vertical"
+                  />
+                </div>
+
+                {/* Attendees */}
+                <div>
+                  <label className="flex items-center text-[#2C3E50] font-semibold mb-2">
+                    <Users className="w-5 h-5 mr-2 text-[#3D4C6D]" />
+                    Number of Attendees
+                  </label>
+                  <input
+                    type="text"
+                    name="attendees"
+                    placeholder="How many people will attend the consultation/ritual?"
+                    value={formData.attendees}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2C3E50] focus:border-transparent transition-all duration-300"
+                  />
+                </div>
+              </div>
+
+              {/* Declaration */}
+              <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                <div className="flex items-start">
+                  <input
+                    type="checkbox"
+                    checked={declarationAccepted}
+                    onChange={(e) => setDeclarationAccepted(e.target.checked)}
+                    className="w-5 h-5 text-[#2C3E50] border-gray-300 rounded focus:ring-[#2C3E50] mt-2 mr-2 flex-shrink-0"
+                    required
+                  />
+                  <div>
+                    <h4 className="font-semibold text-[#2C3E50] mb-2">Declaration</h4>
+                    <p className="text-[#3D4C6D] text-sm leading-relaxed">
+                      I confirm that the above details are true and accurate. I request
+                      to book an appointment for the mentioned service and understand
+                      that the final confirmation will be provided by the temple
+                      administration of Maha Shree Rudra Samsthanam Foundation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <div className="text-center pt-6">
+                <button
+                  type="submit"
+                  className="bg-gradient-to-r from-[#2C3E50] to-[#3D4C6D] text-white px-12 py-4 rounded-full font-serif text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                >
+                  Submit Appointment Request
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </section>
     </>
