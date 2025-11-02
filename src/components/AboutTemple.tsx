@@ -480,7 +480,7 @@ function AboutTemple() {
               },
               {
                 month: "October",
-                festival: "Durga Devi Navaratri 2025",
+                festival: "Durga Devi Navaratri",
                 desc: "9 days of Devi Alankaram, Chandi Parayanam",
                 img: "./images/october.jpeg",
               },
