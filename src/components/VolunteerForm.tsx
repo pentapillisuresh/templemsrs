@@ -57,6 +57,18 @@ const VolunteerForm: React.FC = () => {
     'Educational Support',
     'Events',
     'Medical Camps',
+    'Environmental Conservation',
+    'Animal Welfare',
+    'Disaster Relief',
+    'Community Development',
+    'Youth Mentoring',
+    'Elderly Care',
+    'Cultural Activities',
+    'Sports Coaching',
+    'Arts and Crafts',
+    'Technology Support',
+    'Fundraising',
+    'Administrative Work',
     'Others',
   ];
 
@@ -65,6 +77,14 @@ const VolunteerForm: React.FC = () => {
     'Weekends',
     'Flexible',
     'Specific Time',
+    'Morning',
+    'Afternoon',
+    'Evening',
+    'Night',
+    'Full Time',
+    'Part Time',
+    'Seasonal',
+    'On Call',
   ];
 
   const bloodGroups = [
@@ -79,11 +99,37 @@ const VolunteerForm: React.FC = () => {
   ];
 
   const qualifications = [
+    'No Formal Education',
+    'Primary School',
+    'Middle School',
     'High School',
+    'Secondary School',
+    'Higher Secondary',
     'Diploma',
+    'Associate Degree',
     'Bachelor\'s Degree',
+    'Bachelor of Arts',
+    'Bachelor of Science',
+    'Bachelor of Commerce',
+    'Bachelor of Engineering',
+    'Bachelor of Technology',
+    'Bachelor of Business Administration',
+    'Bachelor of Computer Applications',
+    'Bachelor of Education',
     'Master\'s Degree',
+    'Master of Arts',
+    'Master of Science',
+    'Master of Commerce',
+    'Master of Engineering',
+    'Master of Technology',
+    'Master of Business Administration',
+    'Master of Computer Applications',
+    'Master of Education',
+    'Post Graduate Diploma',
+    'Professional Certification',
+    'Doctorate',
     'PhD',
+    'Post Doctorate',
     'Other',
   ];
 
@@ -91,13 +137,74 @@ const VolunteerForm: React.FC = () => {
     'Student',
     'Software Engineer',
     'Teacher',
+    'Professor',
+    'Lecturer',
     'Doctor',
+    'Nurse',
+    'Medical Professional',
     'Engineer',
+    'Civil Engineer',
+    'Mechanical Engineer',
+    'Electrical Engineer',
+    'Chemical Engineer',
+    'Architect',
     'Business Owner',
+    'Entrepreneur',
     'Government Employee',
     'Private Sector Employee',
     'Freelancer',
+    'Consultant',
+    'Artist',
+    'Musician',
+    'Writer',
+    'Journalist',
+    'Lawyer',
+    'Legal Professional',
+    'Accountant',
+    'Chartered Accountant',
+    'Banking Professional',
+    'Finance Professional',
+    'Marketing Professional',
+    'Sales Professional',
+    'HR Professional',
+    'IT Professional',
+    'Web Developer',
+    'Data Scientist',
+    'Analyst',
+    'Scientist',
+    'Researcher',
+    'Farmer',
+    'Agricultural Professional',
+    'Politician',
+    'Political Worker',
+    'Social Worker',
+    'Activist',
+    'Real Estate Agent',
+    'Construction Worker',
+    'Manufacturing Professional',
+    'Transportation Professional',
+    'Logistics Professional',
+    'Hospitality Professional',
+    'Hotel Management',
+    'Chef',
+    'Retail Professional',
+    'Beautician',
+    'Fitness Trainer',
+    'Sports Professional',
+    'Driver',
+    'Security Personnel',
+    'Armed Forces',
+    'Police Officer',
+    'Firefighter',
+    'Pilot',
+    'Airline Staff',
+    'Sailor',
+    'Merchant Navy',
+    'Religious Leader',
+    'Spiritual Guide',
+    'Homemaker',
     'Retired',
+    'Unemployed',
     'Other',
   ];
 
@@ -385,6 +492,7 @@ const VolunteerForm: React.FC = () => {
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                       <option value="other">Other</option>
+                      <option value="prefer-not-to-say">Prefer not to say</option>
                     </select>
                     <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
                   </div>
@@ -499,6 +607,7 @@ const VolunteerForm: React.FC = () => {
                       <option value="married">Married</option>
                       <option value="divorced">Divorced</option>
                       <option value="widowed">Widow</option>
+                      <option value="separated">Separated</option>
                     </select>
                     <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
                   </div>

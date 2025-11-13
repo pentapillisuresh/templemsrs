@@ -27,7 +27,7 @@ function App() {
   
   return (
 
-    <div>
+    <div className="overflow-x-hidden">
   {showWelcome && (
         <WelcomeBanner onClose={() => setShowWelcome(false)} delay={3000} />
       )}
